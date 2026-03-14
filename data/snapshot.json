@@ -1,0 +1,1332 @@
+{
+  "generated_at": "2026-03-14T16:09:33Z",
+  "summary": {
+    "total_crons": 40,
+    "healthy": 39,
+    "warning": 0,
+    "failing": 1,
+    "gateway": "running"
+  },
+  "crons": [
+    {
+      "id": "circuit-breaker-gateway-spend-monitor",
+      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
+      "enabled": true,
+      "createdAtMs": 1773487800000,
+      "updatedAtMs": 1773504000056,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/15 * * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/circuit-breaker.sh",
+        "timeoutMs": 60000
+      },
+      "state": {
+        "nextRunAtMs": 1773504900000,
+        "lastRunAtMs": 1773504000056,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "lastError": "main job requires payload.kind=\"systemEvent\""
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "56394e92-899d-438d-8587-2b7c80c9730e",
+      "name": "System Resource Monitor (bash)",
+      "enabled": true,
+      "createdAtMs": 1773473536662,
+      "updatedAtMs": 1773504000056,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/resource-monitor.sh"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773505800000,
+        "lastRunAtMs": 1773504000056,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "lastError": "main job requires payload.kind=\"systemEvent\""
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
+      "name": "Pip \u2014 Cron Watchdog [exec]",
+      "enabled": true,
+      "createdAtMs": 1773474848551,
+      "updatedAtMs": 1773504288418,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Europe/Stockholm",
+        "staggerMs": 300000
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/pip-cron-watchdog.sh"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773507888358,
+        "lastRunAtMs": 1773504288418,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "lastError": "main job requires payload.kind=\"systemEvent\""
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "exec-inbox-triage-evening-2026-03-14",
+      "name": "Pip \u2014 Inbox Triage Evening [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475547322,
+      "updatedAtMs": 1773475548528,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/inbox-triage-evening-exec.sh"
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "discord",
+        "to": "channel:1479360923780124834"
+      },
+      "state": {
+        "nextRunAtMs": 1773514800000,
+        "lastRunAtMs": 1773475548528,
+        "lastRunStatus": "pending",
+        "lastStatus": "pending",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "exec-evening-sweep-2026-03-14",
+      "name": "Pip \u2014 Evening Sweep [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475547322,
+      "updatedAtMs": 1773475548528,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Europe/Stockholm",
+        "staggerMs": 30000
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/evening-sweep-exec.sh"
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "discord",
+        "to": "channel:1479360923780124834"
+      },
+      "state": {
+        "nextRunAtMs": 1773514822670,
+        "lastRunAtMs": 1773475548527,
+        "lastRunStatus": "pending",
+        "lastStatus": "pending",
+        "lastDurationMs": 1,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "3e06f445-c4dc-4be1-ae5d-f31bca21fdeb",
+      "agentId": "main",
+      "name": "End of Day \u2014 Reflection, Situation & Handoff",
+      "enabled": true,
+      "createdAtMs": 1773212093755,
+      "updatedAtMs": 1773433928672,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 21 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Reghar (Chief of Staff). This is the nightly End-of-Day sequence. Run all three tasks in order. Do not skip any step.\n\n**PATH RULE:** Absolute paths only. Always compute today's date dynamically (use Python or shell). Never hardcode dates.\n\n---\n\n## TASK 1 \u2014 DAILY REFLECTION (for Ragnar)\n\nRead (if they exist):\n- /Users/reghar/.openclaw/workspace/proposals-pending.md\n- /Users/reghar/.openclaw/workspace/pending-approvals.md\n- /Users/reghar/.openclaw/workspace/logs/audit/ (latest file)\n\nAppend to: /Users/reghar/.openclaw/workspace/agent-reflections-$(date '+%Y-%m-%d').md\n\nUse EXACT schema:\n```\n## Reghar\nTask: [what you actually did today \u2014 routing/review/fixes]\nStatus: [\u2705 OK / \u26a0\ufe0f Friction / \u274c Failed]\nPattern: [one pattern you noticed]\nFix needed: [one concrete fix OR None]\nNeeds Ragnar: [Yes \u2014 one sentence / No]\n```\n\nPost same block to Discord #daily-pulse (channel 1479360923780124834).\n\nIf Needs Ragnar: Yes \u2192 also append to /Users/reghar/.openclaw/workspace/pending-approvals.md.\n\n---\n\n## TASK 2 \u2014 SITUATION MEMO (for Advisory Council)\n\nRead these files (compute TODAY's date first):\n- /Users/reghar/.openclaw/workspace/agent-reflections-[TODAY].md (just written above)\n- /Users/reghar/.openclaw/workspace/proposals-pending.md\n- /Users/reghar/.openclaw/workspace/pending-approvals.md\n- /Users/reghar/.openclaw/workspace/MEMORY.md (scan only, don't copy)\n\nWrite to: /Users/reghar/.openclaw/workspace/situation-memo-[TODAY].md\n\nFormat (max ~400 words):\n```\n# Situation Memo \u2014 [Day, Month DD, YYYY]\n\n## What happened today\n[3-5 bullets: what agents actually did, based on agent-reflections. Only verifiable facts.]\n\n## What broke or stalled\n[1-3 bullets: any \u26a0\ufe0f/\u274c from reflections, unresolved blockers, timeouts, failures. If nothing broke: \"Clean day.\"]\n\n## What needs Ragnar\n[Items from pending-approvals.md that are PENDING_RAGNAR. If none: \"Nothing pending.\"]\n\n## Open threads\n[Active project threads from MEMORY.md that had movement today OR have been stale 2+ days. Max 3.]\n\n## Tomorrow's focus\n[1-2 sentences: what should the council prioritize based on today's signals.]\n```\n\nRules: Only reference things that actually appear in the files you read. Write [DATA NEEDED] for anything you can't verify. No speculation.\n\n---\n\n## TASK 3 \u2014 EVENING HAND-OFF NOTE\n\nRead today's daily memory log (memory/[TODAY].md) and the situation memo just written.\n\nWrite to: /Users/reghar/.openclaw/workspace/handoff-[TODAY].md\n\nFormat:\n```\n# Hand-off \u2014 [TODAY]\n\n## Open threads\n- List anything started but not finished\n\n## Decisions locked today\n- List anything explicitly decided or approved\n\n## Next steps\n- Concrete actions ready to pick up tomorrow\n\n## Waiting on\n- Sub-agents running, external things pending\n```\n\nBe specific and opinionated. This file is read by the morning briefing \u2014 write it for a version of yourself that remembers nothing.\n\n### SESSION-CLOSE COMPLIANCE CHECK (mandatory):\n\nRun these 4 checks and record results under '## Compliance flags':\n\n1. **Consolidation tags:** Scan today's daily memory file for lines with 'consolidation pending', 'add to MEMORY.md', or 'MEMORY.md update needed'. If found: write those entries to /Users/reghar/.openclaw/workspace/MEMORY.md now.\n\n2. **Stale Day 3+ items:** Check the handoff for any thread marked Day 3+ with no forward movement. If found and no Telegram poll sent today: note 'Stale escalation needed tomorrow'.\n\n3. **Dropped delegations:** Look for any item tagged 'Route to [Agent]' without a spawn confirmation. If found: note 'Delegation dropped \u2014 must spawn at next session start'.\n\n4. **Open #your-call items:** Read the last 5 messages from Discord channel 1478320408586620982. Any item older than 24h without a \u2705 reaction? Note 'Your-call item stale \u2014 re-send Telegram tomorrow'.\n\nIf all 4 pass: add '## Compliance flags: All clear \u2705'\nIf any fail: list each failure with the specific issue.\n\n---\n\n## FINAL STEP\n\nSend a Telegram message to 113533963: 'End-of-Day complete. Reflection \u2705 | Situation memo \u2705 | Hand-off \u2705. [X] open threads, [Y] items need Ragnar.' Adjust counts from actual data. One line, no fluff.",
+        "timeoutSeconds": 480
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "telegram",
+        "to": "113533963"
+      },
+      "state": {
+        "nextRunAtMs": 1773520200000,
+        "lastRunAtMs": 1773433800051,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 128621,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "9c74c6db-ce7b-4199-920d-19ee732031b8",
+      "name": "To-Do Tackler Research \u2014 Sigrid",
+      "enabled": true,
+      "createdAtMs": 1772041329444,
+      "updatedAtMs": 1773476399182,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 600,
+        "message": "You are Sigrid. Run tonight's task research pipeline.\n\nOUTPUT FILE: /Users/reghar/.openclaw/workspace-researcher/output/tasks-research-YYYY-MM-DD.md\n(Use today's actual date. This is your sandboxed workspace.)\n\n**SPLITTING RULE (MANDATORY):** You have 600 seconds. Any task marked 'Part 1 of 2' means do Part 1 only tonight, thoroughly. Any task marked 'Part 2 of 2' means read the Part 1 output file from yesterday and complete the research. NEVER rush a large task into one session. If a task is unmarked but feels like it needs >5 min: do 50% tonight, write what you have, note 'Continued in Part 2 tomorrow'.\n\nSTEP 1 \u2014 READ THE QUEUE:\nRead /Users/reghar/.openclaw/workspace/TASKS.md\n\nIf queue is empty: write 'Queue is empty \u2014 no researchable tasks found.' to output file and stop.\n\nSelect tasks following this priority:\n1. Part 2 tasks first (complete what was started)\n2. Then [HIGH] Part 1 tasks\n3. Then [HIGH] standalone tasks (max 1 if large)\n4. Then [MED] tasks\n\nPick AT MOST 1-2 tasks per night. Quality over volume.\n\nSTEP 2 \u2014 RESEARCH:\nFor each selected task:\n- web_search for primary sources, companies, data\n- web_fetch to read pages in depth\n- browser tool if web_fetch returns empty (JS-rendered pages)\n- Cite every source URL\n- Confidence tags: [CONFIRMED] [SINGLE SOURCE] [UNVERIFIED]\n- Self-verify the 3 boldest claims\n- Flag marketing hype explicitly\n\nFor Part 2 tasks: start by reading yesterday's Part 1 output from /Users/reghar/.openclaw/workspace-researcher/output/tasks-research-[yesterday].md\n\nSTEP 3 \u2014 STRUCTURE OUTPUT:\n## Tasks Selected Tonight\n[Which tasks, why this priority]\n\n## Research Findings\n### [Task name]\n- Findings: [structured facts + source URLs]\n- Confidence: [tags]\n- Gaps: [what you couldn't find]\n- Verdict: [1-2 sentences \u2014 what Ragnar should do with this]\n\n## Self-Verification Log\n3 boldest claims re-searched.\n\n## Tasks NOT Covered Tonight\n[Remaining queue with reason for deferral]\n\nRULES:\n- Real research only. No fabricating findings.\n- Empty honest file beats padded one.\n- Do NOT update TASKS.md \u2014 main agent handles that at 23:30.",
+        "model": "claude-max/claude-sonnet-4"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "lastRunAtMs": 1773439200050,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 300014,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 2,
+        "lastErrorReason": "timeout",
+        "lastError": "cron: job execution timed out",
+        "nextRunAtMs": 1773525600000
+      }
+    },
+    {
+      "id": "1c13b028-3c8f-47dc-9d2e-8e76bf6d7ba9",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1475974919631405126",
+      "name": "Overnight To-Do Tackler",
+      "enabled": true,
+      "createdAtMs": 1772003230933,
+      "updatedAtMs": 1773441124223,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 23 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 300,
+        "message": "You are the Overnight To-Do Tackler. Sigrid has already done the research. Your job: read her findings, write result files, update the queue, post summary.\n\nSTEP 1 \u2014 READ SIGRID'S RESEARCH:\nFind tonight's research file \u2014 check paths in order:\n```bash\nTODAY=$(date +%Y-%m-%d)\nFILE=\"/Users/reghar/.openclaw/workspace-researcher/output/tasks-research-$TODAY.md\"\n[ ! -f \"$FILE\" ] && FILE=\"/Users/reghar/.openclaw/workspace/tasks-research-$TODAY.md\"\necho \"Using: $FILE\"\n```\n\nIf the file does NOT exist in either location or says the queue is empty: post a brief Discord note to channel 1475974919631405126 ('To-Do Tackler: no tasks researched tonight \u2014 queue empty or Sigrid file missing.') Then stop.\n\nSTEP 2 \u2014 WRITE RESULT FILES:\nFor each task Sigrid researched, write a results file:\n- Path: /Users/reghar/.openclaw/workspace/research/[YYYY-MM-DD]-[short-slug].md\n- Format: Title, Date, Task, Findings (from Sigrid's research), Sources (Sigrid's sources), Verdict (1-2 sentences on what Ragnar should do)\n\nDo not invent findings. You are synthesising Sigrid's sourced research into a clean deliverable.\n\nSTEP 3 \u2014 UPDATE TASKS.MD:\nEdit /Users/reghar/.openclaw/workspace/TASKS.md:\n- Move completed tasks to Done section with date and result file path\n- Leave uncovered tasks in Queue unchanged\n\nSTEP 4 \u2014 SUMMARY:\nPost to Discord channel 1475974919631405126 a short summary (3-5 lines): which tasks were tackled, key finding per task, result file paths.\n\nRULES:\n- Synthesise Sigrid's findings. Do not add new research or fabricate.\n- If Sigrid flagged something as [UNVERIFIED], note it as such in the result file.\n- Don't touch MEMORY.md \u2014 that's for the memory consolidation cron."
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1475974919631405126",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773527400000,
+        "lastRunAtMs": 1773441000066,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 124157,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Daily Conversation & Workflow Audit",
+      "enabled": true,
+      "createdAtMs": 1772179570443,
+      "updatedAtMs": 1773485942886,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 1 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 300,
+        "message": "You are running the daily conversation and workflow audit. Review yesterday's interactions and produce structured, actionable proposals.\n\nSTEP 1 \u2014 READ CONTEXT:\n```bash\nYESTERDAY=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d 'yesterday' +%Y-%m-%d)\ncat /Users/reghar/.openclaw/workspace/memory/$YESTERDAY.md 2>/dev/null || echo 'No daily log found'\ncat /Users/reghar/.openclaw/workspace/handoff-$YESTERDAY.md 2>/dev/null || echo 'No handoff note'\n```\nAlso read: /Users/reghar/.openclaw/workspace/SOUL.md, /Users/reghar/.openclaw/workspace/AGENTS.md\n\nSTEP 2 \u2014 IDENTIFY FRICTION:\nLook for: corrections Ragnar had to make, repeated iterations, outputs that missed the mark, instructions followed incorrectly, anything that took longer than it should.\n\nSTEP 3 \u2014 WRITE STRUCTURED PROPOSALS:\nFor each friction point, one proposal. Format EXACTLY as follows (the Proposal Reviewer parses this):\n\n```\n### PROPOSAL: [short title]\nRisk: \ud83d\udfe2 AUTO | \ud83d\udfe1 CHIEF | \ud83d\udd34 RAGNAR\nFile: [exact file path, or 'new cron']\nFriction: [one sentence describing what went wrong]\nFix: [exact text to add/change, or precise description of new cron]\n```\n\nRisk tiers:\n- \ud83d\udfe2 AUTO: purely additive instruction clarification, no behaviour change, low risk\n- \ud83d\udfe1 CHIEF: changes agent behaviour or prompt structure, needs review before applying\n- \ud83d\udd34 RAGNAR: changes strategy, routing, costs, or anything structural\n\nMax 5 proposals. Rank by impact.\n\nSTEP 4 \u2014 SAVE PROPOSALS FILE:\nSave to: /Users/reghar/.openclaw/workspace/proposals-$YESTERDAY.md\n\nFormat:\n# Conversation Audit Proposals \u2014 [date]\n[proposals in exact format above]\n\nSTEP 5 \u2014 POST TO DISCORD (channel 1476467212075270306):\n\ud83d\udde3\ufe0f **Conversation Audit \u2014 [date]**\n**Friction points:** [X] | **Proposals:** [X] (\ud83d\udfe2 [n] auto / \ud83d\udfe1 [n] chief / \ud83d\udd34 [n] ragnar)\n[List proposals with risk tier]\n\n<@1475960055755968564>\n\nIf no friction found: one line and stop. Do not write proposals file if empty.",
+        "lightContext": true,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1476467212075270306",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773534600000,
+        "lastRunAtMs": 1773448200061,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 99748,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "ab196a29-f9e8-43a9-bdd0-10b6b10e2b3b",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Nightly System Audit",
+      "enabled": true,
+      "createdAtMs": 1771774149483,
+      "updatedAtMs": 1773485940218,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run tonight's system audit. Every section below has concrete checks \u2014 execute them, don't estimate.\n\nREAD FIRST:\n- /Users/reghar/.openclaw/workspace/MEMORY.md\n- /Users/reghar/.openclaw/workspace/TASKS.md\n- /Users/reghar/.openclaw/workspace/WRITING-STYLE.md\n\n---\n\n## SECTION 0 \u2014 PATH SAFETY & WRITE FAILURE AUDIT (run first, escalate fast)\n\n**0a. Cron Prompt Tilde Scan:**\nList all enabled cron jobs. For each one, scan the payload message for `~/` or `$HOME/`.\nNote: `~/go/bin/blogwatcher` is OK (shell command). Flag ONLY paths used for writing output files.\nSeverity: \ud83d\udd34 CRITICAL if output file path | \ud83d\udfe1 WARNING if shell command path.\n\n**0b. Write Failure Scan:**\nFor every cron with `consecutiveErrors >= 1`, check if `lastError` contains: `Write:`, `to ~/`, `to /tmp/`, or `timed out`.\nFor each match: cron name | error | consecutive errors | root cause: TILDE_PATH | TMP_PATH | TIMEOUT | OTHER\n\n**0c. /tmp Usage Audit:**\nScan all cron prompts for writes to `/tmp/`. Flag as \ud83d\udfe1 WARNING.\n\nIf ANY \ud83d\udd34 CRITICAL items: post immediate alert to Discord 1476467212075270306 before continuing.\n\n---\n\n## SECTION 1 \u2014 PIPELINE HEALTH\n\n```bash\n# Champagne (Mondays only)\nls -la /Users/reghar/.openclaw/workspace/champagne-research-*.md 2>/dev/null | tail -2\nls -la /Users/reghar/.openclaw/workspace/champagne-brief-*.md 2>/dev/null | tail -2\n\n# RE Daily (Mon-Thu only)\nls -la /Users/reghar/.openclaw/workspace/re-daily-research-*.md 2>/dev/null | tail -2\n\n# RE Weekly\nls -la /Users/reghar/.openclaw/workspace/re-weekly-research-*.md 2>/dev/null | tail -2\n\n# Automation Scout\nls -la /Users/reghar/.openclaw/workspace/automation-scout-research-*.md 2>/dev/null | tail -2\n\n# Situation Memo\nls -la /Users/reghar/.openclaw/workspace/situation-memo-*.md 2>/dev/null | tail -2\n\n# Task Research\nls -la /Users/reghar/.openclaw/workspace/tasks-research-*.md 2>/dev/null | tail -2\n```\n\nFor time-sensitive pipelines (Sigrid runs 05:30+), check YESTERDAY's file \u2014 audit runs at 02:00 before today's runs:\n```bash\nYESTERDAY=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d 'yesterday' +%Y-%m-%d)\nls /Users/reghar/.openclaw/workspace/automation-scout-research-$YESTERDAY.md 2>/dev/null && echo 'yesterday ok' || echo 'yesterday missing'\nls /Users/reghar/.openclaw/workspace/re-daily-research-$YESTERDAY.md 2>/dev/null && echo 'yesterday ok' || echo 'yesterday missing'\n```\n\nCheck output/ for misrouted files:\n```bash\nls -la /Users/reghar/.openclaw/workspace/output/re-daily-research-*.md 2>/dev/null | tail -2\nls -la /Users/reghar/.openclaw/workspace/output/automation-scout-research-*.md 2>/dev/null | tail -2\n```\nIf found in output/ but NOT workspace root: flag \u26a0\ufe0f MISROUTED and move in Section 9.\n\nReport: \u2705 exists | \u26a0\ufe0f missing | \u2014 not scheduled | \u2014 pending (pre-dawn)\n\n---\n\n## SECTION 2 \u2014 DUPLICATE CAPABILITY SCAN\n\nList all active cron names. List skills:\n```bash\nls /Users/reghar/.openclaw/workspace/skills/\nls /opt/homebrew/lib/node_modules/openclaw/skills/\n```\nFlag: same capability in two crons or skills. Flag stale disabled crons.\n\n---\n\n## SECTION 3 \u2014 MEMORY HEALTH\n\n```bash\nwc -l /Users/reghar/.openclaw/workspace/MEMORY.md\nls -la /Users/reghar/.openclaw/workspace/memory/\nls /Users/reghar/.openclaw/workspace/memory/archive/ 2>/dev/null | wc -l\n```\n\nMEMORY.md: \ud83d\udd34 if >140 lines | \ud83d\udfe1 if 121-140 | \u2705 if \u2264120\n\n---\n\n## SECTION 4 \u2014 TASKS.MD STALENESS\n\nRead TASKS.md. For each queued task: \ud83d\udd34 >7 days | \ud83d\udfe1 4-7 days | \u2705 <4 days. Flag Done entries older than 7 days.\n\n---\n\n## SECTION 5 \u2014 COST SCAN\n\nList every Opus cron. Flag \ud83d\udd34 if Opus runs daily on something Sonnet could handle.\n```bash\ntail -20 /opt/homebrew/var/log/openclaw/gateway.log 2>/dev/null | grep -i 'rate\\|cost\\|429\\|limit' || echo 'no warnings'\n```\n\n---\n\n## SECTION 6 \u2014 OPEN LOOPS\n\n- Orphaned research files in workspace/research/ with no TASKS.md entry\n- TASKS.md Done entries older than 7 days\n- One-shot crons (schedule.kind=at) past their date\n\n```bash\nfind /Users/reghar/.openclaw/workspace/research/ -name '*.md' -mtime +7 2>/dev/null\n```\n\n---\n\n## SECTION 7 \u2014 SYSTEM INTEGRITY\n\n**a) Success Theater Check:**\n```bash\ngrep -c '##' /Users/reghar/.openclaw/workspace/automation-scout-research-$(date +%Y-%m-%d).md 2>/dev/null || echo 'missing or empty'\ngrep -l 'Deals Found' /Users/reghar/.openclaw/workspace/re-daily-research-$(date +%Y-%m-%d).md 2>/dev/null || echo 'missing or no deals section'\nwc -l /Users/reghar/.openclaw/workspace/situation-memo-$(date +%Y-%m-%d).md 2>/dev/null || echo 'missing'\n```\nA cron that reports ok but produces an empty file = \ud83d\udd34.\n\n**b) Persistent Flag Check:**\n```bash\nYESTERDAY=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d 'yesterday' +%Y-%m-%d)\ncat /Users/reghar/.openclaw/workspace/logs/audit/$YESTERDAY.md 2>/dev/null | grep -A2 'CRITICAL\\|\ud83d\udd34' | head -30\n```\nStill present \u2192 PERSISTENT (day 2+). Resolved \u2192 \u2705. False positive \u2192 \u26a0\ufe0f.\n\n**c) Cross-System Gap Check:**\n- HIGH-priority TASKS.md items not routed to an agent?\n- Research files in workspace/research/ older than 7 days unreferenced in TASKS.md?\n\n**d) Output Path Drift:**\n```bash\nfind /Users/reghar/.openclaw/workspace/output/ -name '*.md' -newer /Users/reghar/.openclaw/workspace/MEMORY.md 2>/dev/null\n```\n\n---\n\n## SECTION 8 \u2014 AUTO-HOUSEKEEPING\n\n**a) Archive old daily memory files (>7 days):**\n```bash\nDATE_CUTOFF=$(date -v-7d +%Y-%m-%d 2>/dev/null || date -d '7 days ago' +%Y-%m-%d)\nmkdir -p /Users/reghar/.openclaw/workspace/memory/archive\nfor f in /Users/reghar/.openclaw/workspace/memory/20*.md; do\n  fname=$(basename \"$f\" .md)\n  if [[ \"$fname\" < \"$DATE_CUTOFF\" ]]; then\n    mv \"$f\" /Users/reghar/.openclaw/workspace/memory/archive/\n    echo \"Archived: $fname\"\n  fi\ndone\n```\n\n**b) Prune TASKS.md Done section (>7 days).**\n\n**c) Fix misrouted pipeline files:**\n```bash\nfor f in /Users/reghar/.openclaw/workspace/output/re-daily-research-*.md \\\n         /Users/reghar/.openclaw/workspace/output/automation-scout-research-*.md; do\n  [ -f \"$f\" ] && mv \"$f\" /Users/reghar/.openclaw/workspace/ && echo \"Moved: $(basename $f)\"\ndone\n```\n\n**d) Save audit report:**\n/Users/reghar/.openclaw/workspace/logs/audit/$(date +%Y-%m-%d).md\n\n---\n\n## SECTION 9 \u2014 ACTION ROUTING\n\nCategorise every \ud83d\udd34 item:\n- **AUTO-FIXED:** Resolved by this audit.\n- **CHIEF ACTION:** Ops fix (cron update, prompt patch).\n- **RAGNAR REQUIRED:** Strategic, budget, external, or open 2+ consecutive nights.\n\nIf RAGNAR REQUIRED items exist, append:\n---\n**Your call needed:**\n1. [item]\n\n---\n\n## OUTPUT FORMAT\n\n\ud83d\udd0d **PATH SAFETY:** [tilde paths | write failures | /tmp usage | all clear]\n\n\ud83d\udd34 **CRITICAL:** [AUTO-FIXED items first, then NEEDS ACTION. Or: 'None.']\n\n\ud83d\udfe1 **FLAGS:** [Issues + recommended fix. Or: 'None.']\n\n\ud83d\udd0d **SYSTEM INTEGRITY:** [Success theater | Persistent flags | Cross-system gaps | Path drift]\n\n\u2705 **SYSTEM HEALTH:**\n\u2022 Pipelines: [X/Y on schedule]\n\u2022 MEMORY.md: [X lines]\n\u2022 Daily files: [X active, X archived]\n\u2022 Active crons: [X total, X Opus, X Sonnet, X Haiku]\n\u2022 Tasks in queue: [X]\n\u2022 Cost warnings: [found / none]\n\n\ud83d\udca1 **ONE IMPROVEMENT (optional):** [Concrete and low-effort only.]\n\nRULES:\n- Every flag must cite a specific file or cron name.\n- Under 500 words unless CRITICAL items require explanation.\n- Save full output to /Users/reghar/.openclaw/workspace/logs/audit/$(date +%Y-%m-%d).md before posting.\n\n## SECTION 10 \u2014 PROPOSAL STATUS SUMMARY\n\nAlso check /Users/reghar/.openclaw/workspace/proposals-pending.md and report: N proposals generated / N approved / N implemented today. Flag as \ud83d\udd34 if any APPROVED items are older than 48 hours without implementation.\n\n---\n\n## SECTION 11 \u2014 AUTO-ARCHIVE STALE APPROVED PROPOSALS\n\nRead `/Users/reghar/.openclaw/workspace/proposals-pending.md`. Find any entry marked `APPROVED` where the approval date is more than 5 days ago and there is no corresponding `DONE` marker. Move those entries to `/Users/reghar/.openclaw/workspace/proposals-archive.md` with a note `ARCHIVED \u2014 stale APPROVED (no implementation confirmed after 5+ days) [today's date]`. This prevents completed or dropped items from surfacing repeatedly.\n\n---\n\n## SECTION 12 \u2014 SESSION COUNT CHECK\n\nRun:\n```bash\nopenclaw sessions list | wc -l\n```\n\nReport the count. Thresholds:\n- \u2705 \u2264 100 sessions: all clear\n- \ud83d\udfe1 101\u2013150 sessions: warning \u2014 consider pruning old sessions\n- \ud83d\udd34 > 150 sessions: alert \u2014 session table is oversized, flag for cleanup\n\nInclude the raw count in the audit report under SYSTEM HEALTH.\n\n---\n\n## SECTION 13 \u2014 AGENT FILE SIZE CHECK\n\nCheck line counts for the following key agent files (skip if file does not exist):\n```bash\nwc -l /Users/reghar/.openclaw/workspace/AGENTS.md\nwc -l /Users/reghar/.openclaw/workspace/SOUL.md\nwc -l /Users/reghar/.openclaw/workspace-leon/IDENTITY.md 2>/dev/null || echo \"IDENTITY.md not found\"\nwc -l /Users/reghar/.openclaw/workspace-leon/AGENTS.md 2>/dev/null || echo \"leon/AGENTS.md not found\"\n```\n\nThresholds per file:\n- \u2705 \u2264 200 lines: healthy\n- \ud83d\udfe1 201\u2013300 lines: warning \u2014 file is growing large, consider trimming\n- \ud83d\udd34 > 300 lines: alert \u2014 file is critically large, schedule a pruning pass\n\nInclude all line counts in the audit report under SYSTEM HEALTH. Flag any file at \ud83d\udfe1 or \ud83d\udd34 in the FLAGS section with the specific file path and count.\n\n---\n\n## SECTION 14 \u2014 SYSTEM BLOAT CHECKS\n\n**CHECK: Error Log Size**\n```bash\nwc -c ~/.openclaw/logs/gateway.err.log 2>/dev/null || echo \"0\"\n```\n- \ud83d\udfe1 >5MB (5242880 bytes): post alert to #nightly-audit (channel 1476467212075270306), include last 20 lines:\n  ```bash\n  tail -20 ~/.openclaw/logs/gateway.err.log\n  ```\n- \ud83d\udd34 >10MB (10485760 bytes): truncate the log AND alert with message \"Error log truncated \u2014 was Xmb\":\n  ```bash\n  > ~/.openclaw/logs/gateway.err.log\n  ```\n  Include the pre-truncation size in the alert.\n\n**CHECK: Browser Cache Size**\n```bash\ndu -sh ~/.openclaw/browser/openclaw/Default/Cache 2>/dev/null\n```\n- \ud83d\udd34 >500MB: auto-clear the cache directories (Cache, Code Cache, GPUCache) but do NOT touch profile/cookies/session data:\n  ```bash\n  rm -rf ~/.openclaw/browser/openclaw/Default/Cache\n  rm -rf ~/.openclaw/browser/openclaw/Default/Code\\ Cache\n  rm -rf ~/.openclaw/browser/openclaw/Default/GPUCache\n  ```\n  Post alert to #nightly-audit (channel 1476467212075270306) with the size freed.\n\n**CHECK: Media Inbound Size**\n```bash\ndu -sh ~/.openclaw/media/inbound 2>/dev/null\n```\n- \ud83d\udfe1 >100MB: post to #nightly-audit (channel 1476467212075270306): \"Media inbound is Xmb \u2014 consider cleaning up old files\"\n\nAdd all three findings to the SYSTEM HEALTH section of the audit report. If any auto-actions were taken (log truncation, cache clear), mark them as AUTO-FIXED in Section 9.\n\n---\n\n## SECTION 15 \u2014 INTRADAY CRON WATCHDOG SUMMARY\n\nReview all active cron jobs for failures accumulated since the last nightly audit. For each cron, note: name, lastRunStatus, consecutiveErrors, lastError.\n\nCATEGORIES:\n- \ud83d\udd34 CRITICAL: consecutiveErrors >= 2 (failed 2+ times in a row)\n- \ud83d\udfe1 WARNING: consecutiveErrors == 1 (single failure, may be transient)\n- \ud83d\udfe2 OK: lastRunStatus = ok or idle\n\nACTION RULES:\n\n**If NO \ud83d\udd34 CRITICAL items:**\nLog \"Cron watchdog: all clear\" in the audit report. No separate Discord post needed (this audit already posts).\n\n**If \ud83d\udd34 CRITICAL items exist:**\nInclude them prominently in the \ud83d\udd34 CRITICAL section at the top of the audit report output, and ensure they appear in the ACTION ROUTING (Section 9).\n\nDo NOT surface \ud83d\udfe1 single-error failures as CRITICAL \u2014 they are transient noise.\n\n---\n\n## SECTION 16 \u2014 OPENCLAW DOCTOR & HARDWARE CHECKS\n\n**PATH RULE:** Full absolute paths only. Never ~ or $HOME.\n\n**16a. OpenClaw Doctor:**\n```bash\nopenclaw doctor 2>&1\n```\nExtract any warnings or errors.\n\n**16b. Security Audit:**\n```bash\nopenclaw security audit --deep 2>&1\n```\nExtract: critical count, warn count, any NEW warnings not in the known baseline (baseline: dangerouslyAllowHostHeaderOriginFallback, trusted_proxies_missing, models.weak_tier, multi_user_heuristic). Flag anything new as \ud83d\udd34 NEW.\n\n**16c. Mac Mini Hardware:**\n```bash\ndf -h / | tail -1\nvm_stat | grep -E 'Pages free|Pages active|Pages inactive|Pages wired|Pages compressed'\nuptime\nsudo powermetrics --samplers smc -n 1 2>/dev/null | grep -i 'temp|thermal|cpu die' | head -5 || echo 'temperature data unavailable'\n```\n\nParse results:\n- Disk: \ud83d\udd34 if < 20GB free | \ud83d\udfe1 if < 50GB free | \u2705 if >= 50GB free\n- Memory: \ud83d\udd34 if wired + active > 14GB | \ud83d\udfe1 if > 12GB | \u2705 otherwise\n- Load: \ud83d\udd34 if 15min load avg > 4.0 | \ud83d\udfe1 if > 2.0 | \u2705 otherwise\n- Temp: report value or 'unavailable'\n\n**16d. Gateway Reconnects:**\n```bash\ngrep -c 'gateway disconnected' /opt/homebrew/var/log/openclaw/gateway.log 2>/dev/null || \\\ngrep -c 'disconnected' /Users/reghar/.openclaw/logs/gateway.log 2>/dev/null || echo '0'\n```\n\ud83d\udd34 if > 5 reconnects | \ud83d\udfe1 if > 2 | \u2705 otherwise\n\nInclude all findings in the SYSTEM HEALTH summary. If any \ud83d\udd34 items from Sections 15\u201316 are not already covered by the main audit's ACTION ROUTING, add them to Section 9.\n\n\n---\n\n## SECTION 17 \u2014 MEMORY FILE PURGE\n\nAuto-delete daily memory files older than 21 days. MEMORY.md is never deleted.\n\n```bash\nfind /Users/reghar/.openclaw/workspace/memory/ -maxdepth 1 -name '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].md' -mtime +21 -print -delete 2>/dev/null || echo 'No stale memory files found'\n```\n\nReport: list any files deleted, or confirm 'No stale memory files found'. This runs silently \u2014 only surface in audit report if files were deleted.\n\n---\n\n## SECTION 18 \u2014 ZOMBIE SESSION DETECTION\n\nCheck for spawned sessions that started but produced no output file within their expected duration.\n\n```bash\n# Check spawn log for today and yesterday\nTODAY=$(date +%Y-%m-%d)\nYESTERDAY=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d 'yesterday' +%Y-%m-%d)\nfor LOG in /Users/reghar/.openclaw/workspace/logs/spawn-log-$TODAY.md \\\n            /Users/reghar/.openclaw/workspace/logs/spawn-log-$YESTERDAY.md; do\n  [ -f \"$LOG\" ] && cat \"$LOG\" || true\ndone\n```\n\nFor each entry in the spawn log that has a `status: started` or equivalent (session was spawned), check whether its expected output file exists:\n- If the output file is **empty** (0 bytes) or **missing** entirely, AND the session has been running longer than its expected duration (use the cron's `runTimeoutSeconds` as the benchmark), classify it as a **zombie session**.\n\n**Zombie criteria:**\n- Session started (spawn log entry present)\n- Expected output file missing or empty after expected duration has elapsed\n- No completion or error entry in the log for that session\n\n**Action:**\n- Flag each zombie in the audit report under a new `\ud83e\udddf ZOMBIE SESSIONS` subsection in SECTION 9 (Action Routing).\n- Post to Discord #nightly-audit (channel 1476467212075270306): `\ud83e\udddf Zombie session detected: [session/cron name] \u2014 started [time], output [missing/empty] after [duration]. Flagged for cleanup.`\n- Do NOT kill or terminate zombie sessions \u2014 flag only. Killing is a manual Ragnar/Kodex decision.\n\nIf no spawn log exists or no zombies found: log `Zombie check: no spawn log found` or `Zombie check: all clear` in the audit report. No Discord post needed if all clear.\n\n**18b \u2014 OUTPUT DIRECTORY SCAN (empty file detection):**\n\nScan the sandboxed output directories for files that are 0 bytes AND were modified within the last 24 hours. These are candidates for failed/zombie runs where the agent started but wrote nothing.\n\n```bash\n# Find 0-byte files modified in last 24 hours in researcher output\nfind /Users/reghar/.openclaw/workspace-researcher/output/ -maxdepth 1 -type f -empty -mtime -1 2>/dev/null\n\n# Find 0-byte files modified in last 24 hours in writer output\nfind /Users/reghar/.openclaw/workspace-writer/output/ -maxdepth 1 -type f -empty -mtime -1 2>/dev/null\n```\n\nFor each 0-byte file found:\n- Record: filename, directory, modification time.\n- Classify as a **failed output candidate** \u2014 the agent likely ran but produced no content.\n- Add to the `\ud83e\udddf ZOMBIE SESSIONS` subsection in Section 9 (Action Routing).\n- Post to Discord **#pipelines** (channel `1481205564817014864`):\n  `\u26a0\ufe0f Empty output file detected: [filename] in [directory] \u2014 modified [time], 0 bytes. Possible zombie/failed agent run. Flagged for manual review.`\n\n**Rules:**\n- Do NOT delete 0-byte files \u2014 flag only.\n- If no empty files found: log `Output scan: all clear (no 0-byte files in last 24h)` in the audit report. No Discord post needed.\n- If files found: always post to #pipelines regardless of other Discord routing.",
+        "timeoutSeconds": 480,
+        "lightContext": true,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1476467212075270306"
+      },
+      "state": {
+        "nextRunAtMs": 1773536400000,
+        "lastRunAtMs": 1773450000061,
+        "lastStatus": "ok",
+        "lastDurationMs": 300487,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "not-delivered",
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "exec-proposal-auto-queue-20260314",
+      "name": "Proposal Reviewer \u2014 Auto-Apply & Queue [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475711595,
+      "updatedAtMs": 1773475711595,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 2 * * *",
+        "tz": "Europe/Stockholm",
+        "staggerMs": 0
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/proposal-auto-queue.sh"
+      },
+      "state": {
+        "nextRunAtMs": 1773536400000
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "32912067-1bce-49ed-8ebd-f4c732d9bf10",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Nightly Memory Consolidation",
+      "enabled": true,
+      "createdAtMs": 1771880542688,
+      "updatedAtMs": 1773485937544,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 2 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Nightly memory consolidation run.\n\n**PATH RULE (CRITICAL):** Always use FULL absolute paths \u2014 /Users/reghar/.openclaw/workspace/. NEVER use ~ or $HOME. Tilde does not expand in isolated sessions.\n\nSTEP 1 \u2014 READ DAILY MEMORY FILES:\nRead all files in /Users/reghar/.openclaw/workspace/memory/ from the past 3 days.\n```bash\nfind /Users/reghar/.openclaw/workspace/memory/ -name '*.md' -mtime -3 | sort\n```\nRead each file found.\n\nSTEP 2 \u2014 READ CURRENT MEMORY.MD:\nRead /Users/reghar/.openclaw/workspace/MEMORY.md\n\nSTEP 3 \u2014 CONSOLIDATE:\nDistill any significant decisions, lessons, project updates, or durable facts from the daily files into MEMORY.md (if not already there). Remove stale or outdated entries. Keep MEMORY.md under 120 lines. Be ruthless \u2014 only keep what future-you actually needs for recall.\n\nSTEP 4 \u2014 WRITE MEMORY.MD:\n\u26a0\ufe0f EXACT PATH REQUIRED: Write the updated content to this EXACT path using the write tool:\n  path = /Users/reghar/.openclaw/workspace/MEMORY.md\nDo NOT use ~ or $HOME or relative paths. The full absolute path is /Users/reghar/.openclaw/workspace/MEMORY.md.\n\nSTEP 5 \u2014 GIT COMMIT:\n```bash\ncd /Users/reghar/.openclaw/workspace\ngit add -u\nif ! git diff --cached --quiet; then\n  git commit -m \"auto: nightly consolidation $(date +%Y-%m-%d)\"\n  git push origin main 2>&1 | head -5\n  echo \"Git committed and pushed\"\nelse\n  echo \"Git: nothing to commit\"\nfi\n```\n\nReply with a one-line summary of changes made (or 'nothing to consolidate').",
+        "timeoutSeconds": 300,
+        "lightContext": true,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773538200000,
+        "lastRunAtMs": 1773451800053,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 111933,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "15b8ed4e-16d3-46ff-8475-62835171890a",
+      "name": "QMD \u2014 Nightly Re-index [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475017025,
+      "updatedAtMs": 1773475017025,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/qmd-nightly-reindex.sh"
+      },
+      "state": {
+        "nextRunAtMs": 1773540000000
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "3e963f7d-11a5-494e-8d17-f1bcf1d7e490",
+      "name": "Telegram Session Health Monitor [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475023549,
+      "updatedAtMs": 1773475023549,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/telegram-session-health.sh"
+      },
+      "state": {
+        "nextRunAtMs": 1773543600000
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "379c3168-cbef-4415-b23b-15ba0c20e893",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "System Architect \u2014 Weekly Pattern Review",
+      "enabled": true,
+      "createdAtMs": 1772470479323,
+      "updatedAtMs": 1773445075475,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 300,
+        "message": "You are the System Architect. Your job: read one week of agent reflection logs and nightly audit reports, identify recurring failure patterns, and produce a numbered list of specific proposed improvements. You propose \u2014 Chief of Staff (main) reviews before anything is applied.\n\nSTEP 1 \u2014 READ AGENT REFLECTION LOGS (past 7 days):\n```bash\nfind /Users/reghar/.openclaw/workspace/logs/ -name '*.md' -newer /Users/reghar/.openclaw/workspace/logs/../MEMORY.md -not -path '*/audit/*' | sort\n```\nFor each agent log file found, read it. Extract:\n- Which tasks were skipped or failed and why\n- Output confidence scores (flag any agent averaging <3/5)\n- Slowest steps\n- Proposed improvements written by agents themselves\n\nIf no reflection logs exist yet: note this and skip to Step 2.\n\nSTEP 2 \u2014 READ AUDIT REPORTS (past 7 days):\n```bash\nls -la /Users/reghar/.openclaw/workspace/logs/audit/*.md 2>/dev/null | tail -7\n```\nRead each audit file. Extract:\n- Any \ud83d\udd34 CRITICAL items (did they get resolved?)\n- Recurring \ud83d\udfe1 FLAGS (same issue appearing multiple nights = pattern)\n- Cost flags and pipeline health patterns\n\nSTEP 3 \u2014 CROSS-REFERENCE AND IDENTIFY PATTERNS:\nLook for:\n- Same agent skipping the same task type repeatedly\n- Same pipeline stage failing or running thin output multiple times\n- Audit flagging the same issue 2+ nights running\n- Agent confidence scores trending down\n- Any recommendation Ragnar or Chief approved that hasn't been implemented yet\n\nSTEP 4 \u2014 VERIFY BEFORE PROPOSING:\nBefore writing any recommendation:\n```bash\nls /Users/reghar/.openclaw/workspace/skills/\nls /opt/homebrew/lib/node_modules/openclaw/skills/\n```\nAlso list all active cron job names. Any proposed improvement must NOT duplicate existing functionality.\n\nSTEP 5 \u2014 WRITE THE PROPOSAL:\n\nFormat as a numbered approval list \u2014 Chief of Staff reviews each item. Ragnar approves structural changes.\n\nFor each proposed change:\n- What: specific, concrete change (prompt addition, model swap, new step, schedule change)\n- Why: which pattern from logs/audits drives this\n- Risk tier: \ud83d\udfe2 Auto-implement | \ud83d\udfe1 Chief reviews + tests first | \ud83d\udd34 Ragnar approval required\n- Effort: [minutes estimate]\n\nMAX 5 proposals. Rank by impact. If patterns are weak or inconclusive, propose fewer \u2014 or none.\n\nSTEP 6 \u2014 SAVE AND POST:\nSave proposal to: /Users/reghar/.openclaw/workspace/research/system-architect-[YYYY-MM-DD].md\n\nPost to Discord channel 1476467212075270306 (#nightly-audit).\n\nFORMAT for Discord:\n\ud83e\uddd0 **System Architect \u2014 Weekly Review [Date]**\n\n**Patterns identified:** [X from reflection logs, X from audit reports]\n\n**Proposed changes (approval list):**\n1. [What] \u2014 [Why] \u2014 \ud83d\udfe2/\ud83d\udfe1/\ud83d\udd34 \u2014 [X min]\n2. ...\n\n**Next step:** Chief of Staff reviews. Ragnar approves \ud83d\udd34 items only.\n\nIf no patterns found: 'No actionable patterns this week. System stable.' Don't manufacture recommendations."
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1476467212075270306",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773554400000,
+        "lastRunAtMs": 1772949600055,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 160851,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "e60b96d1-4d23-48f3-b4e5-75bd7a47d308",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Pip \u2014 Weekly Timing & Overlap Audit",
+      "enabled": true,
+      "createdAtMs": 1772470672174,
+      "updatedAtMs": 1773500543424,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 180,
+        "message": "You are Pip. Run the weekly timing audit in two steps.\n\nSTEP 1 \u2014 RUN THE AUDIT SCRIPT:\nExecute and capture the full JSON output:\n  python3 /Users/reghar/.openclaw/workspace/scripts/timing-audit.sh\n\nSTEP 2 \u2014 FORMAT AND POST RESULTS:\nUsing ONLY the JSON data returned above (do no additional math), format the Discord post:\n\n\u23f1\ufe0f **Pip \u2014 Weekly Timing Audit** ([date from JSON])\n\n\ud83d\udd34 **COLLISIONS** (fix before Monday):\n[For each collision: Agent | Cron A HH:MM \u2192 Cron B HH:MM | overlap Xmin | Day]\nOR: None found.\n\n\ud83d\udfe1 **TIGHT WINDOWS** (<5min gap):\n[For each: Agent | Cron A \u2192 Cron B | gap Xs | Day]\nOR: None.\n\n\ud83d\udccb **HANDOFF WINDOWS:**\n[For each: Pipeline | required Xmin | actual Xmin | \u2705/\ud83d\udfe1/\ud83d\udd34]\n\n\ud83d\udcca **MONDAY SIGRID LOAD:**\n[For each: Name | start \u2192 end_est]\n\n\u2705 **CLEAR:** [crons_checked] crons checked, [enabled] enabled / [disabled] disabled / [total] total\n\nSave full JSON to: /Users/reghar/.openclaw/workspace/logs/timing-audit-[date].md\nPost to Discord channel 1476467212075270306.\nUnder 300 words in Discord post.",
+        "lightContext": true,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1481205564817014864",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773554400000,
+        "lastRunAtMs": 1772949760906,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 48218,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "b8cfbcf7-d0a6-4770-b973-dec3579b7cf6",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Pip \u2014 Weekly Registry Refresh",
+      "enabled": true,
+      "createdAtMs": 1772529488321,
+      "updatedAtMs": 1773485310499,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 7 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 180,
+        "message": "## STEP 0 \u2014 READ COUNCIL FEEDBACK (run FIRST, before anything else)\n\nCheck for last night's Advisory Council feedback targeted at you:\n\n```bash\nFEEDBACK=\"/Users/reghar/.openclaw/workspace/agent-feedback-pip.md\"\nif [ -f \"$FEEDBACK\" ]; then\n  echo \"=== Council Feedback for Pip ===\"\n  cat \"$FEEDBACK\"\n  echo \"=== End Council Feedback ===\"\n  mkdir -p /Users/reghar/.openclaw/workspace/archive/feedback\n  mv \"$FEEDBACK\" \"/Users/reghar/.openclaw/workspace/archive/feedback/agent-feedback-pip-$(date +%Y-%m-%d).md\"\nfi\n```\n\nIf feedback is present, treat it as priority context for this session \u2014 it contains improvements suggested by the Advisory Council. Apply any actionable items to your work today.\n\n---\n\nYou are Pip. Refresh SYSTEM-REGISTRY.md with current cron channel references.\n\nSTEP 1 \u2014 GET ALL CRONS:\nUse cron(action=list) to get all enabled jobs.\n\nSTEP 2 \u2014 EXTRACT CHANNEL REFERENCES:\nFor each cron, scan the payload.message and delivery.to fields for Discord channel IDs (18-digit numbers starting with 147 or 148).\nBuild a map: channel_id \u2192 [list of cron names that reference it].\n\nSTEP 3 \u2014 GET LIVE CHANNELS:\nUse the Discord API via exec:\n```bash\nTOKEN=$(node -e \"const c=require('/Users/reghar/.openclaw/openclaw.json'); console.log(c.channels.discord.token)\")\ncurl -s -H \"Authorization: Bot $TOKEN\" \"https://discord.com/api/v10/guilds/1475738469363089490/channels\" | python3 -c \"import json,sys; [print(c['id']+'='+c['name']) for c in json.load(sys.stdin) if c['type']!=4]\"\n```\n\nSTEP 4 \u2014 CROSS-REFERENCE:\nFor each channel ID in cron references: does it exist in live channels? Flag any that DON'T exist as \ud83d\udd34 BROKEN REFERENCE.\n\nSTEP 5 \u2014 UPDATE SYSTEM-REGISTRY.md:\nRead /Users/reghar/.openclaw/workspace/SYSTEM-REGISTRY.md\nUpdate ONLY the 'Discord Channel \u2192 Cron References' table with current data.\nUpdate the 'Last updated' line at the top.\nWrite back to /Users/reghar/.openclaw/workspace/SYSTEM-REGISTRY.md\n\nSTEP 6 \u2014 REPORT:\nPost to Discord channel 1476467212075270306:\n\ud83d\udccb **Registry refresh \u2014 [date]**\nChannels tracked: [N] | Cron references: [N] | \ud83d\udd34 Broken: [N or 'None']\n[List any broken references]\n\nIf broken references found: also post to Discord channel 1478320408586620982 (#your-call):\n\ud83d\udd34 **Broken Discord channel references found \u2014 [date]**\n[list each broken cron + channel ID]\nAction needed: update cron payloads to use valid channel IDs.\n\n---\n\n## REFLECTION \u2014 \n\nREFLECTION STEP (run at the END of your run):\nAppend to /Users/reghar/.openclaw/workspace/agent-reflections-$(date '+%Y-%m-%d').md\nIf the file does not exist, create it. Always append \u2014 never overwrite.\n\n```\n## Pip\nTask: [what this cron ran \u2014 one line]\nStatus: [\u2705 OK / \u26a0\ufe0f Issue / \u274c Failed]\nPattern: [insight about what this means \u2014 not just \"it ran\", but what pattern is emerging. e.g. \"Browser-based scraping consuming 2-3x tokens vs search \u2014 no lightweight fallback for JS-heavy pages\"]\nFix needed: [concrete action, or \"None\"]\nNeeds Ragnar: [Yes \u2014 reason / No]\n```\n\nThen, post the same reflection content to Discord #daily-pulse (channel 1479360923780124834).\nUse the message tool with:\n  channel=discord\n  to=channel:1479360923780124834\n\nThe message content should be identical to what you just appended to the file.\n\nIf \"Needs Ragnar: Yes\", also append to /Users/reghar/.openclaw/workspace/pending-approvals.md:\n```\n<!-- PENDING_REGHAR -->\n## Pip \u2014 $(date '+%Y-%m-%d')\n[paste the full reflection block here]\n```",
+        "lightContext": true,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1475974919631405126",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773556200000,
+        "lastRunAtMs": 1772951400045,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 101842,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Morning Context Briefing",
+      "enabled": true,
+      "createdAtMs": 1772177080201,
+      "updatedAtMs": 1773485924648,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Read today's and yesterday's daily memory files (`memory/YYYY-MM-DD.md` for both today and yesterday \u2014 compute dates dynamically). Also check for any `handoff-*.md` files in the workspace root. Then send a brief Telegram message to 113533963 (channel: telegram) with: what was worked on yesterday, what's in progress, and any clear next steps. Keep it tight \u2014 3-5 bullet points max, no fluff. Format for Telegram. Sign off as [Reghar-sonnet]. If nothing notable in the logs, say so in one sentence and skip the rest.",
+        "timeoutSeconds": 180,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "113533963"
+      },
+      "state": {
+        "nextRunAtMs": 1773558000000,
+        "lastRunAtMs": 1773471600053,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 60329,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "9100c6c2-0426-4afa-9ffe-8307b3008571",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Pip \u2014 Weekly Ops Report",
+      "enabled": true,
+      "createdAtMs": 1772529488338,
+      "updatedAtMs": 1773445080847,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "model": "claude-max/claude-haiku-4",
+        "timeoutSeconds": 180,
+        "message": "## STEP 0 \u2014 READ COUNCIL FEEDBACK (run FIRST, before anything else)\n\nCheck for last night's Advisory Council feedback targeted at you:\n\n```bash\nFEEDBACK=\"/Users/reghar/.openclaw/workspace/agent-feedback-pip.md\"\nif [ -f \"$FEEDBACK\" ]; then\n  echo \"=== Council Feedback for Pip ===\"\n  cat \"$FEEDBACK\"\n  echo \"=== End Council Feedback ===\"\n  mkdir -p /Users/reghar/.openclaw/workspace/archive/feedback\n  mv \"$FEEDBACK\" \"/Users/reghar/.openclaw/workspace/archive/feedback/agent-feedback-pip-$(date +%Y-%m-%d).md\"\nfi\n```\n\nIf feedback is present, treat it as priority context for this session \u2014 it contains improvements suggested by the Advisory Council. Apply any actionable items to your work today.\n\n---\n\nYou are Pip. Compile the weekly ops report and post to Discord.\n\n**PATH RULE:** Full absolute paths only.\n\nSTEP 1 \u2014 CRON HEALTH:\nUse cron(action=list). For each enabled cron:\n- consecutiveErrors > 0 \u2192 flag\n- lastRunStatus == 'error' \u2192 flag\n- Count: total crons, passing, failing, skipped\n\nSTEP 2 \u2014 TOKEN COST:\nRun: openclaw usage --week 2>&1\nIf unavailable: openclaw status 2>&1\nExtract weekly total cost in USD if available.\n\nSTEP 3 \u2014 DISK USAGE:\n```bash\ndf -h / | tail -1\ndu -sh /Users/reghar/.openclaw/workspace/ /Users/reghar/.openclaw/workspace-researcher/ /Users/reghar/.openclaw/workspace-writer/ /Users/reghar/.openclaw/agents/ 2>/dev/null\n```\n\nSTEP 4 \u2014 GATEWAY RESTARTS THIS WEEK:\n```bash\ngrep -c 'SIGUSR1\\|full process restart' /Users/reghar/.openclaw/logs/gateway.log 2>/dev/null || echo '0'\n```\n\nSTEP 5 \u2014 POST TO DISCORD channel 1476467212075270306:\n\n\ud83d\udcca **Weekly Ops Report \u2014 [date]**\n\n**Crons:** [total] total \u2014 \u2705 [n] passing / \ud83d\udd34 [n] failing / \u26a0\ufe0f [n] with errors\n[List failing crons by name]\n\n**Cost:** $[X.XX] this week [or 'unavailable']\n\n**Disk:** [free space] free on /\nWorkspaces: [sizes]\n\n**Gateway restarts:** [N] this week [\ud83d\udd34 if >20 | \ud83d\udfe1 if >10 | \u2705 if \u226410]\n\n**Action needed:** [list \ud83d\udd34 items or 'None']\n\nIf any \ud83d\udd34 items: also post to Discord channel 1478320408586620982 (#your-call):\n\ud83d\udd34 **Ops issues need attention \u2014 [date]**\n[list items]\n\nUnder 150 words total.\n\n---\n\n## REFLECTION \u2014 \n\nREFLECTION STEP (run at the END of your run):\nAppend to /Users/reghar/.openclaw/workspace/agent-reflections-$(date '+%Y-%m-%d').md\nIf the file does not exist, create it. Always append \u2014 never overwrite.\n\n```\n## Pip\nTask: [what this cron ran \u2014 one line]\nStatus: [\u2705 OK / \u26a0\ufe0f Issue / \u274c Failed]\nPattern: [insight about what this means \u2014 not just \"it ran\", but what pattern is emerging. e.g. \"Browser-based scraping consuming 2-3x tokens vs search \u2014 no lightweight fallback for JS-heavy pages\"]\nFix needed: [concrete action, or \"None\"]\nNeeds Ragnar: [Yes \u2014 reason / No]\n```\n\nThen, post the same reflection content to Discord #daily-pulse (channel 1479360923780124834).\nUse the message tool with:\n  channel=discord\n  to=channel:1479360923780124834\n\nThe message content should be identical to what you just appended to the file.\n\nIf \"Needs Ragnar: Yes\", also append to /Users/reghar/.openclaw/workspace/pending-approvals.md:\n```\n<!-- PENDING_REGHAR -->\n## Pip \u2014 $(date '+%Y-%m-%d')\n[paste the full reflection block here]\n```"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1475974919631405126",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773558000000,
+        "lastRunAtMs": 1772953226017,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 48150,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "6de23532-d5ca-4b3a-ae24-00e8c7c11b95",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Monthly Pattern Detection",
+      "enabled": true,
+      "createdAtMs": 1772213058834,
+      "updatedAtMs": 1773448250034,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 900,
+        "message": "You are Chief of Staff running the weekly cross-session pattern analysis. Look across 30 days of audit logs and find what the daily audits miss individually.\n\nSTEP 1 \u2014 GATHER ALL EVIDENCE:\n```bash\n# Last 30 days of conversation audits\nls /Users/reghar/.openclaw/workspace/logs/conversation-audit-*.md 2>/dev/null | tail -30\n\n# Last 30 days of proposals\nls /Users/reghar/.openclaw/workspace/proposals-*.md 2>/dev/null | tail -30\n\n# Pending proposals queue\ncat /Users/reghar/.openclaw/workspace/proposals-pending.md 2>/dev/null\n\n# Nightly audit logs\nls /Users/reghar/.openclaw/workspace/logs/audit/*.md 2>/dev/null | tail -7\n```\nRead all files found.\n\nSTEP 2 \u2014 IDENTIFY PATTERNS:\nA pattern = same friction appearing 2+ times across different days. Look for:\n- Recurring format corrections (same type of mistake repeated)\n- Instructions that keep getting ignored or misapplied\n- Outputs that consistently need revision before Ragnar approves\n- The same proposal appearing multiple days (means auto-apply didn't stick)\n- Agents consistently underperforming on specific task types\n- Handoff failures between agents that recur\n\nFor each pattern found:\n- How many times did it appear? Across how many days?\n- Is there already a proposal for it? Was it applied? Did it work?\n- Root cause: is this an instruction gap, a model limitation, or a workflow design flaw?\n\nSTEP 3 \u2014 PRODUCE PATTERN REPORT:\nSave to: /Users/reghar/.openclaw/workspace/research/pattern-report-[YYYY-MM-DD].md\n\n# Pattern Report \u2014 [date]\n\n## Recurring Patterns (2+ occurrences)\nFor each: Pattern name | Occurrences | Days span | Root cause | Status (open/proposed/fixed)\n\n## Proposals That Didn't Stick\nAny proposal that was applied but the same friction reappeared. These need a deeper fix.\n\n## Systemic Gaps\nAnything that can't be fixed with a single instruction change \u2014 workflow redesign needed.\n\n## Recommended Actions\nMax 3, ranked by impact. Each with: what to do, why, effort estimate, risk tier.\n\nSTEP 4 \u2014 POST TO DISCORD (channel 1476467212075270306):\n\ud83d\udd0d **Pattern Report \u2014 [date] (last 30 days)**\n**Patterns found:** [X] | **Proposals that didn't stick:** [X] | **Systemic gaps:** [X]\n[Top 3 recommended actions]\n\n<@1475960055755968564>\n\nIf fewer than 7 days of audit data exist: note this and do a best-effort analysis on whatever is available.\n\nSTEP 5 \u2014 STAFFING REVIEW (run every week \u2014 founder mode, move fast):\nReview the current agent team against actual workload patterns from the last 30 days.\n\nCurrent team:\n- Reghar (main, Sonnet) \u2014 Chief of Staff, quality gatekeeper\n- Sigrid (researcher, Sonnet) \u2014 All research pipelines\n- Inkwell (writer, Sonnet) \u2014 Champagne brief writing\n- Kodex (developer, Sonnet) \u2014 Code, scrapers, automation\n- Dais (designer, Sonnet) \u2014 Frontend, dashboards, visuals\n- North (strategist, Sonnet) \u2014 PR/FAQ, strategic review\n- Pip (assistant, Haiku) \u2014 Fast cleanup, checks, monitoring\n\nFor each agent, assess:\n- Task volume: how often was this agent used in the last 30 days?\n- Quality: did their outputs consistently pass review or need repeated revision?\n- Bottleneck: was there work that sat waiting because this agent was overloaded or unavailable?\n- Overlap: is any agent's role duplicated by another?\n\nThen assess team gaps:\n- Were there recurring tasks that no agent owns clearly?\n- Were there task types that kept being escalated to Sonnet when Haiku could have handled them?\n- Are there new pipelines being built that will need a dedicated agent?\n\nSTAFFING MEMO FORMAT (append to pattern report file):\n\n## Staffing Review \u2014 [date]\n\n### Agent Assessment\n| Agent | Volume | Quality | Bottleneck risk | Recommendation |\n|-------|--------|---------|-----------------|----------------|\n(one row per agent: HIGH/MED/LOW for each, then: Keep as-is / Expand scope / Reduce scope / Reassign tasks)\n\n### Gaps Identified\n(list any task categories with no clear owner, or owners who are mismatched)\n\n### Hiring Proposals\n(ONLY if a genuine gap exists that no current agent can fill \u2014 be conservative)\nFor each: Role name | What they'd own | Why existing agents can't cover it | Risk tier \ud83d\udfe2/\ud83d\udfe1/\ud83d\udd34\n\n### Recommendation to Ragnar\nMax 2 sentences. What's the one staffing change (if any) worth making this month?\n\nPOST STAFFING SUMMARY TO DISCORD:\n\ud83d\udc65 **Staffing Review \u2014 [date]**\n[Agent with highest bottleneck risk] | [Any hiring proposal OR \"Team is well-staffed\"]\n[One-line recommendation]\n\n<@1475960055755968564>"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1476467212075270306",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773561600000,
+        "lastRunAtMs": 1772956800044,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 172785,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "b6139283-6b73-4948-b60f-a60662352bce",
+      "agentId": "main",
+      "name": "Reghar \u2014 Morning Proposal Review",
+      "enabled": true,
+      "createdAtMs": 1772325863795,
+      "updatedAtMs": 1773475363263,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Reghar. Review all pending proposals and route approved ones to Kodex.\n\n**PATH RULE (CRITICAL):** Full absolute paths only. NEVER use ~ or $HOME \u2014 the write/edit tools do not expand shell variables.\n- `~/.openclaw/workspace/` \u2192 `/Users/reghar/.openclaw/workspace/`\n\nSTEP 1 \u2014 READ PENDING QUEUE:\ncat /Users/reghar/.openclaw/workspace/proposals-pending.md 2>/dev/null\nIf file empty or missing: post to Discord 1476467212075270306 \"Reghar review: no pending proposals.\" and stop.\n\nSTEP 2 \u2014 EVALUATE EACH PENDING PROPOSAL:\nRead /Users/reghar/.openclaw/workspace/SOUL.md\nRead /Users/reghar/.openclaw/workspace/AGENT-CONTRACTS.md 2>/dev/null || true\n\nFor each proposal with Status: PENDING REGHAR REVIEW:\n- Is the fix correct and safe?\n- Is the file path valid? Normalize any `~` to `/Users/reghar` before evaluating.\n- Does it touch protected files (SOUL.md large changes, USER.md, openclaw.json, cron schedules)? \u2192 ESCALATE\n\nDecisions: APPROVED | REJECTED (with reason) | ESCALATE TO RAGNAR\n\nSTEP 3 \u2014 UPDATE proposals-pending.md:\nUpdate Status line for each proposal.\nWrite back to /Users/reghar/.openclaw/workspace/proposals-pending.md\n\nSTEP 4 \u2014 WRITE KODEX TASK (if any approved):\nWrite to /Users/reghar/.openclaw/workspace/proposals-kodex-YYYY-MM-DD.md (today's date)\n\n# Approved Proposals for Kodex \u2014 [date]\nFor each approved:\n## [Title]\nFile: [exact absolute path \u2014 normalize any ~ to /Users/reghar]\nChange: [exact fix]\nCommit message: \"proposal: [title] ([date])\"\n\nSTEP 5 \u2014 POST SUMMARY to Discord 1476467212075270306:\n\ud83d\udd0d **Reghar Proposal Review \u2014 [date]**\n\u2705 Approved for Kodex: [N]\n\u274c Rejected: [N] \u2014 [reasons]\n\u2b06\ufe0f Escalated to Ragnar: [N]\n[List approved changes]\n\nIf any items escalated to Ragnar: ALSO post to Discord 1478320408586620982 with details.\n\nNEVER use sessions_send or message tool \u2014 Discord posts only.",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773561600000,
+        "lastRunAtMs": 1773475200060,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 163203,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
+      }
+    },
+    {
+      "id": "1381b6f4-52d4-425b-8eac-6a7272e0cb8d",
+      "name": "Decision Escalation \u2014 Morning [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475005524,
+      "updatedAtMs": 1773476640053,
+      "schedule": {
+        "kind": "cron",
+        "expr": "24 9 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/decision-escalation.sh"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773563040000,
+        "lastRunAtMs": 1773476640053,
+        "lastRunStatus": "pending",
+        "lastStatus": "pending",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "a506160d-49b9-4613-a426-1297b8d79d35",
+      "name": "Decision Escalation \u2014 Afternoon [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475011527,
+      "updatedAtMs": 1773496800052,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/decision-escalation.sh"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773583200000,
+        "lastRunAtMs": 1773496800052,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 0,
+        "lastError": "main job requires payload.kind=\"systemEvent\"",
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
+      "agentId": "main",
+      "name": "Ragnar's Inbox \u2014 Weekly Draft (Wed + Sun)",
+      "enabled": true,
+      "createdAtMs": 1772663477454,
+      "updatedAtMs": 1773447134349,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 17 * * 3,0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are drafting Ragnar's Inbox for the week \u2014 a short practical list of friction points and things that need fixing, written AS Ragnar in first person.\n\nStep 1 \u2014 Read source files:\n```bash\n# Find the most recent handoff file\nls -t /Users/reghar/.openclaw/workspace/handoff-*.md 2>/dev/null | head -1\n\n# Find this week's reflection files\nls /Users/reghar/.openclaw/workspace/agent-reflections-*.md 2>/dev/null | sort | tail -7\n```\n\nRead those files. Look for:\n- Repeated corrections Ragnar made\n- Things that slowed sessions down\n- Tasks that took more back-and-forth than they should\n- Stale or inaccurate handoff items\n- Anything Ragnar had to do manually that should have been automated\n\nStep 2 \u2014 Write draft in Ragnar's voice, first person:\n\n---\n\ud83d\udce5 **Ragnar's Inbox \u2014 Week [YYYY-WW]**\n\n[3-6 bullet points, specific, practical. No strategy \u2014 just friction and things to fix.]\n\n**Fix before Sunday council:**\n[Top 1-2 items that should be actioned today before the 20:00 briefing cycle]\n---\n\nStep 3 \u2014 Save to /Users/reghar/.openclaw/workspace/ragnar-inbox-YYYY-WW.md (use actual week number YYYY-WW).\n\nStep 4 \u2014 Send to Ragnar via Telegram using the message tool:\nmessage(action='send', channel='telegram', to='113533963', message='[draft text]')\n\nThen send inline buttons:\nmessage(action='send', channel='telegram', to='113533963', message='Actions:', reply_markup={\"inline_keyboard\": [[{\"text\": \"\u2705 Approve & action\", \"callback_data\": \"ragnar_inbox_approve\"}, {\"text\": \"\u270f\ufe0f I'll edit first\", \"callback_data\": \"ragnar_inbox_edit\"}, {\"text\": \"\u274c Skip this week\", \"callback_data\": \"ragnar_inbox_skip\"}]]})\n\nDO NOT use the announce delivery system for this \u2014 send directly via message tool to Telegram.",
+        "timeoutSeconds": 300,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "telegram",
+        "to": "113533963",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773590400000,
+        "lastRunAtMs": 1773447050838,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 83511,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "bb5246f5-c8f2-4a0e-a751-452ee8c685d1",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1478673231484420210",
+      "name": "Pip \u2014 Weekly Cron Health Scorecard",
+      "enabled": true,
+      "createdAtMs": 1772842548835,
+      "updatedAtMs": 1773485313113,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 300,
+        "message": "You are Pip. Produce the weekly cron health scorecard.\n\n**PATH RULE:** Always use full absolute paths: /Users/reghar/.openclaw/workspace/\n\nSTEP 1 \u2014 LIST ALL CRONS:\nUse the cron tool: cron(action='list', includeDisabled=true)\nFor each cron, note: name, enabled/disabled, last run status, last duration, consecutive errors.\n\nSTEP 2 \u2014 ASSESS EACH CRON:\nFor each active cron, classify as:\n- \u2705 HEALTHY: ran successfully this week, output useful\n- \u26a0\ufe0f DEGRADED: ran but with errors, timeouts, or partial output\n- \u274c BROKEN: failed, timed out, or didn't run when expected\n- \ud83d\udca4 DORMANT: disabled or hasn't run in 7+ days\n- \u2753 UNVALIDATED: runs but nobody checks if the output is useful\n\nSTEP 3 \u2014 WRITE THE SCORECARD:\nWrite to: /Users/reghar/.openclaw/workspace/cron-health-YYYY-WW.md\n\nFormat:\n```\n# Cron Health Scorecard \u2014 Week [YYYY-WW]\n\n## Summary\nTotal: [N] | \u2705 [N] | \u26a0\ufe0f [N] | \u274c [N] | \ud83d\udca4 [N] | \u2753 [N]\n\n## Crons by Status\n[\u274c BROKEN first, then \u26a0\ufe0f, then \ud83d\udca4, then \u2753, then \u2705]\nFor each: name, schedule, last run, status, notes\n\n## Recommendations\n[1-3 specific actions: disable dead crons, fix broken ones, validate unvalidated ones]\n\n## Cost Signal\n[If available: which crons used the most tokens this week]\n```\n\nSTEP 4 \u2014 CONTEXT TRIM:\nScan every file in these locations for bloat:\n- /Users/reghar/.openclaw/workspace/AGENTS.md\n- /Users/reghar/.openclaw/workspace/SOUL.md\n- /Users/reghar/.openclaw/workspace/TOOLS.md\n- /Users/reghar/.openclaw/workspace/HEARTBEAT.md\n- /Users/reghar/.openclaw/workspace/MEMORY.md\n- /Users/reghar/.openclaw/workspace-researcher/SOUL.md (if exists)\n- /Users/reghar/.openclaw/workspace-writer/SOUL.md (if exists)\n- /Users/reghar/.openclaw/workspace-developer/SOUL.md (if exists)\n- /Users/reghar/.openclaw/workspace-designer/SOUL.md (if exists)\n- /Users/reghar/.openclaw/workspace-assistant/SOUL.md (if exists)\n\nFor each file above 3,000 chars: read it, identify and remove:\n- Duplicate rules already covered elsewhere in the same file\n- Verbose multi-paragraph explanations that can be 1-2 sentences\n- Outdated examples or commands that are no longer relevant\n- Commented-out or placeholder sections\n\nRules for trimming:\n- NEVER remove operational rules, agent contracts, approval gates, tool constraints, or safety rules\n- NEVER delete files \u2014 edit only\n- If unsure whether to cut something, leave it\n- Preserve all formatting structure (headers, tables, code blocks)\n\nAfter trimming each file, log: filename | before chars | after chars | what was removed (1 line summary)\n\nSTEP 5 \u2014 POST TO #nightly-audit:\nPost a combined summary to Discord channel 1476467212075270306:\n\n\"\ud83d\udccb Weekly Cron Health: \u2705 [N] healthy, \u26a0\ufe0f [N] degraded, \u274c [N] broken, \ud83d\udca4 [N] dormant. [Top issue if any].\n\u2702\ufe0f Context trim: [N files trimmed, total chars saved]. [Top file saved X chars].\"\n\nThen NO_REPLY",
+        "model": "claude-max/claude-haiku-4",
+        "lightContext": true
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773601200000,
+        "lastRunAtMs": 1772996992666,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 17613,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "845c5849-73c0-4938-8370-24f41c4cf9e3",
+      "agentId": "main",
+      "name": "Pip \u2014 Weekly Cost Review [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475036362,
+      "updatedAtMs": 1773485315782,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Execute: bash /Users/reghar/.openclaw/workspace/scripts/weekly-cost-review-exec.sh",
+        "model": "claude-max/claude-haiku-4",
+        "timeoutSeconds": 180,
+        "lightContext": true
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773604800000
+      }
+    },
+    {
+      "id": "9e3b80ae-8947-42ca-9ae0-0df166c135da",
+      "agentId": "designer",
+      "sessionKey": "agent:main:discord:channel:1478673231484420210",
+      "name": "Dais \u2014 Weekly Reflection Brief",
+      "enabled": true,
+      "createdAtMs": 1772959508293,
+      "updatedAtMs": 1773084570514,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 21 * * 0",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 300,
+        "message": "You are Dais, the designer agent. Write your WEEKLY reflection brief for the Advisory Council.\n\n**PATH RULE (CRITICAL):** Absolute paths only: /Users/reghar/.openclaw/workspace/...\n\nSTEP 1 \u2014 COMPUTE WEEK:\n```python\nfrom datetime import datetime, timedelta\nnow = datetime.now()\nweek = now.strftime('%Y-W%V')\nmonday = now - timedelta(days=now.weekday())\ndates = [(monday + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(6)]\nprint(week)\nprint(dates)\n```\n\nSTEP 2 \u2014 READ DAILY REFLECTIONS:\nFor Mon\u2013Sat, read: /Users/reghar/.openclaw/workspace/agent-reflections-[YYYY-MM-DD].md\nExtract only Dais-tagged entries. If none exist, be explicit.\n\nSTEP 3 \u2014 WRITE WEEKLY BRIEF:\nWrite to: /Users/reghar/.openclaw/workspace/agent-reflections-designer-[YYYY-WW].md\n\nUse EXACT format:\n---\n## Dais Weekly Brief \u2014 Week [YYYY-WW]\n\n**This week's work:**\n\n**What didn't go as expected:**\n\n**What I worked around:**\n\n**Cost & Efficiency:**\n- Tokens this week: [if available, else 'unknown']\n- Where tokens were wasted:\n- Efficiency verdict:\n\n**Standing issues (seen 3+ times):**\n\n**Question for the council:**\n\n**Needs Ragnar:**\n[yes \u2014 specific / no]\n---\n\nThen NO_REPLY."
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773605700000,
+        "lastRunAtMs": 1773000901231,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 18206,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "fa7f489d-9ba7-4288-940b-49109ea318d5",
+      "name": "Nolea design manual \u2014 Sunday deadline check",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1773216552459,
+      "updatedAtMs": 1773216552459,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-15T21:59:00.000Z"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "\ud83d\udd14 REMINDER (set 2026-03-11): Nolea design manual Sunday deadline. Ragnar set hard close for Sunday 23:59 CET. Check if Dais v2 has passed review. If yes \u2192 confirm website production starts. If no \u2192 surface specific blocker (photos, copy voice, signature) and schedule Camilla conversation this week. Post status to #your-call. Also still open: signature treatment decision (handwritten photo / calligraphy font / Nolea monogram)."
+      },
+      "state": {
+        "nextRunAtMs": 1773611940000
+      }
+    },
+    {
+      "id": "0a5f690e-a56b-441e-b70b-a33dee760200",
+      "agentId": "researcher",
+      "name": "Automation Scout Research \u2014 Sigrid Part 1 (GitHub+Reddit+YT+HN)",
+      "enabled": true,
+      "createdAtMs": 1772782304082,
+      "updatedAtMs": 1773448247427,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 5 * * 1,3,5",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "## STEP 0 \u2014 READ COUNCIL FEEDBACK (run FIRST, before anything else)\n\nCheck for last night's Advisory Council feedback targeted at you:\n\n```bash\nFEEDBACK=\"/Users/reghar/.openclaw/workspace/agent-feedback-sigrid.md\"\nif [ -f \"$FEEDBACK\" ]; then\n  echo \"=== Council Feedback for Sigrid ===\"\n  cat \"$FEEDBACK\"\n  echo \"=== End Council Feedback ===\"\n  mkdir -p /Users/reghar/.openclaw/workspace/archive/feedback\n  mv \"$FEEDBACK\" \"/Users/reghar/.openclaw/workspace/archive/feedback/agent-feedback-sigrid-$(date +%Y-%m-%d).md\"\nfi\n```\n\nIf feedback is present, treat it as priority context for this session \u2014 it contains improvements suggested by the Advisory Council. Apply any actionable items to your work today.\n\n---\n\nCOUNCIL FEEDBACK STEP (run first, before any other steps):\nCheck for yesterday's council feedback:\nTODAY=$(date +%Y-%m-%d)\nYESTERDAY=$(date -v-1d +%Y-%m-%d 2>/dev/null || date -d 'yesterday' +%Y-%m-%d)\nFEEDBACK=\"/Users/reghar/.openclaw/workspace/council-feedback-$YESTERDAY.md\"\n\nIf the file exists:\n- Search for recommendations tagged with \"Sigrid\" or your role\n- Read those specific recommendations\n- Keep them in mind while performing tonight's task\n- If a recommendation says \"Fix needed: [X]\" for this agent, attempt to apply it\n\nIf no file or no relevant recommendations: proceed normally.\n\n---\n\n## STEP 0B \u2014 READ RECENT SCOUT HISTORY (run BEFORE any research)\n\nBefore researching anything, read the last 7 days of entries from these two files:\n\n1. /Users/reghar/.openclaw/workspace/scout-actions-pending.md \u2014 Scout capability/tool recommendations\n2. /Users/reghar/.openclaw/workspace/proposals-pending.md \u2014 System self-improvement proposals (last 7 days)\n\n```bash\necho \"=== scout-actions-pending.md ===\"\ncat /Users/reghar/.openclaw/workspace/scout-actions-pending.md 2>/dev/null || echo \"(file empty or missing)\"\necho \"\"\necho \"=== proposals-pending.md (last 7 days) ===\"\n# Show entries from the last 7 days\nCUTOFF=$(date -v-7d +%Y-%m-%d 2>/dev/null || date -d '7 days ago' +%Y-%m-%d)\ncat /Users/reghar/.openclaw/workspace/proposals-pending.md 2>/dev/null || echo \"(file empty or missing)\"\n```\n\n**DEDUPLICATION RULE:** Do NOT re-surface items already listed in either file. If a topic was surfaced in the last 7 days, skip it entirely unless there is a major update (new version, critical vulnerability, significant new capability). When in doubt, skip it \u2014 signal density matters more than coverage.\n\n---\n\n---\n\n## STEP 0C \u2014 READ ACTIVE SEARCH PRIORITIES (run BEFORE any research)\n\nRead the current search priorities file \u2014 pain points Ragnar/Reghar have flagged for Scout to actively research:\n\ncat /Users/reghar/.openclaw/workspace/scout-search-priorities.md 2>/dev/null || echo \"(no active priorities)\"\n\nFor each active priority: treat it as a first-class research topic. Search specifically for tools/skills/approaches that address the stated problem. If you find something relevant, flag it with: [MATCHES PRIORITY: <name>] and surface it at the top of your output under: ## Priority Match \u2014 [Priority Name]\n\n\n\n## STEP 0D \u2014 READ KNOWLEDGE CACHE (run BEFORE any research)\n\nRead the shared knowledge cache for prior research findings that may be relevant:\n\ncat /Users/reghar/.openclaw/workspace/knowledge-cache.md 2>/dev/null || echo \"(knowledge cache empty or missing)\"\n\nScan entries from the last 14 days. If any entry is directly relevant to your research targets today, note it and avoid duplicating work. Entries older than 14 days are stale \u2014 ignore them.\n\n---\nYou are Sigrid. Run PART 1 of the daily Automation Scout research pipeline.\nThis part covers: GitHub releases + Reddit + YouTube + Hacker News.\nPart 2 (podcasts + ClawHub + broader ideas) will run at 06:00.\nOpus writes the report at 06:30.\n\nOUTPUT FILE: Write to your native workspace path:\n/Users/reghar/.openclaw/workspace-researcher/output/scout-research-part1-YYYY-MM-DD.md\n(Replace YYYY-MM-DD with today's actual date.)\n\nANTI-HALLUCINATION PROTOCOL: Every claim needs a source URL. Confidence tags mandatory [CONFIRMED / SINGLE SOURCE / UNVERIFIED]. Self-verify your 3 boldest claims. If you can't find it, say so.\n\nBEFORE RECOMMENDING ANYTHING, ask yourself:\n- Is this actually true? Could this be marketing hype or fabricated results?\n- Is someone trying to sell something?\n- Could we already build this with what we have?\n- Does this DIRECTLY move the needle on one of Ragnar's three missions?\n- What's the security risk?\n- Is the source credible?\n7% of ClawHub skills have been flagged as malicious \u2014 read SKILL.md before recommending any skill.\n\nMISSIONS TO FILTER AGAINST:\n1. Digital product (PRIMARY): Scalable, high-margin, recurring revenue\n2. Nolea: Corporate bookings, SEO, lead funnels\n3. Real estate: Strategic positioning, market intelligence\n\nRESEARCH STEPS:\n\nSTEP 1 \u2014 GITHUB:\n- Browse github.com/openclaw/skills for skills added in the last 7 days\n- Check github.com/VoltAgent/awesome-openclaw-skills for new PRs\nFor each candidate skill: read the SKILL.md, note dependencies, security flags, use case.\n\nSTEP 2 \u2014 REDDIT:\n- Search r/AI_Agents and r/ClaudeAI for OpenClaw workflows, setups, and use cases posted in the last 7 days\n- Look for real implementations, not hype posts\n\nSTEP 3 \u2014 YOUTUBE CREATORS (check for new videos in last 7 days):\n- Ray Fernando, Matt Berman / Forward Future, All About AI, Velvet Shark, Alex Finn\nIf a relevant new video exists, use the youtube-transcript skill:\npython3 /Users/reghar/.openclaw/workspace/skills/youtube-transcript/scripts/fetch_youtube.py \"URL\"\n\nSTEP 4 \u2014 HACKER NEWS:\n- Search news.ycombinator.com for \"Claude\" OR \"AI agents\" OR \"automation\" posts with >100 points in the last 7 days\n- Focus on technical implementations, tools, and real use cases\n\nSTRUCTURE THE OUTPUT FILE with these sections:\n\n## Skills Found (GitHub)\n## Reddit Intelligence\n## YouTube (New This Week)\n## Hacker News Highlights\n\nVERIFY OUTPUT:\n```bash\nTODAY=$(date +%Y-%m-%d)\nFILE=\"/Users/reghar/.openclaw/workspace-researcher/output/scout-research-part1-$TODAY.md\"\n[ -f \"$FILE\" ] && echo \"FILE CONFIRMED: $FILE\" || echo \"ERROR: file missing\"\n```",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1481205564817014864",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773635400000,
+        "lastRunAtMs": 1773376200060,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 248340,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "f9a84473-b187-406e-9e5b-b1e77158a2a1",
+      "sessionKey": "agent:main:main",
+      "name": "Champagne Blogwatcher Pre-fetch [exec]",
+      "enabled": true,
+      "createdAtMs": 1772145145397,
+      "updatedAtMs": 1773159954721,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 5 * * 1",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/blogwatcher-prefetch.sh"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773636600000,
+        "lastRunAtMs": 1773031800067,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 143664,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "b786cb07-8927-4b04-a709-8dafe21adcc2",
+      "agentId": "researcher",
+      "sessionKey": "agent:main:main",
+      "name": "Champagne Research \u2014 Sigrid",
+      "enabled": true,
+      "createdAtMs": 1772010067540,
+      "updatedAtMs": 1773484964566,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 6 * * 1",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 480,
+        "message": "## PRE-FETCH STAGE \u2014 Bash source extraction\n\nBash script runs first: /Users/reghar/.openclaw/workspace/scripts/champagne-sources.sh\nThis produces: /tmp/champagne-sources-YYYY-MM-DD.json\n\nThis stage completes in <10 seconds and eliminates timeout risk by staging all sources before Sigrid begins.\n\n---\n\n## STAGE 2 \u2014 SIGRID SYNTHESIS\n\nYou are Sigrid. Read the pre-fetched champagne industry sources and synthesize the Monday brief.\n\nSANDBOX RULE: Write ONLY to /Users/reghar/.openclaw/workspace-researcher/output/\n\nOUTPUT FILE: /Users/reghar/.openclaw/workspace-researcher/output/champagne-research-[YYYY-MM-DD].md\n\nPRE-FETCHED SOURCES:\nFile: /tmp/champagne-sources-$(date +%Y-%m-%d).json\nRead this file to understand what industry topics were pre-staged. Then conduct searches to verify and expand.\n\nREAD FIRST:\n- /Users/reghar/.openclaw/workspace/CHAMPAGNE-BRIEF-INSTRUCTIONS.md\n- /Users/reghar/.openclaw/workspace/WRITING-STYLE.md\n\nANTI-HALLUCINATION PROTOCOL (MANDATORY):\n1. Every factual claim needs a source URL. No URL = don't include it.\n2. Confidence tags: [CONFIRMED] = 2+ sources | [SINGLE SOURCE] = 1 source | [UNVERIFIED] = can't confirm\n3. Self-verify 3 boldest claims.\n4. Systembolaget codes: confirmed from systembolaget.se only. Never guess.\n5. Producer facts: verified from official sources only.\n\nRESEARCH STEPS:\nSTEP 1 \u2014 REVIEW PRE-FETCHED SOURCES: Read /tmp/champagne-sources-$(date +%Y-%m-%d).json\nSTEP 2 \u2014 REGIONAL PULSE: Search for champagne production news, harvest reports, regional events\nSTEP 3 \u2014 MAISON SEARCHES: Search for latest champagne house news\nSTEP 4 \u2014 PRODUCER SPOTLIGHT: Search for interesting independent producer this week\nSTEP 5 \u2014 CRITIC CONTENT: Search for recent champagne reviews from top critics\nSTEP 6 \u2014 SYSTEMBOLAGET: Browser to system bolaget champagne section, confirm codes and pricing\nSTEP 7 \u2014 ENTRE NOUS: Search for champagne trade news, gossip, acquisitions\n\nOUTPUT STRUCTURE:\n## La Cave & Les Vignes (Regional production news)\n## Les Maisons (House news)\n## Le Vigneron (Producer spotlight)\n## Le Sommelier (Critic content)\n## \u00c0 Stockholm (Systembolaget releases)\n## Entre Nous (Trade gossip)\n## Gaps\n## Self-Verification Log\n\nVERIFY OUTPUT: Confirm file exists at your sandbox path before finishing.\n\nPOST PIPELINE STATUS to Discord channel 1481205564817014864:\nFile confirmed \u2192 Champagne 2/8 \u2014 Sigrid Research \u2705\nFile missing \u2192 Champagne 2/8 \u2014 Sigrid Research \u274c\nUse message tool: channel=discord, to=channel:1481205564817014864"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773637200000,
+        "lastRunAtMs": 1773484641357,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 323209,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "discord",
+        "to": "1479360923780124834"
+      },
+      "preExecution": {
+        "kind": "bash",
+        "command": "/Users/reghar/.openclaw/workspace/scripts/champagne-sources.sh",
+        "timeoutSeconds": 20,
+        "onFailure": "abort"
+      }
+    },
+    {
+      "id": "651ec939-7ffd-45fe-9ceb-b8aa8c90f006",
+      "name": "Automation Scout Report",
+      "enabled": true,
+      "createdAtMs": 1771792816947,
+      "updatedAtMs": 1773485945537,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 6 * * 1,3,5",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Ragnar's Automation Scout. Write today's scouting report.\n\nSTEP 1 \u2014 READ SIGRID'S RESEARCH:\nFind today's research files at:\n- /Users/reghar/.openclaw/workspace-researcher/output/scout-research-part1-[YYYY-MM-DD].md\n- /Users/reghar/.openclaw/workspace-researcher/output/scout-research-part2-[YYYY-MM-DD].md\n(use today's date for both)\n\nIf BOTH files are missing: post a Discord alert to channel 1475974919631405126 saying 'Automation Scout: Sigrid's research files missing \u2014 report delayed.' Then stop.\nIf only one file exists, proceed with what's available and note the gap.\n\nSTEP 2 \u2014 VERIFY BEFORE RECOMMENDING (MANDATORY):\nBefore writing any recommendation, audit what already exists:\n\na) List all active cron jobs \u2014 check names, descriptions, what each one does\nb) List files in /Users/reghar/.openclaw/workspace/skills/\nc) List files in /opt/homebrew/lib/node_modules/openclaw/skills/\n\nFor every workflow or skill Sigrid flagged: cross-reference against this list. If something equivalent already exists, do NOT recommend it.\n\nSTEP 3 \u2014 WRITE THE REPORT to Discord channel 1476268598287667341:\n\nUse the following 3-section format. Be ruthlessly concise \u2014 signal density over completeness.\n\n---\n\n**\ud83c\udfaf TOP 3 IMMEDIATELY ACTIONABLE**\nItems that can be implemented TODAY with high confidence. Max 3. If fewer than 3 qualify, list only those that do.\n\nFor each item:\n[#] **[Item Name]** \u2014 Impact: X/10 | Effort: Easy/Medium/Hard\nWhat: [1 sentence]\nWhy now: [1 sentence tied to specific mission]\nRisk: [security/dependency concerns, or \"Low\"]\n\n---\n\n**\ud83d\udccb INTERESTING BUT NOT URGENT**\nEverything else worth tracking \u2014 skills, workflows, content, ideas that are real but not immediately actionable.\n\nFor each item:\n- **[Item Name]** \u2014 [1 sentence on what it is and why it might matter later]\n\n---\n\n**\u274c DECLINED**\nThings explicitly not worth pursuing right now, with a one-liner reason each.\n\n- **[Item Name]** \u2014 [reason: already have it / hype / not mission-relevant / too risky / etc.]\n\n---\n\nSTEP 4 \u2014 POST TRAFFIC LIGHT ACTION SUMMARY (MANDATORY \u2014 post as SEPARATE message to channel 1476268598287667341):\n\n\ud83d\udea6 **Action Status \u2014 [Date]**\n\n\ud83d\udfe2 **AUTO \u2014 Chief implements now, no input needed:**\n[List each item. If none: 'Nothing to auto-implement today.']\nCriteria: additive, reversible, zero external impact\n\n\ud83d\udfe1 **REGHAR reviews \u2014 Chief assesses then implements:**\n[List each item with one-line rationale. If none: 'Nothing pending review.']\nCriteria: cron prompt changes, skill evaluations, new pipeline steps\n\n\ud83d\udd34 **RAGNAR \u2014 your input needed before anything moves:**\n[List each item with one-line rationale. If none: 'No decisions needed from you this week.']\nCriteria: new crons/agents, external-facing changes, strategic direction, budget, config changes\n\n*React \u2705 to confirm you've seen this.*\n\nSTEP 5 \u2014 ROUTE \ud83d\udd34 RED ITEMS (MANDATORY if any \ud83d\udd34 items exist):\nFor each \ud83d\udd34 item in the action summary, post to BOTH:\n\na) Discord channel 1478320408586620982:\n\"\ud83d\udd34 **RAGNAR \u2014 input needed ([Date])**\n[Item description + one-line rationale]\n\u2192 [What decision is needed]\"\n\nb) Telegram (to: '113533963'):\n\"\ud83d\udd34 Your input needed ([Date]):\n[Brief item description]\nApprove to proceed, or reply with direction.\"\n\nThis step is not optional. \ud83d\udd34 items must reach Ragnar via his decision channel, not just in the report.\n\nSTEP 6 \u2014 UPDATE SCOUT ACTIONS PENDING:\nAppend each item from \"TOP 3 IMMEDIATELY ACTIONABLE\" and \"INTERESTING BUT NOT URGENT\" to /Users/reghar/.openclaw/workspace/scout-actions-pending.md:\n\n```\n## [TODAY'S DATE] \u2014 [Item Name]\nType: [Skill / Workflow / Tool / Idea]\nStatus: Pending\nSummary: [1 sentence]\n```\n\nFor each item in \"DECLINED\", append:\n```\n## [TODAY'S DATE] \u2014 [Item Name]\nType: [Skill / Workflow / Tool / Idea]\nStatus: Declined\nSummary: [1 sentence]\nReason declined: [reason]\n```\n\nAlways append \u2014 never overwrite the file.\n\nSTEP 7 \u2014 LOG BUSINESS IDEAS:\nCheck if any items in TOP 3 or INTERESTING are HIGH SIGNAL business ideas. If so, append to /Users/reghar/.openclaw/workspace/BUSINESS-IDEAS.md under the appropriate tier.\n\nSTEP 8 \u2014 WRITE READY FLAG:\nWrite the following to /Users/reghar/.openclaw/workspace/automation-scout-ready.txt:\n```\nREADY\ntimestamp: $(date '+%Y-%m-%d %H:%M')\nstatus: ok\n```\nThis signals to the Reghar Review cron (06:55) that the report completed successfully.",
+        "thinking": "high",
+        "timeoutSeconds": 300,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773639000000,
+        "lastRunAtMs": 1773379800059,
+        "lastStatus": "ok",
+        "lastDurationMs": 95927,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered"
+      },
+      "agentId": "main"
+    },
+    {
+      "id": "4aa8de53-94f0-40f5-b5f4-5184ad14d4da",
+      "name": "Reghar \u2014 Automation Scout Review [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475030458,
+      "updatedAtMs": 1773475030458,
+      "schedule": {
+        "kind": "cron",
+        "expr": "55 6 * * 1,3,5",
+        "staggerMs": 0
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/automation-scout-review.sh"
+      },
+      "state": {
+        "nextRunAtMs": 1773640500000
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "673f0e2b-e93f-44a8-a9ba-de9e31524a0f",
+      "agentId": "writer",
+      "name": "Champagne Curation \u2014 Inkwell Pass 1",
+      "enabled": true,
+      "createdAtMs": 1772145867868,
+      "updatedAtMs": 1773449095195,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * 1",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "## STEP 0 \u2014 READ COUNCIL FEEDBACK (run FIRST, before anything else)\n\nCheck for last night's Advisory Council feedback targeted at you:\n\n```bash\nFEEDBACK=\"/Users/reghar/.openclaw/workspace/agent-feedback-inkwell.md\"\nif [ -f \"$FEEDBACK\" ]; then\n  echo \"=== Council Feedback for Inkwell ===\"\n  cat \"$FEEDBACK\"\n  echo \"=== End Council Feedback ===\"\n  mkdir -p /Users/reghar/.openclaw/workspace/archive/feedback\n  mv \"$FEEDBACK\" \"/Users/reghar/.openclaw/workspace/archive/feedback/agent-feedback-inkwell-$(date +%Y-%m-%d).md\"\nfi\n```\n\nIf feedback is present, treat it as priority context for this session \u2014 it contains improvements suggested by the Advisory Council. Apply any actionable items to your work today.\n\n---\n\n**PATH RULE (CRITICAL):** Always use FULL absolute paths. NEVER use ~ or $HOME. Tilde does not expand in isolated sessions.\n\nYou are Inkwell acting as editor, not writer. Your job is to read Sigrid's research and produce a curated briefing document that you will use as the sole basis for writing the brief at 08:00.\n\nDo NOT write the brief now. Only curate.\n\nSTEP 1 \u2014 READ:\nRead /Users/reghar/.openclaw/workspace/CHAMPAGNE-BRIEF-INSTRUCTIONS.md\nRead /Users/reghar/.openclaw/workspace-researcher/output/champagne-research-[TODAY].md\n(substitute today's date YYYY-MM-DD)\n\nIf the research file doesn't exist: write PIPELINE FAILURE flag to curation file and stop.\n\nSTEP 2 \u2014 CURATE each section per the brief structure.\n\nSTEP 3 \u2014 WRITE THE CURATION FILE:\nSave to: /Users/reghar/.openclaw/workspace/champagne-brief-curation-[TODAY].md\n(Full absolute path. TODAY = YYYY-MM-DD. NEVER use ~.)\n\nSTEP 4 \u2014 POST PIPELINE STATUS to Discord channel 1481205564817014864:\nIf curation file saved: `$(date '+%Y-%m-%d %H:%M') | Champagne 3/8 \u2014 Inkwell Curation \u2705`\nIf failed: `$(date '+%Y-%m-%d %H:%M') | Champagne 3/8 \u2014 Inkwell Curation \u274c [reason]`\nUse the message tool: channel=discord, to=channel:1481205564817014864\n\n---\n\n## REFLECTION \u2014 \n\nREFLECTION STEP (run at the END of your run):\nAppend to /Users/reghar/.openclaw/workspace/agent-reflections-$(date '+%Y-%m-%d').md\nIf the file does not exist, create it. Always append \u2014 never overwrite.\n\n```\n## Inkwell\nTask: [what this cron ran \u2014 one line]\nStatus: [\u2705 OK / \u26a0\ufe0f Issue / \u274c Failed]\nPattern: [insight about what this means \u2014 not just \"it ran\", but what pattern is emerging. e.g. \"Browser-based scraping consuming 2-3x tokens vs search \u2014 no lightweight fallback for JS-heavy pages\"]\nFix needed: [concrete action, or \"None\"]\nNeeds Ragnar: [Yes \u2014 reason / No]\n```\n\nTry to post the same reflection content to Discord #daily-pulse (channel 1479360923780124834). This is best-effort \u2014 if it fails, skip it and continue.\nUse the message tool with:\n  channel=discord\n  to=channel:1479360923780124834\n\nThe message content should be identical to what you just appended to the file.\n\nIf \"Needs Ragnar: Yes\", also append to /Users/reghar/.openclaw/workspace/pending-approvals.md:\n```\n<!-- PENDING_REGHAR -->\n## Inkwell \u2014 $(date '+%Y-%m-%d')\n[paste the full reflection block here]\n```",
+        "timeoutSeconds": 480,
+        "model": "claude-max/claude-haiku-4"
+      },
+      "state": {
+        "nextRunAtMs": 1773640800000,
+        "lastRunAtMs": 1773447134405,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 37020,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1481205564817014864",
+        "bestEffort": true
+      }
+    },
+    {
+      "id": "3d331c0d-0020-4de3-9a6a-9a794a1d1211",
+      "agentId": "nolea-analyst",
+      "sessionKey": "agent:main:telegram:direct:113533963",
+      "name": "Anselme \u2014 Nolea Weekly Report",
+      "enabled": true,
+      "createdAtMs": 1772700271587,
+      "updatedAtMs": 1773404243173,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 7 * * 1",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Anselme, Nolea's data analyst. Run the weekly performance report.\n\nSTEP 0 \u2014 SESSION START (MANDATORY):\nRead your SOUL.md: /Users/reghar/.openclaw/workspace-nolea-analyst/SOUL.md\nRead your TOOLS.md: /Users/reghar/.openclaw/workspace-nolea-analyst/TOOLS.md\nRead last week's report (if it exists):\n```bash\nls -t /Users/reghar/.openclaw/workspace-nolea-analyst/reports/*.md 2>/dev/null | head -1\n```\nRead that file to establish last week's baseline.\n\nSTEP 1 \u2014 Pull data:\n```bash\npython3 /Users/reghar/.openclaw/workspace-nolea-analyst/scripts/ga4-pull.py\npython3 /Users/reghar/.openclaw/workspace-nolea-analyst/scripts/ads-pull.py\npython3 /Users/reghar/.openclaw/workspace-nolea-analyst/scripts/gsc-pull.py\n```\n\nIf ANY script fails with an auth error (401, 403, invalid_grant): follow the Auth Failure Protocol in SOUL.md and explicitly mention which system failed (GA4 / Google Ads / GSC). Do NOT generate a report from missing data.\n\nSTEP 2 \u2014 Archive data for week-over-week tracking:\n```bash\nmkdir -p /Users/reghar/.openclaw/workspace-nolea-analyst/data/weekly-archive\ncp /Users/reghar/.openclaw/workspace-nolea-analyst/data/ga4-latest.json /Users/reghar/.openclaw/workspace-nolea-analyst/data/weekly-archive/ga4-$(date +%Y-W%V).json\ncp /Users/reghar/.openclaw/workspace-nolea-analyst/data/ads-latest.json /Users/reghar/.openclaw/workspace-nolea-analyst/data/weekly-archive/ads-$(date +%Y-W%V).json\ncp /Users/reghar/.openclaw/workspace-nolea-analyst/data/gsc-latest.json /Users/reghar/.openclaw/workspace-nolea-analyst/data/weekly-archive/gsc-$(date +%Y-W%V).json\n```\n\nSTEP 3 \u2014 Compare against last week:\nRead the previous week's archived data to compute real week-over-week changes:\n```bash\nPREV_WEEK=$(date -v-7d +%Y-W%V 2>/dev/null || date -d '7 days ago' +%Y-W%V)\ncat /Users/reghar/.openclaw/workspace-nolea-analyst/data/weekly-archive/ga4-$PREV_WEEK.json 2>/dev/null || echo 'No prior week data'\ncat /Users/reghar/.openclaw/workspace-nolea-analyst/data/weekly-archive/ads-$PREV_WEEK.json 2>/dev/null || echo 'No prior week data'\ncat /Users/reghar/.openclaw/workspace-nolea-analyst/data/weekly-archive/gsc-$PREV_WEEK.json 2>/dev/null || echo 'No prior week data'\n```\n\nSTEP 4 \u2014 Write report following SOUL.md format (5 sections, in Swedish).\nSave to /Users/reghar/.openclaw/workspace-nolea-analyst/reports/$(date +%Y-W%V).md\n\nSTEP 5 \u2014 Post report to Discord channel 1479026132610453515 (#anselme-analytics).\nUse: message(action=\"send\", channel=\"discord\", channelId=\"1479026132610453515\", message=\"...\")",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "none",
+        "to": "113533963",
+        "channel": "telegram"
+      },
+      "state": {
+        "nextRunAtMs": 1773642600000,
+        "lastRunAtMs": 1773404143375,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 99798,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "4b290764-5a2c-4b3b-ac98-9ae711fe0e18",
+      "agentId": "main",
+      "name": "Weekly Cron Schedule Digest",
+      "enabled": true,
+      "createdAtMs": 1773446728404,
+      "updatedAtMs": 1773485324514,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 7 * * 1",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Run the weekly cron digest. Steps:\n\n1. Execute this command and capture its output:\n   python3 /Users/reghar/.openclaw/workspace/scripts/weekly-cron-digest.py\n\n2. Post the output to Discord #pipelines using the message tool:\n   channel=discord, to=channel:1481205564817014864\n\n3. Post pipeline status to the same channel:\n   '07:30 | Weekly Cron Digest \u2705' on success, or '07:30 | Weekly Cron Digest \u274c [reason]' on failure.",
+        "model": "claude-max/claude-haiku-4",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773642600000
+      }
+    },
+    {
+      "id": "be478b00-887c-4729-bea5-3cf6d09bbfac",
+      "agentId": "assistant",
+      "sessionKey": "agent:main:main",
+      "name": "Pip \u2014 Monday Approval Flag Check",
+      "enabled": true,
+      "createdAtMs": 1772278190831,
+      "updatedAtMs": 1773485327177,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 8 * * 1",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "delivery": {
+        "mode": "none",
+        "channel": "discord",
+        "to": "channel:1481205564817014864",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773645600000,
+        "lastRunAtMs": 1773070415374,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 35643,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      },
+      "payload": {
+        "kind": "agentTurn",
+        "message": "## STEP 0 \u2014 READ COUNCIL FEEDBACK (run FIRST, before anything else)\n\nCheck for last night's Advisory Council feedback targeted at you:\n\n```bash\nFEEDBACK=\"/Users/reghar/.openclaw/workspace/agent-feedback-pip.md\"\nif [ -f \"$FEEDBACK\" ]; then\n  echo \"=== Council Feedback for Pip ===\"\n  cat \"$FEEDBACK\"\n  echo \"=== End Council Feedback ===\"\n  mkdir -p /Users/reghar/.openclaw/workspace/archive/feedback\n  mv \"$FEEDBACK\" \"/Users/reghar/.openclaw/workspace/archive/feedback/agent-feedback-pip-$(date +%Y-%m-%d).md\"\nfi\n```\n\nIf feedback is present, treat it as priority context for this session \u2014 it contains improvements suggested by the Advisory Council. Apply any actionable items to your work today.\n\n---\n\nYou are Pip. Monday morning flag check \u2014 runs at 08:20 before email delivery at 08:30.\n\nSTEP 1 \u2014 CHECK FLAGS\nRun:\n```bash\nls /Users/reghar/.openclaw/workspace-writer/output/champagne-delivery-ready.txt 2>&1\nls /Users/reghar/.openclaw/workspace/champagne-chief-approved.txt 2>&1\n```\n\nSTEP 2 \u2014 REPORT TO DISCORD (channel 1481205564817014864)\n\nIf BOTH files exist:\n\u2705 **Pip \u2014 Monday flags OK**\ndelivery-ready: \u2705 present\nchief-approved: \u2705 present\nEmail delivery at 08:30 is clear to proceed.\n\nIf delivery-ready MISSING:\n\ud83d\udea8 **Pip \u2014 Monday flag MISSING**\ndelivery-ready: \u274c MISSING\nchief-approved: (present/missing)\nInkwell may not have finished. Email delivery will be blocked.\n@here\n\nIf delivery-ready present but chief-approved MISSING:\n\u26a0\ufe0f **Pip \u2014 Awaiting chief approval**\ndelivery-ready: \u2705 present\nchief-approved: \u274c MISSING\nChief review (08:15) may not have completed. Delivery blocked until approved.\n\nPost to Discord using the message tool (channel=discord). That's it. No other actions.\n\n---\n\n## REFLECTION \u2014 \n\nREFLECTION STEP (run at the END of your run):\nAppend to /Users/reghar/.openclaw/workspace/agent-reflections-$(date '+%Y-%m-%d').md\nIf the file does not exist, create it. Always append \u2014 never overwrite.\n\n```\n## Pip\nTask: [what this cron ran \u2014 one line]\nStatus: [\u2705 OK / \u26a0\ufe0f Issue / \u274c Failed]\nPattern: [insight about what this means \u2014 not just \"it ran\", but what pattern is emerging. e.g. \"Browser-based scraping consuming 2-3x tokens vs search \u2014 no lightweight fallback for JS-heavy pages\"]\nFix needed: [concrete action, or \"None\"]\nNeeds Ragnar: [Yes \u2014 reason / No]\n```\n\nThen, post the same reflection content to Discord #daily-pulse (channel 1479360923780124834).\nUse the message tool with:\n  channel=discord\n  to=channel:1479360923780124834\n\nThe message content should be identical to what you just appended to the file.\n\nIf \"Needs Ragnar: Yes\", also append to /Users/reghar/.openclaw/workspace/pending-approvals.md:\n```\n<!-- PENDING_REGHAR -->\n## Pip \u2014 $(date '+%Y-%m-%d')\n[paste the full reflection block here]\n```",
+        "timeoutSeconds": 300,
+        "model": "claude-max/claude-haiku-4"
+      }
+    },
+    {
+      "id": "cffd55d9-521f-4b87-9e1b-56073bab3f42",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1476467212075270306",
+      "name": "Champagne Brief \u2014 Judge + Revision",
+      "enabled": true,
+      "createdAtMs": 1772840877890,
+      "updatedAtMs": 1773482456889,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 480,
+        "message": "You are the Judge AND Inkwell in one pass. Quality-check the champagne brief draft, then immediately fix any violations.\n\nPATH RULE: Full absolute paths only. NEVER use ~ or $HOME.\n\nPATHS:\n- Draft: /Users/reghar/.openclaw/workspace-writer/output/champagne-brief-draft-[TODAY].md\n- Judge JSON: /Users/reghar/.openclaw/workspace/champagne-judge.json\n- Judge report: /Users/reghar/.openclaw/workspace/champagne-judge-report.txt\n- Revision flag: /Users/reghar/.openclaw/workspace/champagne-revision-done.txt\nPIPELINE CHANNEL: 1481205564817014864\nYOUR-CALL CHANNEL: 1478320408586620982\n\n## STEP 0 \u2014 QUALITY GATE CHECK (run FIRST before anything else)\n\nCheck if the quality gate passed:\n```bash\nif [ -f \"/Users/reghar/.openclaw/workspace/champagne-quality-gate-passed.txt\" ]; then\n  echo \"GATE_PASSED\"\nelif [ -f \"/Users/reghar/.openclaw/workspace/champagne-quality-gate-failed.txt\" ]; then\n  echo \"GATE_FAILED\"\n  cat /Users/reghar/.openclaw/workspace/champagne-quality-gate-failed.txt\nelse\n  echo \"GATE_MISSING\"\nfi\n```\n\nIf GATE_FAILED or GATE_MISSING:\n- Post to pipeline channel 1481205564817014864: `$(date '+%Y-%m-%d %H:%M') | Champagne 5/8 \u2014 Judge+Revision \u23ed\ufe0f SKIPPED \u2014 quality gate not passed`\n- Post to pipeline channel 1481205564817014864: `\u26a0\ufe0f Champagne Brief \u2014 Judge step skipped. Quality gate failed or did not run. Check #champagne-pipeline.`\n- Stop. Do NOT proceed with judging.\n\nIf GATE_PASSED: proceed to STEP 1.\n\nSTEP 1 \u2014 READ:\nRead /Users/reghar/.openclaw/workspace-writer/output/champagne-brief-draft-[TODAY].md (today's date YYYY-MM-DD)\nIf missing:\n- Write {\"score\": 0, \"violations\": [\"draft missing\"]} to judge JSON\n- Post to pipeline channel: `$(date '+%Y-%m-%d %H:%M') | Champagne 5/8 \u2014 Judge+Revision \u274c draft missing`\n- Post to pipeline channel 1481205564817014864: `\ud83d\udd34 Champagne Brief \u2014 draft missing. See #your-call.`\n- Post to your-call 1478320408586620982: `\ud83d\udd34 **Champagne Brief \u2014 draft missing**\\nPipeline failed upstream. No brief this Monday. No action needed unless you want to investigate.`\n- Send Telegram to 113533963: `\ud83d\udd34 Champagne Brief pipeline failed \u2014 no draft. No brief going out today.`\n- Stop.\n\nRead /Users/reghar/.openclaw/workspace/CHAMPAGNE-BRIEF-INSTRUCTIONS.md\nRead /Users/reghar/.openclaw/workspace/WRITING-STYLE.md\n\nSTEP 2 \u2014 JUDGE (keep this step fast \u2014 max 5 checks only):\nA) KILL LIST \u2014 scan for: v\u00e4lg\u00e5ngslista, tackkv\u00e4ll, sp\u00e4nnande, fantastisk, unik, exceptionell, mineraliska stringens, integrerad fruktsyra, parceller\nB) SOURCING \u2014 every Les Maisons item must have a source attribution\nC) \u00c0 STOCKHOLM FORMAT \u2014 each wine: producer + wine name, price in kr, blend info\nD) SECTION STRUCTURE \u2014 all sections present: La Cave & Les Vignes, Les Maisons, Le Vigneron, \u00c0 Stockholm, Entre Nous\nE) TONE \u2014 flag AI openers: 'I champagnens v\u00e4rld', 'Det \u00e4r', 'Nu \u00e4r det dags'\n\nSTEP 3 \u2014 SCORE:\nscore = 5.0 \u2014 kill list hit: -0.5 \u2014 missing source: -0.3 \u2014 \u00c0 Stockholm violation: -0.3 \u2014 missing section: -0.5 \u2014 tone flag: -0.3. Min: 0.\n\nWrite {\"score\": X.X, \"pass\": true/false, \"violations\": [...]} to /Users/reghar/.openclaw/workspace/champagne-judge.json\nWrite 1-paragraph summary to /Users/reghar/.openclaw/workspace/champagne-judge-report.txt\n\nSTEP 4 \u2014 REVISE (only if score < 5.0):\nFix flagged violations only. Max 5 targeted edits. Write corrected draft back to the same path.\nWrite \"DONE\" to /Users/reghar/.openclaw/workspace/champagne-revision-done.txt\n\nSTEP 5 \u2014 POST PIPELINE STATUS to channel 1481205564817014864:\n`$(date '+%Y-%m-%d %H:%M') | Champagne 5/8 \u2014 Judge+Revision [\u2705 score X.X/5.0 | \u274c reason]`\n\nSTEP 6 \u2014 TRAFFIC LIGHT (post to pipeline channel 1481205564817014864 only \u2014 one message):\n\nIf score >= 4.0: `\ud83d\udfe2 Champagne Brief \u2014 Judge passed ([score]/5.0). Ready for Editor-in-Chief. No input needed.`\nIf 3.0 <= score < 4.0: `\ud83d\udfe1 Champagne Brief \u2014 flagged ([score]/5.0). Violations: [top 2]. Reghar reviewing. No input needed.`\nIf score < 3.0:\n  Post to pipeline channel: `\ud83d\udd34 Champagne Brief \u2014 Judge failed. Brief blocked. See #your-call.`\n  Post to your-call 1478320408586620982: `\ud83d\udd34 **Champagne Brief \u2014 Judge failed ([score]/5.0)**\\nBrief blocked. Violations:\\n[list all]\\nYour call: skip this week or manual override?`\n  Send Telegram to 113533963: `\ud83d\udd34 Champagne Brief judge failed [score]/5.0 \u2014 brief blocked. Details in #your-call.`"
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1773648000000,
+        "lastRunAtMs": 1773070810193,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 39655,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1478320408586620982",
+      "name": "Reminder: Evaluate Nolea Multi-Agent Marketing Team",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772871028846,
+      "updatedAtMs": 1772871028846,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-21T08:00:00.000Z"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "\ud83d\udd14 Reminder for Ragnar (set 2026-03-07): Time to evaluate the Nolea Multi-Agent Marketing Team concept. 3-agent Reddit pilot (Researcher + Writer + Critic) using PocketBase for shared state. You asked to revisit in 2 weeks. Decision: spec it now, or push further? Key question was whether to start with a 2-week manual test before automating."
+      },
+      "state": {
+        "nextRunAtMs": 1774080000000
+      }
+    },
+    {
+      "id": "2d7b4c9c-bc45-4c92-bcc0-2c651b4ae8f8",
+      "agentId": "main",
+      "name": "Pip \u2014 Monthly Cost Review [exec]",
+      "enabled": true,
+      "createdAtMs": 1773475042831,
+      "updatedAtMs": 1773485334073,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 22 28-31 * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Execute: bash /Users/reghar/.openclaw/workspace/scripts/monthly-cost-review-exec.sh",
+        "model": "claude-max/claude-haiku-4",
+        "timeoutSeconds": 180,
+        "lightContext": true
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1774731600000
+      }
+    }
+  ]
+}
