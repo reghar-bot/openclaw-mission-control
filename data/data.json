@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-14T18:53:30Z",
+  "generatedAt": "2026-03-14T18:58:14Z",
   "generatorVersion": "1.1.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 235,
+    "sessionCount": 236,
     "agentCount": 19
   },
   "budget": {
@@ -47,20 +47,6 @@
     }
   ],
   "crons": [
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-14T18:51:05.111000Z",
-      "nextRunAt": "2026-03-14T18:56:05.111000Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 60014,
-      "consecutiveErrors": 1,
-      "lastError": "cron: job execution timed out",
-      "timeoutSeconds": 60
-    },
     {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
       "name": "System Resource Monitor (bash)",
@@ -130,6 +116,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-14T18:56:05.161000Z",
+      "nextRunAt": "2026-03-14T19:01:05.161000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 9820,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
@@ -679,8 +679,8 @@
     }
   ],
   "errors": {
-    "total": 2,
+    "total": 1,
     "critical": 1,
-    "warning": 1
+    "warning": 0
   }
 }
