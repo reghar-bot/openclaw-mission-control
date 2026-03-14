@@ -801,7 +801,7 @@ inputEl.addEventListener('keydown', e => {
 });
 
 // ── Helpers ────────────────────────────────────────────
-function fmt$(n) { return n == null ? '—' : '$' + Number(n).toFixed(0); }
+function fmt$(n) { return n == null ? 'N/A' : '$' + Number(n).toFixed(0); }
 function fmtTs(iso) {
   if (!iso) return '—';
   const d = new Date(iso);
@@ -919,8 +919,8 @@ function render(data) {
   const bgtCard = document.getElementById('card-budget');
   const bgtPct = budget.limit ? (budget.currentMonth / budget.limit) : 0;
   bgtCard.className = 'metric-card ' + (bgtPct > 0.9 ? 'crit' : bgtPct > 0.75 ? 'warn' : 'info');
-  document.getElementById('val-budget').textContent = fmt$(budget.currentMonth);
-  document.getElementById('sub-budget').textContent = Math.round(bgtPct * 100) + '% of limit';
+  document.getElementById('val-budget').textContent = budget.currentMonth != null ? fmt$(budget.currentMonth) : 'N/A';
+  document.getElementById('sub-budget').textContent = budget.currentMonth != null ? Math.round(bgtPct * 100) + '% of limit' : 'See Anthropic dashboard';
 
   // Errors card
   const errCard = document.getElementById('card-errors');
@@ -961,22 +961,23 @@ function render(data) {
   }
 
   // ── Budget
-  const pct = Math.min(100, Math.round(bgtPct * 100));
-  document.getElementById('bgt-spent').textContent = fmt$(budget.currentMonth);
+  const hasBudgetData = budget.currentMonth != null;
+  const pct = hasBudgetData ? Math.min(100, Math.round(bgtPct * 100)) : 0;
+  document.getElementById('bgt-spent').textContent = hasBudgetData ? fmt$(budget.currentMonth) : 'N/A';
   const barEl = document.getElementById('bgt-bar');
   barEl.style.width = pct + '%';
   barEl.className = 'progress-fill ' + (pct > 90 ? 'crit' : pct > 75 ? 'warn' : 'ok');
-  document.getElementById('bgt-pct').textContent = pct + '%';
+  document.getElementById('bgt-pct').textContent = hasBudgetData ? pct + '%' : 'N/A';
   const bgtStatusEl = document.getElementById('bgt-status');
   const statusMap = { on_track: ['ok', 'ON TRACK'], elevated: ['warn', 'ELEVATED'], over_budget: ['crit', 'OVER BUDGET'] };
-  const [sc, st] = statusMap[budget.status] || ['ok', 'ON TRACK'];
+  const [sc, st] = hasBudgetData ? (statusMap[budget.status] || ['ok', 'ON TRACK']) : ['ok', 'SEE DASHBOARD'];
   bgtStatusEl.className = 'budget-status-tag ' + sc;
   bgtStatusEl.textContent = st;
   document.getElementById('bgt-day').textContent = budget.dayOfMonth || '—';
   document.getElementById('bgt-days').textContent = budget.daysInMonth || 31;
-  document.getElementById('bgt-proj').textContent = fmt$(budget.projected);
-  const dailyAvg = budget.dayOfMonth && budget.currentMonth
-    ? '$' + (budget.currentMonth / budget.dayOfMonth).toFixed(2) + '/day' : '—';
+  document.getElementById('bgt-proj').textContent = hasBudgetData ? fmt$(budget.projected) : 'N/A';
+  const dailyAvg = (hasBudgetData && budget.dayOfMonth && budget.currentMonth)
+    ? '$' + (budget.currentMonth / budget.dayOfMonth).toFixed(2) + '/day' : 'N/A';
   document.getElementById('bgt-daily-avg').textContent = dailyAvg;
   const sys2 = data.system || {};
   document.getElementById('bgt-agents').textContent = sys2.agentCount || '—';
@@ -1157,19 +1158,26 @@ const MOCK_DATA = {
 // ── Data loading ───────────────────────────────────────
 async function loadData() {
   try {
-    // Try fetching data.json from same directory
     const res = await fetch('./data/data.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     render(data);
   } catch (e) {
-    // Fall back to mock data
-    console.warn('data.json unavailable, using mock data:', e.message);
-    render(MOCK_DATA);
-    // Show a subtle indicator
+    // Show a visible error banner — never silently render stale mock data
+    console.error('data.json fetch failed:', e.message);
     const tsEl = document.getElementById('last-updated');
-    tsEl.textContent = 'DEMO DATA (data.json not found)';
-    tsEl.style.color = 'var(--status-warn)';
+    tsEl.textContent = 'DATA LOAD FAILED: ' + e.message + ' — check console';
+    tsEl.style.color = 'var(--status-crit)';
+    // Still render MOCK so the layout isn't blank, but mark it clearly
+    render(MOCK_DATA);
+    // Override the generated-at text after render (render() overwrites it)
+    setTimeout(() => {
+      const el = document.getElementById('last-updated');
+      if (el) {
+        el.textContent = 'FETCH ERROR: ' + e.message;
+        el.style.color = 'var(--status-crit)';
+      }
+    }, 50);
   }
 }
 

@@ -1,4 +1,13 @@
 export async function onRequest(context) {
+  const url = new URL(context.request.url);
+
+  // Allow data.json to be fetched without HTTP Basic Auth.
+  // The HTML has its own SHA-256 password gate, so this file
+  // is not exposed to unauthenticated users in practice.
+  if (url.pathname === '/data/data.json') {
+    return context.next();
+  }
+
   const auth = context.request.headers.get('Authorization');
   if (!auth || !auth.startsWith('Basic ')) {
     return new Response('Unauthorized', {
