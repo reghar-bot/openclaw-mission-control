@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="300">
+  <title>Mission Control</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:      #0a0a0f;
+      --bg-card:      #12121a;
+      --bg-elevated:  #1a1a28;
+      --border:       #2a2a3a;
+      --text-primary: #e0e0e8;
+      --text-secondary: #6b6b80;
+      --text-muted:   #44445a;
+      --status-ok:    #22c55e;
+      --status-warn:  #eab308;
+      --status-crit:  #ef4444;
+      --accent:       #3b82f6;
+      --agent-main:   #3b82f6;
+      --agent-researcher: #8b5cf6;
+      --agent-writer: #10b981;
+      --agent-developer: #f97316;
+      --agent-assistant: #6b7280;
+      --agent-designer: #06b6d4;
+      --agent-nolea-analyst: #ec4899;
+      --agent-strategist: #0d9488;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Password Gate ────────────────────────────────── */
+    #gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg-base);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gate-box {
+      width: 360px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .gate-logo {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .gate-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .gate-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-align: center;
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .gate-input:focus { border-color: var(--accent); }
+    .gate-input.shake {
+      animation: shake 0.4s ease;
+      border-color: var(--status-crit);
+    }
+    @keyframes shake {
+      0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)}
+    }
+    .gate-hint {
+      font-size: 11px;
+      color: var(--status-crit);
+      min-height: 16px;
+      margin-top: 4px;
+    }
+    .gate-footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Main Dashboard ───────────────────────────────── */
+    #dashboard { display: none; min-height: 100vh; }
+
+    /* Header */
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg-base);
+      backdrop-filter: blur(12px);
+    }
+    .header-left { display: flex; align-items: center; gap: 16px; }
+    .header-wordmark {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .header-status-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .header-status-badge.healthy  { background: rgba(34,197,94,0.12); color: var(--status-ok); border: 1px solid rgba(34,197,94,0.25); }
+    .header-status-badge.degraded { background: rgba(234,179,8,0.12); color: var(--status-warn); border: 1px solid rgba(234,179,8,0.25); }
+    .header-status-badge.critical { background: rgba(239,68,68,0.12); color: var(--status-crit); border: 1px solid rgba(239,68,68,0.25); }
+    .pulse-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .header-ts {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .header-stale {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--status-warn);
+      background: rgba(234,179,8,0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: none;
+    }
+
+    /* Main content grid */
+    .main-content { padding: 24px 28px; max-width: 1400px; margin: 0 auto; }
+
+    /* ── Health Bar ─────────────────────────────────── */
+    .health-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .metric-label {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 28px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .metric-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    .metric-card.ok    .metric-value { color: var(--status-ok); }
+    .metric-card.warn  .metric-value { color: var(--status-warn); }
+    .metric-card.crit  .metric-value { color: var(--status-crit); }
+    .metric-card.info  .metric-value { color: var(--accent); }
+    .metric-card.neutral .metric-value { color: var(--text-primary); }
+
+    /* ── Two-column layout for middle section ─────── */
+    .two-col { display: grid; grid-template-columns: 1fr 320px; gap: 16px; margin-bottom: 16px; }
+    .one-col { margin-bottom: 16px; }
+
+    /* ── Section card ─────────────────────────────── */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .section-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .section-body { padding: 0; }
+
+    /* ── Failing Crons Table ─────────────────────── */
+    .all-clear {
+      display: flex; align-items: center; gap: 8px;
+      padding: 20px 18px;
+      font-size: 13px;
+      color: var(--status-ok);
+      font-family: var(--font-mono);
+    }
+    .all-clear-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--status-ok); }
+    table.cron-table { width: 100%; border-collapse: collapse; }
+    table.cron-table th {
+      padding: 8px 14px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table.cron-table td {
+      padding: 10px 14px;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(42,42,58,0.5);
+      vertical-align: middle;
+    }
+    table.cron-table tr:last-child td { border-bottom: none; }
+    table.cron-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .cron-name {
+      font-weight: 500;
+      color: var(--text-primary);
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .error-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .err-cat {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+    .err-cat.CONFIG    { background: rgba(239,68,68,0.15); color: #fc8181; }
+    .err-cat.TIMEOUT   { background: rgba(234,179,8,0.15); color: #fcd34d; }
+    .err-cat.DELIVERY  { background: rgba(59,130,246,0.15); color: #93c5fd; }
+    .err-cat.FILE_WRITE{ background: rgba(249,115,22,0.15); color: #fdba74; }
+    .err-cat.PROVIDER  { background: rgba(139,92,246,0.15); color: #c4b5fd; }
+    .err-cat.OTHER     { background: rgba(107,107,128,0.15); color: #9ca3af; }
+    .last-run-ts {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    .last-err-snippet {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ── Budget Card ─────────────────────────────── */
+    .budget-body { padding: 18px 18px 20px; }
+    .budget-numbers {
+      display: flex; align-items: baseline; gap: 6px;
+      margin-bottom: 14px;
+    }
+    .budget-spent {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .budget-limit {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+    .progress-track {
+      height: 8px;
+      background: var(--bg-elevated);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+    .progress-fill.ok   { background: var(--status-ok); }
+    .progress-fill.warn { background: var(--status-warn); }
+    .progress-fill.crit { background: var(--status-crit); }
+    .budget-meta {
+      display: flex; justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    .budget-status-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+    .budget-status-tag.ok   { background: rgba(34,197,94,0.12); color: var(--status-ok); }
+    .budget-status-tag.warn { background: rgba(234,179,8,0.12); color: var(--status-warn); }
+    .budget-status-tag.crit { background: rgba(239,68,68,0.12); color: var(--status-crit); }
+    .budget-daily-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .budget-daily-label { font-size: 11px; color: var(--text-secondary); }
+    .budget-daily-value {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ── Pipeline Status ─────────────────────────── */
+    .pipeline-row {
+      display: flex; align-items: center;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(42,42,58,0.5);
+      gap: 12px;
+    }
+    .pipeline-row:last-child { border-bottom: none; }
+    .pipeline-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .pipeline-dot.ok     { background: var(--status-ok); box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+    .pipeline-dot.broken { background: var(--status-crit); box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+    .pipeline-dot.paused { background: var(--text-muted); }
+    .pipeline-dot.warn   { background: var(--status-warn); box-shadow: 0 0 6px rgba(234,179,8,0.5); }
+    .pipeline-info { flex: 1; min-width: 0; }
+    .pipeline-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .pipeline-note {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .pipeline-last {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .pipeline-status-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 2px 7px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .pipeline-status-tag.ok     { background: rgba(34,197,94,0.12); color: var(--status-ok); }
+    .pipeline-status-tag.broken { background: rgba(239,68,68,0.12); color: var(--status-crit); }
+    .pipeline-status-tag.paused { background: rgba(107,107,128,0.1); color: var(--text-muted); }
+    .pipeline-status-tag.warn   { background: rgba(234,179,8,0.12); color: var(--status-warn); }
+
+    /* ── Activity Feed ────────────────────────────── */
+    .activity-row {
+      display: grid;
+      grid-template-columns: 52px 1fr auto auto;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 18px;
+      border-bottom: 1px solid rgba(42,42,58,0.4);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .activity-row:last-child { border-bottom: none; }
+    .activity-row:hover { background: rgba(255,255,255,0.015); }
+    .activity-ts { color: var(--text-muted); font-size: 11px; }
+    .activity-name { color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .activity-status {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      padding: 2px 7px; border-radius: 3px;
+    }
+    .activity-status.ok      { background: rgba(34,197,94,0.12); color: var(--status-ok); }
+    .activity-status.error   { background: rgba(239,68,68,0.12); color: var(--status-crit); }
+    .activity-status.skipped { background: rgba(107,107,128,0.1); color: var(--text-muted); }
+    .activity-status.running { background: rgba(59,130,246,0.12); color: var(--accent); }
+    .activity-dur { color: var(--text-muted); font-size: 11px; text-align: right; min-width: 48px; }
+
+    /* ── Cron Fleet Grid ──────────────────────────── */
+    .fleet-section { margin-bottom: 24px; }
+    .agent-group { margin-bottom: 20px; }
+    .agent-group-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0 18px 10px;
+    }
+    .agent-dot-lg {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .agent-group-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .agent-cron-count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .cron-tiles {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding: 0 18px;
+    }
+    .cron-tile {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: default;
+      position: relative;
+      max-width: 180px;
+      transition: border-color 0.15s;
+    }
+    .cron-tile:hover { border-color: rgba(224,224,232,0.2); }
+    .cron-tile:hover .cron-tooltip { display: block; }
+    .cron-tile-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cron-tile-dot.ok     { background: var(--status-ok); }
+    .cron-tile-dot.warn   { background: var(--status-warn); }
+    .cron-tile-dot.crit   { background: var(--status-crit); }
+    .cron-tile-dot.paused { background: var(--text-muted); }
+    .cron-tile-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .cron-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 0;
+      z-index: 200;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      min-width: 220px;
+      max-width: 300px;
+      white-space: normal;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .cron-tooltip-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .cron-tooltip-row {
+      display: flex; justify-content: space-between; gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-bottom: 2px;
+    }
+    .cron-tooltip-row span:first-child { color: var(--text-muted); }
+
+    /* ── Loading overlay ──────────────────────────── */
+    #loading {
+      position: fixed; inset: 0; z-index: 500;
+      background: var(--bg-base);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+    }
+    .loading-spinner {
+      width: 24px; height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ── No data / error state ────────────────────── */
+    .data-error {
+      display: none;
+      padding: 20px 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--status-warn);
+    }
+
+    /* ── Responsive ───────────────────────────────── */
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+      .health-bar { grid-template-columns: repeat(2, 1fr); }
+      .main-content { padding: 16px; }
+      .header { padding: 14px 16px; }
+    }
+    @media (max-width: 480px) {
+      .health-bar { grid-template-columns: 1fr 1fr; }
+      .activity-row { grid-template-columns: 46px 1fr auto; }
+      .activity-dur { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Password Gate ─────────────────────────────────── -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">Reghar Systems</div>
+    <div class="gate-title">Mission Control</div>
+    <div class="gate-sub">Enter access code to continue</div>
+    <input type="password" class="gate-input" id="gate-input"
+           placeholder="••••••••••" autocomplete="current-password"
+           autofocus>
+    <div class="gate-hint" id="gate-hint"></div>
+    <div class="gate-footer">SHA-256 · localStorage · read-only</div>
+  </div>
+</div>
+
+<!-- ── Loading ───────────────────────────────────────── -->
+<div id="loading" style="display:none">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Fetching data.json…</div>
+</div>
+
+<!-- ── Dashboard ─────────────────────────────────────── -->
+<div id="dashboard">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <span class="header-wordmark">Mission Control</span>
+      <span class="header-status-badge healthy" id="agg-badge">
+        <span class="pulse-dot"></span>
+        <span id="agg-label">HEALTHY</span>
+      </span>
+    </div>
+    <div class="header-right">
+      <span class="header-stale" id="stale-warn">DATA STALE</span>
+      <span class="header-ts" id="last-updated">Last updated: —</span>
+    </div>
+  </header>
+
+  <div class="main-content">
+
+    <!-- Section 1: Health Bar -->
+    <div class="health-bar">
+      <div class="metric-card ok" id="card-crons">
+        <div class="metric-label">Crons OK</div>
+        <div class="metric-value" id="val-crons-ok">—</div>
+        <div class="metric-sub" id="sub-crons-ok">of — enabled</div>
+      </div>
+      <div class="metric-card ok" id="card-gateway">
+        <div class="metric-label">Gateway</div>
+        <div class="metric-value" id="val-gateway">—</div>
+        <div class="metric-sub" id="sub-gateway">PID —</div>
+      </div>
+      <div class="metric-card neutral" id="card-budget">
+        <div class="metric-label">Budget MTD</div>
+        <div class="metric-value" id="val-budget">—</div>
+        <div class="metric-sub" id="sub-budget">of $250 limit</div>
+      </div>
+      <div class="metric-card ok" id="card-errors">
+        <div class="metric-label">Failing Crons</div>
+        <div class="metric-value" id="val-errors">—</div>
+        <div class="metric-sub" id="sub-errors">consecutive errors ≥1</div>
+      </div>
+    </div>
+
+    <!-- Section 2: Failing Crons + Section 3: Budget -->
+    <div class="two-col">
+
+      <!-- Failing Crons -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="section-title">Failing Crons</span>
+          <span class="section-meta" id="failing-meta">0 failing</span>
+        </div>
+        <div class="section-body" id="failing-body">
+          <div class="all-clear" id="all-clear-msg">
+            <div class="all-clear-dot"></div>
+            All crons healthy — no errors
+          </div>
+          <table class="cron-table" id="failing-table" style="display:none">
+            <thead>
+              <tr>
+                <th>Cron Name</th>
+                <th>Agent</th>
+                <th>Errors</th>
+                <th>Category</th>
+                <th>Last Error</th>
+                <th>Last Run</th>
+              </tr>
+            </thead>
+            <tbody id="failing-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Budget -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="section-title">Budget Burn</span>
+          <span class="section-meta">March 2026</span>
+        </div>
+        <div class="budget-body">
+          <div class="budget-numbers">
+            <span class="budget-spent" id="bgt-spent">—</span>
+            <span class="budget-limit">/ $250</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill ok" id="bgt-bar" style="width:0%"></div>
+          </div>
+          <div class="budget-meta">
+            <span id="bgt-pct">0%</span>
+            <span class="budget-status-tag ok" id="bgt-status">ON TRACK</span>
+          </div>
+          <div class="budget-daily-row">
+            <span class="budget-daily-label">Day <span id="bgt-day">—</span> of <span id="bgt-days">31</span></span>
+            <span class="budget-daily-value">Proj: <span id="bgt-proj">—</span></span>
+          </div>
+          <div class="budget-daily-row" style="border-top:none; margin-top:4px; padding-top:0;">
+            <span class="budget-daily-label">Daily avg</span>
+            <span class="budget-daily-value" id="bgt-daily-avg">—</span>
+          </div>
+          <div class="budget-daily-row" style="border-top:none; margin-top:4px; padding-top:0;">
+            <span class="budget-daily-label">Agents active</span>
+            <span class="budget-daily-value" id="bgt-agents">—</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Section 4: Pipeline Status -->
+    <div class="section-card one-col">
+      <div class="section-header">
+        <span class="section-title">Pipeline Status</span>
+        <span class="section-meta" id="pipeline-meta">4 pipelines</span>
+      </div>
+      <div class="section-body" id="pipeline-body">
+        <!-- rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Section 5: Activity Feed + Section 6: upcoming -->
+    <div class="two-col">
+
+      <!-- Activity Feed -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="section-title">Activity Feed</span>
+          <span class="section-meta">Last 10 runs</span>
+        </div>
+        <div class="section-body" id="activity-body">
+          <!-- rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Next Runs -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="section-title">Next Scheduled</span>
+          <span class="section-meta">Upcoming runs</span>
+        </div>
+        <div class="section-body" id="next-body">
+          <!-- rendered by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Section 7: Cron Fleet Grid -->
+    <div class="section-card fleet-section" id="fleet-card">
+      <div class="section-header">
+        <span class="section-title">Cron Fleet</span>
+        <span class="section-meta" id="fleet-meta">— crons</span>
+      </div>
+      <div class="section-body" style="padding: 16px 0 8px;">
+        <div id="fleet-grid"><!-- rendered by JS --></div>
+      </div>
+    </div>
+
+  </div><!-- .main-content -->
+</div><!-- #dashboard -->
+
+<script>
+// ── Password gate ──────────────────────────────────────
+const HASH = '7d95b960e3e0240d89ccfcc31bf51b8b84152fc5520b44b3beea6cccd40bbb7b';
+const SESSION_KEY = 'mc_auth_v1';
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+const gateEl  = document.getElementById('gate');
+const dashEl  = document.getElementById('dashboard');
+const inputEl = document.getElementById('gate-input');
+const hintEl  = document.getElementById('gate-hint');
+
+async function tryUnlock(val) {
+  const h = await sha256(val);
+  if (h === HASH) {
+    localStorage.setItem(SESSION_KEY, '1');
+    gateEl.style.display = 'none';
+    dashEl.style.display = 'block';
+    loadData();
+  } else {
+    hintEl.textContent = 'Incorrect access code';
+    inputEl.classList.add('shake');
+    inputEl.value = '';
+    setTimeout(() => inputEl.classList.remove('shake'), 500);
+  }
+}
+
+if (localStorage.getItem(SESSION_KEY) === '1') {
+  gateEl.style.display = 'none';
+  dashEl.style.display = 'block';
+}
+
+inputEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && inputEl.value.trim()) tryUnlock(inputEl.value.trim());
+  hintEl.textContent = '';
+});
+
+// ── Helpers ────────────────────────────────────────────
+function fmt$(n) { return n == null ? '—' : '$' + Number(n).toFixed(0); }
+function fmtTs(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+}
+function relTime(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso), now = Date.now(), diff = now - d;
+  if (diff < 0) {
+    const s = Math.abs(diff / 1000);
+    if (s < 60) return 'in ' + Math.round(s) + 's';
+    const m = s / 60;
+    if (m < 60) return 'in ' + Math.round(m) + 'm';
+    return 'in ' + Math.round(m / 60) + 'h ' + Math.round(m % 60) + 'm';
+  }
+  if (diff < 60000)   return Math.round(diff / 1000) + 's ago';
+  if (diff < 3600000) return Math.round(diff / 60000) + 'm ago';
+  if (diff < 86400000)return Math.round(diff / 3600000) + 'h ago';
+  return Math.round(diff / 86400000) + 'd ago';
+}
+function fmtDur(ms) {
+  if (!ms) return '—';
+  if (ms < 1000) return ms + 'ms';
+  if (ms < 60000) return (ms / 1000).toFixed(1) + 's';
+  return Math.round(ms / 60000) + 'm ' + Math.round((ms % 60000) / 1000) + 's';
+}
+function errCategory(err) {
+  if (!err) return 'OTHER';
+  const e = err.toLowerCase();
+  if (/channel|recipient/.test(e)) return 'CONFIG';
+  if (/timed out|timeout/.test(e)) return 'TIMEOUT';
+  if (/message|delivery/.test(e)) return 'DELIVERY';
+  if (/write|tilde|path/.test(e)) return 'FILE_WRITE';
+  if (/credit|balance/.test(e)) return 'PROVIDER';
+  return 'OTHER';
+}
+function agentColor(id) {
+  const map = {
+    main: '#3b82f6', researcher: '#8b5cf6', writer: '#10b981',
+    developer: '#f97316', assistant: '#6b7280', designer: '#06b6d4',
+    'nolea-analyst': '#ec4899', strategist: '#0d9488'
+  };
+  if (!id) return '#6b7280';
+  for (const k of Object.keys(map)) if (id.includes(k)) return map[k];
+  return '#6b7280';
+}
+function cronStatusClass(cron) {
+  if (!cron.enabled) return 'paused';
+  if (cron.consecutiveErrors >= 2) return 'crit';
+  if (cron.consecutiveErrors === 1) return 'warn';
+  return 'ok';
+}
+function setClass(el, ...classes) { el.className = classes.filter(Boolean).join(' '); }
+function el(tag, cls, html) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html != null) e.innerHTML = html;
+  return e;
+}
+
+// ── Aggregate system status ────────────────────────────
+function computeAgg(data) {
+  const crons = data.crons || [];
+  const critCount = crons.filter(c => c.consecutiveErrors >= 2).length;
+  const budget = data.budget || {};
+  const pct = budget.limit ? (budget.currentMonth / budget.limit) : 0;
+  const gwDown = data.system && data.system.gatewayStatus !== 'running';
+  if (critCount >= 4 || pct > 0.95 || gwDown) return 'critical';
+  if (critCount >= 1 || (pct > 0.85 && budget.dayOfMonth < 25)) return 'degraded';
+  return 'healthy';
+}
+
+// ── Render ─────────────────────────────────────────────
+function render(data) {
+  // Last updated
+  const tsEl = document.getElementById('last-updated');
+  if (data.generatedAt) {
+    const d = new Date(data.generatedAt);
+    tsEl.textContent = 'Last updated: ' + d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+    // Stale if > 20 min
+    const staleEl = document.getElementById('stale-warn');
+    if (Date.now() - d > 20 * 60 * 1000) staleEl.style.display = 'inline-block';
+  }
+
+  // Aggregate badge
+  const agg = computeAgg(data);
+  const badge = document.getElementById('agg-badge');
+  const label = document.getElementById('agg-label');
+  badge.className = 'header-status-badge ' + agg;
+  label.textContent = agg.toUpperCase();
+
+  const crons = data.crons || [];
+  const sys   = data.system || {};
+  const budget = data.budget || {};
+
+  // ── Health cards
+  const enabled = crons.filter(c => c.enabled);
+  const healthy = enabled.filter(c => c.consecutiveErrors === 0);
+    const failing = crons.filter(c => c.consecutiveErrors >= 1);
+  const gwOk = sys.gatewayStatus === 'running';
+
+  // Crons OK card
+  const cronsCard = document.getElementById('card-crons');
+  cronsCard.className = 'metric-card ' + (healthy.length === enabled.length ? 'ok' : 'warn');
+  document.getElementById('val-crons-ok').textContent = healthy.length + '/' + enabled.length;
+  document.getElementById('sub-crons-ok').textContent = (enabled.length - healthy.length) + ' with errors';
+
+  // Gateway card
+  const gwCard = document.getElementById('card-gateway');
+  gwCard.className = 'metric-card ' + (gwOk ? 'ok' : 'crit');
+  document.getElementById('val-gateway').textContent = gwOk ? 'OK' : 'DOWN';
+  document.getElementById('sub-gateway').textContent = 'PID ' + (sys.gatewayPid || '—');
+
+  // Budget card
+  const bgtCard = document.getElementById('card-budget');
+  const bgtPct = budget.limit ? (budget.currentMonth / budget.limit) : 0;
+  bgtCard.className = 'metric-card ' + (bgtPct > 0.9 ? 'crit' : bgtPct > 0.75 ? 'warn' : 'info');
+  document.getElementById('val-budget').textContent = fmt$(budget.currentMonth);
+  document.getElementById('sub-budget').textContent = Math.round(bgtPct * 100) + '% of limit';
+
+  // Errors card
+  const errCard = document.getElementById('card-errors');
+  errCard.className = 'metric-card ' + (failing.length === 0 ? 'ok' : failing.length < 4 ? 'warn' : 'crit');
+  document.getElementById('val-errors').textContent = failing.length;
+  const crit = failing.filter(c => c.consecutiveErrors >= 2).length;
+  document.getElementById('sub-errors').textContent = crit + ' critical (2+ errors)';
+
+  // ── Failing crons
+  const failingMeta = document.getElementById('failing-meta');
+  const allClear = document.getElementById('all-clear-msg');
+  const failTable = document.getElementById('failing-table');
+  const failTbody = document.getElementById('failing-tbody');
+  failingMeta.textContent = failing.length + ' failing';
+  if (failing.length === 0) {
+    allClear.style.display = 'flex';
+    failTable.style.display = 'none';
+  } else {
+    allClear.style.display = 'none';
+    failTable.style.display = 'table';
+    failTbody.innerHTML = '';
+    failing
+      .sort((a, b) => (b.consecutiveErrors || 0) - (a.consecutiveErrors || 0))
+      .forEach(cron => {
+        const tr = document.createElement('tr');
+        const cat = errCategory(cron.lastError);
+        const errs = cron.consecutiveErrors || 0;
+        tr.innerHTML = `
+          <td><span class="cron-name" title="${cron.name || ''}">${cron.name || cron.id}</span></td>
+          <td><span style="color:${agentColor(cron.agentId)};font-family:var(--font-mono);font-size:11px;">${cron.agentId || '—'}</span></td>
+          <td><span class="error-count" style="color:${errs >= 2 ? 'var(--status-crit)' : 'var(--status-warn)'}">${errs}</span></td>
+          <td><span class="err-cat ${cat}">${cat}</span></td>
+          <td><span class="last-err-snippet" title="${cron.lastError || ''}">${cron.lastError ? cron.lastError.slice(0, 50) : '—'}</span></td>
+          <td><span class="last-run-ts">${relTime(cron.lastRunAt)}</span></td>
+        `;
+        failTbody.appendChild(tr);
+      });
+  }
+
+  // ── Budget
+  const pct = Math.min(100, Math.round(bgtPct * 100));
+  document.getElementById('bgt-spent').textContent = fmt$(budget.currentMonth);
+  const barEl = document.getElementById('bgt-bar');
+  barEl.style.width = pct + '%';
+  barEl.className = 'progress-fill ' + (pct > 90 ? 'crit' : pct > 75 ? 'warn' : 'ok');
+  document.getElementById('bgt-pct').textContent = pct + '%';
+  const bgtStatusEl = document.getElementById('bgt-status');
+  const statusMap = { on_track: ['ok', 'ON TRACK'], elevated: ['warn', 'ELEVATED'], over_budget: ['crit', 'OVER BUDGET'] };
+  const [sc, st] = statusMap[budget.status] || ['ok', 'ON TRACK'];
+  bgtStatusEl.className = 'budget-status-tag ' + sc;
+  bgtStatusEl.textContent = st;
+  document.getElementById('bgt-day').textContent = budget.dayOfMonth || '—';
+  document.getElementById('bgt-days').textContent = budget.daysInMonth || 31;
+  document.getElementById('bgt-proj').textContent = fmt$(budget.projected);
+  const dailyAvg = budget.dayOfMonth && budget.currentMonth
+    ? '$' + (budget.currentMonth / budget.dayOfMonth).toFixed(2) + '/day' : '—';
+  document.getElementById('bgt-daily-avg').textContent = dailyAvg;
+  const sys2 = data.system || {};
+  document.getElementById('bgt-agents').textContent = sys2.agentCount || '—';
+
+  // ── Pipelines
+  const pipelines = data.pipelines || MOCK_DATA.pipelines;
+  const pipelineBody = document.getElementById('pipeline-body');
+  document.getElementById('pipeline-meta').textContent = pipelines.length + ' pipelines';
+  pipelineBody.innerHTML = '';
+  pipelines.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'pipeline-row';
+    const dotCls = p.status === 'ok' ? 'ok' : p.status === 'broken' ? 'broken' : p.status === 'paused' ? 'paused' : 'warn';
+    const tagCls = dotCls;
+    const tagLabel = p.status ? p.status.replace('_', ' ').toUpperCase() : '—';
+    row.innerHTML = `
+      <div class="pipeline-dot ${dotCls}"></div>
+      <div class="pipeline-info">
+        <div class="pipeline-name">${p.name}</div>
+        <div class="pipeline-note">${p.statusNote || p.schedule || ''}</div>
+      </div>
+      <span class="pipeline-status-tag ${tagCls}">${tagLabel}</span>
+      <div class="pipeline-last">Last: ${p.lastSuccess || '—'}</div>
+    `;
+    pipelineBody.appendChild(row);
+  });
+
+  // ── Activity Feed
+  const activityBody = document.getElementById('activity-body');
+  activityBody.innerHTML = '';
+  const sorted = [...crons]
+    .filter(c => c.lastRunAt)
+    .sort((a, b) => new Date(b.lastRunAt) - new Date(a.lastRunAt))
+    .slice(0, 10);
+  if (sorted.length === 0) {
+    activityBody.innerHTML = '<div style="padding:18px;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">No recent runs recorded</div>';
+  } else {
+    sorted.forEach(cron => {
+      const row = document.createElement('div');
+      row.className = 'activity-row';
+      const st = (cron.lastRunStatus || 'ok').toLowerCase();
+      const stCls = ['ok','error','skipped','running'].includes(st) ? st : 'ok';
+      row.innerHTML = `
+        <span class="activity-ts">${fmtTs(cron.lastRunAt)}</span>
+        <span class="activity-name" title="${cron.name || cron.id}">${cron.name || cron.id}</span>
+        <span class="activity-status ${stCls}">${st}</span>
+        <span class="activity-dur">${fmtDur(cron.lastDurationMs)}</span>
+      `;
+      activityBody.appendChild(row);
+    });
+  }
+
+  // ── Next scheduled
+  const nextBody = document.getElementById('next-body');
+  nextBody.innerHTML = '';
+  const upcoming = [...crons]
+    .filter(c => c.enabled && c.nextRunAt)
+    .sort((a, b) => new Date(a.nextRunAt) - new Date(b.nextRunAt))
+    .slice(0, 8);
+  if (upcoming.length === 0) {
+    nextBody.innerHTML = '<div style="padding:18px;font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">No upcoming runs</div>';
+  } else {
+    upcoming.forEach(cron => {
+      const row = document.createElement('div');
+      row.className = 'activity-row';
+      row.innerHTML = `
+        <span class="activity-ts">${fmtTs(cron.nextRunAt)}</span>
+        <span class="activity-name" title="${cron.name || cron.id}">${cron.name || cron.id}</span>
+        <span class="activity-status running">${relTime(cron.nextRunAt)}</span>
+        <span class="activity-dur" style="color:${agentColor(cron.agentId)};font-size:10px;">${(cron.agentId || '').split('-')[0]}</span>
+      `;
+      nextBody.appendChild(row);
+    });
+  }
+
+  // ── Fleet Grid
+  const fleetGrid = document.getElementById('fleet-grid');
+  document.getElementById('fleet-meta').textContent = crons.length + ' crons';
+  fleetGrid.innerHTML = '';
+  const groups = {};
+  crons.forEach(cron => {
+    const agent = cron.agentId || 'unknown';
+    if (!groups[agent]) groups[agent] = [];
+    groups[agent].push(cron);
+  });
+  Object.entries(groups).sort(([a], [b]) => a.localeCompare(b)).forEach(([agent, group]) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'agent-group';
+    const header = document.createElement('div');
+    header.className = 'agent-group-header';
+    header.innerHTML = `
+      <div class="agent-dot-lg" style="background:${agentColor(agent)}"></div>
+      <span class="agent-group-label">${agent}</span>
+      <span class="agent-cron-count">${group.length} cron${group.length !== 1 ? 's' : ''}</span>
+    `;
+    const tiles = document.createElement('div');
+    tiles.className = 'cron-tiles';
+    group.forEach(cron => {
+      const tile = document.createElement('div');
+      tile.className = 'cron-tile';
+      const sc = cronStatusClass(cron);
+      const shortName = (cron.name || cron.id || '').slice(0, 28);
+      tile.innerHTML = `
+        <div class="cron-tile-dot ${sc}"></div>
+        <span class="cron-tile-name">${shortName}</span>
+        <div class="cron-tooltip">
+          <div class="cron-tooltip-name">${cron.name || cron.id}</div>
+          <div class="cron-tooltip-row"><span>Status</span><span>${cron.lastRunStatus || '—'}</span></div>
+          <div class="cron-tooltip-row"><span>Errors</span><span>${cron.consecutiveErrors || 0}</span></div>
+          <div class="cron-tooltip-row"><span>Last run</span><span>${relTime(cron.lastRunAt)}</span></div>
+          <div class="cron-tooltip-row"><span>Duration</span><span>${fmtDur(cron.lastDurationMs)}</span></div>
+          <div class="cron-tooltip-row"><span>Schedule</span><span>${cron.schedule || '—'}</span></div>
+          <div class="cron-tooltip-row"><span>Timeout</span><span>${cron.timeoutSeconds ? cron.timeoutSeconds + 's' : '—'}</span></div>
+          ${cron.lastError ? `<div class="cron-tooltip-row" style="margin-top:6px;"><span>Error</span><span style="color:var(--status-crit);max-width:180px;word-break:break-word;white-space:normal;">${cron.lastError.slice(0, 80)}</span></div>` : ''}
+        </div>
+      `;
+      tiles.appendChild(tile);
+    });
+    wrapper.appendChild(header);
+    wrapper.appendChild(tiles);
+    fleetGrid.appendChild(wrapper);
+  });
+}
+
+// ── Mock data (used when data.json is unavailable) ────
+const MOCK_DATA = {
+  generatedAt: new Date().toISOString(),
+  generatorVersion: '1.0.0',
+  system: {
+    status: 'DEGRADED',
+    gatewayStatus: 'running',
+    gatewayPid: 48291,
+    sessionCount: 197,
+    agentCount: 19
+  },
+  budget: {
+    currentMonth: 182.50,
+    limit: 250.00,
+    dayOfMonth: 14,
+    daysInMonth: 31,
+    projected: 227.00,
+    status: 'on_track'
+  },
+  pipelines: [
+    { name: 'Champagne Brief (Mon)', schedule: 'Mondays 06:00–09:00', status: 'broken', statusNote: 'Research cron timing out — no output to curation', lastSuccess: '2026-03-09' },
+    { name: 'Automation Scout (M/W/F)', schedule: 'Mon/Wed/Fri', status: 'ok', statusNote: 'All 3 steps completed — last Mon 12', lastSuccess: '2026-03-12' },
+    { name: 'Nightly Maintenance', schedule: 'Daily 02:00–04:00', status: 'ok', statusNote: 'Audit + Memory + QMD completed at 03:47', lastSuccess: '2026-03-14' },
+    { name: 'RE Daily / Weekly', schedule: 'PAUSED', status: 'paused', statusNote: 'Cost-cutting — re-enable when cost pressure eases', lastSuccess: '2026-03-01' }
+  ],
+  crons: [
+    { id: 'circuit-breaker', name: 'Circuit Breaker — Gateway & Spend Monitor', agentId: 'main', enabled: true, schedule: '*/15 * * * *', lastRunAt: new Date(Date.now()-14*60000).toISOString(), nextRunAt: new Date(Date.now()+1*60000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 60 },
+    { id: 'resource-monitor', name: 'Resource Monitor', agentId: 'main', enabled: true, schedule: '*/15 * * * *', lastRunAt: new Date(Date.now()-15*60000).toISOString(), nextRunAt: new Date(Date.now()+0.5*60000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 60 },
+    { id: 'cron-watchdog', name: 'Cron Watchdog', agentId: 'main', enabled: true, schedule: '*/30 * * * *', lastRunAt: new Date(Date.now()-28*60000).toISOString(), nextRunAt: new Date(Date.now()+2*60000).toISOString(), lastRunStatus: 'error', lastDurationMs: 18200, consecutiveErrors: 10, lastError: 'Delivery failed: unknown channel ID', timeoutSeconds: 120 },
+    { id: 'champagne-research', name: 'Champagne Brief — Research (Sigrid)', agentId: 'researcher', enabled: true, schedule: '0 6 * * 1', lastRunAt: new Date(Date.now()-4*3600000).toISOString(), nextRunAt: new Date(Date.now()+6*24*3600000).toISOString(), lastRunStatus: 'error', lastDurationMs: 1200000, consecutiveErrors: 4, lastError: 'Execution timed out after 1200 seconds', timeoutSeconds: 1200 },
+    { id: 'champagne-curation', name: 'Champagne Brief — Curation (Sigrid)', agentId: 'researcher', enabled: true, schedule: '0 7 * * 1', lastRunAt: new Date(Date.now()-4.2*3600000).toISOString(), nextRunAt: new Date(Date.now()+6.1*24*3600000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 480 },
+    { id: 'champagne-brief', name: 'Champagne Brief — Brief Writer (Inkwell)', agentId: 'writer', enabled: true, schedule: '0 8 * * 1', lastRunAt: new Date(Date.now()-4.5*3600000).toISOString(), nextRunAt: new Date(Date.now()+6.15*24*3600000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 300 },
+    { id: 'champagne-judge', name: 'Champagne Brief — Judge', agentId: 'main', enabled: true, schedule: '8 8 * * 1', lastRunAt: new Date(Date.now()-5*3600000).toISOString(), nextRunAt: new Date(Date.now()+6.2*24*3600000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 180 },
+    { id: 'champagne-eic', name: 'Champagne Brief — Editor-in-Chief', agentId: 'writer', enabled: true, schedule: '18 8 * * 1', lastRunAt: new Date(Date.now()-5.5*3600000).toISOString(), nextRunAt: new Date(Date.now()+6.25*24*3600000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 180 },
+    { id: 'morning-sweep', name: 'Morning Sweep', agentId: 'main', enabled: true, schedule: '0 7 * * *', lastRunAt: new Date(Date.now()-7*3600000).toISOString(), nextRunAt: new Date(Date.now()+17*3600000).toISOString(), lastRunStatus: 'error', lastDurationMs: 3200, consecutiveErrors: 2, lastError: 'Write failed: path contains tilde expansion', timeoutSeconds: 120 },
+    { id: 'automation-scout-r1', name: 'Automation Scout — Research Part 1', agentId: 'researcher', enabled: true, schedule: '0 9 * * 1,3,5', lastRunAt: new Date(Date.now()-5*3600000).toISOString(), nextRunAt: new Date(Date.now()+2*24*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 178000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 480 },
+    { id: 'automation-scout-r2', name: 'Automation Scout — Research Part 2', agentId: 'researcher', enabled: true, schedule: '30 9 * * 1,3,5', lastRunAt: new Date(Date.now()-4.5*3600000).toISOString(), nextRunAt: new Date(Date.now()+2.1*24*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 204000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 480 },
+    { id: 'automation-scout-report', name: 'Automation Scout — Report', agentId: 'writer', enabled: true, schedule: '0 10 * * 1,3,5', lastRunAt: new Date(Date.now()-3.5*3600000).toISOString(), nextRunAt: new Date(Date.now()+2.2*24*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 82000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 300 },
+    { id: 'nightly-audit', name: 'Nightly Audit', agentId: 'main', enabled: true, schedule: '0 2 * * *', lastRunAt: new Date(Date.now()-12*3600000).toISOString(), nextRunAt: new Date(Date.now()+12*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 145000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 900 },
+    { id: 'memory-consolidation', name: 'Memory Consolidation', agentId: 'main', enabled: true, schedule: '30 2 * * *', lastRunAt: new Date(Date.now()-11.5*3600000).toISOString(), nextRunAt: new Date(Date.now()+12.5*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 62000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 300 },
+    { id: 'qmd-reindex', name: 'QMD Re-index', agentId: 'developer', enabled: true, schedule: '0 3 * * *', lastRunAt: new Date(Date.now()-11*3600000).toISOString(), nextRunAt: new Date(Date.now()+13*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 31000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 120 },
+    { id: 'daily-pulse', name: 'Daily Pulse — #daily-pulse', agentId: 'main', enabled: true, schedule: '0 8 * * *', lastRunAt: new Date(Date.now()-6*3600000).toISOString(), nextRunAt: new Date(Date.now()+18*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 24000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 180 },
+    { id: 'anselme-weekly', name: 'Anselme — Weekly Analytics Report', agentId: 'nolea-analyst', enabled: true, schedule: '0 8 * * 1', lastRunAt: new Date(Date.now()-6*3600000).toISOString(), nextRunAt: new Date(Date.now()+6*24*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 312000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 900 },
+    { id: 'ragnars-voice-mon', name: "Ragnar's Voice — Monday", agentId: 'strategist', enabled: true, schedule: '0 17 * * 1', lastRunAt: new Date(Date.now()-6*3600000).toISOString(), nextRunAt: new Date(Date.now()+6*24*3600000+3*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 68000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 480 },
+    { id: 'ragnars-voice-thu', name: "Ragnar's Voice — Thursday", agentId: 'strategist', enabled: true, schedule: '0 17 * * 4', lastRunAt: new Date(Date.now()-4*24*3600000).toISOString(), nextRunAt: new Date(Date.now()+3*24*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 71000, consecutiveErrors: 0, lastError: null, timeoutSeconds: 480 },
+    { id: 'google-oauth-refresh', name: 'Google OAuth Token Refresh', agentId: 'assistant', enabled: true, schedule: '0 8 * * 1', lastRunAt: new Date(Date.now()-6*3600000).toISOString(), nextRunAt: new Date(Date.now()+6*24*3600000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 4200, consecutiveErrors: 0, lastError: null, timeoutSeconds: 60 },
+    { id: 'mc-data-refresh', name: 'Mission Control — Data Refresh', agentId: 'developer', enabled: true, schedule: '*/10 * * * *', lastRunAt: new Date(Date.now()-8*60000).toISOString(), nextRunAt: new Date(Date.now()+2*60000).toISOString(), lastRunStatus: 'ok', lastDurationMs: 5800, consecutiveErrors: 0, lastError: null, timeoutSeconds: 60 },
+    { id: 're-daily', name: 'RE Daily Brief', agentId: 'researcher', enabled: false, schedule: '0 6 * * 1-4', lastRunAt: new Date(Date.now()-14*24*3600000).toISOString(), nextRunAt: null, lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 900 },
+    { id: 're-weekly', name: 'RE Weekly Report', agentId: 'writer', enabled: false, schedule: '0 7 * * 5', lastRunAt: new Date(Date.now()-14*24*3600000).toISOString(), nextRunAt: null, lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 900 }
+  ],
+  errors: { total: 16, critical: 2, warning: 14 }
+};
+
+// ── Data loading ───────────────────────────────────────
+async function loadData() {
+  try {
+    // Try fetching data.json from same directory
+    const res = await fetch('./data.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    render(data);
+  } catch (e) {
+    // Fall back to mock data
+    console.warn('data.json unavailable, using mock data:', e.message);
+    render(MOCK_DATA);
+    // Show a subtle indicator
+    const tsEl = document.getElementById('last-updated');
+    tsEl.textContent = 'DEMO DATA (data.json not found)';
+    tsEl.style.color = 'var(--status-warn)';
+  }
+}
+
+// ── Auto refresh every 5 minutes ─────────────────────
+if (localStorage.getItem(SESSION_KEY) === '1') {
+  setInterval(loadData, 300000);
+}
+</script>
+</body>
+</html>
