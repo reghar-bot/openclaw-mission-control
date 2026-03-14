@@ -792,6 +792,7 @@ async function tryUnlock(val) {
 if (localStorage.getItem(SESSION_KEY) === '1') {
   gateEl.style.display = 'none';
   dashEl.style.display = 'block';
+  loadData();
 }
 
 inputEl.addEventListener('keydown', e => {
