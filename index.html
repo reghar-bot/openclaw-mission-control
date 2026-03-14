@@ -1158,7 +1158,7 @@ const MOCK_DATA = {
 async function loadData() {
   try {
     // Try fetching data.json from same directory
-    const res = await fetch('./data.json', { cache: 'no-cache' });
+    const res = await fetch('./data/data.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     render(data);
