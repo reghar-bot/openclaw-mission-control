@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-14T23:30:21Z",
+  "generatedAt": "2026-03-14T23:34:02Z",
   "generatorVersion": "1.2.0",
   "system": {
     "status": "OK",
@@ -48,48 +48,6 @@
   ],
   "crons": [
     {
-      "id": "56394e92-899d-438d-8587-2b7c80c9730e",
-      "name": "System Resource Monitor (bash)",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T23:00:12.118000Z",
-      "nextRunAt": "2026-03-14T23:30:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
-      "id": "circuit-breaker-gateway-spend-monitor",
-      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-14T23:15:00.040000Z",
-      "nextRunAt": "2026-03-14T23:30:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T23:17:00.489000Z",
-      "nextRunAt": "2026-03-14T23:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 14698,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 90
-    },
-    {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
       "name": "Approval Handler \u2014 Pending Items",
       "agentId": "main",
@@ -116,6 +74,48 @@
       "consecutiveErrors": 0,
       "lastError": "quiet-hours",
       "timeoutSeconds": null
+    },
+    {
+      "id": "circuit-breaker-gateway-spend-monitor",
+      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/15 * * * *",
+      "lastRunAt": "2026-03-14T23:30:09.975000Z",
+      "nextRunAt": "2026-03-14T23:45:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "56394e92-899d-438d-8587-2b7c80c9730e",
+      "name": "System Resource Monitor (bash)",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-14T23:30:09.974000Z",
+      "nextRunAt": "2026-03-15T00:00:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-14T23:30:09.975000Z",
+      "nextRunAt": "2026-03-15T00:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 14975,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 90
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
