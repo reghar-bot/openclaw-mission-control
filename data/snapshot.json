@@ -1,49 +1,20 @@
 {
-  "generated_at": "2026-03-14T17:11:37Z",
+  "generated_at": "2026-03-14T17:18:16Z",
   "summary": {
-    "total_crons": 43,
-    "healthy": 42,
+    "total_crons": 44,
+    "healthy": 43,
     "warning": 0,
     "failing": 1,
     "gateway": "running"
   },
   "crons": [
     {
-      "id": "circuit-breaker-gateway-spend-monitor",
-      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
-      "enabled": true,
-      "createdAtMs": 1773487800000,
-      "updatedAtMs": 1773507600052,
-      "schedule": {
-        "kind": "cron",
-        "expr": "*/15 * * * *",
-        "tz": "Europe/Stockholm"
-      },
-      "wakeMode": "now",
-      "payload": {
-        "kind": "exec",
-        "command": "bash /Users/reghar/.openclaw/workspace/scripts/circuit-breaker.sh",
-        "timeoutMs": 60000
-      },
-      "state": {
-        "nextRunAtMs": 1773508500000,
-        "lastRunAtMs": 1773507600052,
-        "lastRunStatus": "skipped",
-        "lastStatus": "skipped",
-        "lastDurationMs": 0,
-        "lastDeliveryStatus": "not-requested",
-        "consecutiveErrors": 0,
-        "lastError": "main job requires payload.kind=\"systemEvent\""
-      },
-      "sessionTarget": "main"
-    },
-    {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
       "agentId": "main",
       "name": "Approval Handler \u2014 Pending Items",
       "enabled": true,
       "createdAtMs": 1773506463603,
-      "updatedAtMs": 1773508281393,
+      "updatedAtMs": 1773508603702,
       "schedule": {
         "kind": "every",
         "everyMs": 300000,
@@ -62,11 +33,11 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1773508563970,
-        "lastRunAtMs": 1773508263970,
+        "nextRunAtMs": 1773508864027,
+        "lastRunAtMs": 1773508564027,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 17423,
+        "lastDurationMs": 39675,
         "lastDelivered": false,
         "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0
@@ -94,6 +65,67 @@
       "state": {
         "nextRunAtMs": 1773509400000,
         "lastRunAtMs": 1773507600052,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "lastError": "main job requires payload.kind=\"systemEvent\""
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "9631a3cb-e62f-48b0-8fa5-bc2937c707de",
+      "name": "Mission Control \u2014 Data Refresh",
+      "enabled": true,
+      "createdAtMs": 1773508355809,
+      "updatedAtMs": 1773508474923,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/mission-control/scripts/generate-snapshot.sh",
+        "timeoutMs": 60000
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1773509400000,
+        "lastError": "main job requires payload.kind=\"systemEvent\"",
+        "lastRunAtMs": 1773508474921,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 2,
+        "lastDeliveryStatus": "not-requested"
+      }
+    },
+    {
+      "id": "circuit-breaker-gateway-spend-monitor",
+      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
+      "enabled": true,
+      "createdAtMs": 1773487800000,
+      "updatedAtMs": 1773508500057,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/15 * * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "wakeMode": "now",
+      "payload": {
+        "kind": "exec",
+        "command": "bash /Users/reghar/.openclaw/workspace/scripts/circuit-breaker.sh",
+        "timeoutMs": 60000
+      },
+      "state": {
+        "nextRunAtMs": 1773509400000,
+        "lastRunAtMs": 1773508500057,
         "lastRunStatus": "skipped",
         "lastStatus": "skipped",
         "lastDurationMs": 0,
