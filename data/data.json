@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-14T17:47:24Z",
+  "generatedAt": "2026-03-14T18:52:17Z",
   "generatorVersion": "1.1.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 225,
+    "sessionCount": 235,
     "agentCount": 19
   },
   "budget": {
@@ -53,12 +53,12 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-14T17:46:04.377000Z",
-      "nextRunAt": "2026-03-14T17:51:04.377000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 16702,
-      "consecutiveErrors": 0,
-      "lastError": null,
+      "lastRunAt": "2026-03-14T18:51:05.111000Z",
+      "nextRunAt": "2026-03-14T18:56:05.111000Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 60014,
+      "consecutiveErrors": 1,
+      "lastError": "cron: job execution timed out",
       "timeoutSeconds": 60
     },
     {
@@ -67,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T17:30:00.053000Z",
-      "nextRunAt": "2026-03-14T18:00:00Z",
+      "lastRunAt": "2026-03-14T18:30:00.057000Z",
+      "nextRunAt": "2026-03-14T19:00:00Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
+      "lastDurationMs": 1,
       "consecutiveErrors": 0,
       "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": null
@@ -81,41 +81,13 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-14T17:45:00.059000Z",
-      "nextRunAt": "2026-03-14T18:00:00Z",
+      "lastRunAt": "2026-03-14T18:45:00.052000Z",
+      "nextRunAt": "2026-03-14T19:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": 60
-    },
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T17:30:00.053000Z",
-      "nextRunAt": "2026-03-14T18:00:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
-      "name": "Pip \u2014 Cron Watchdog [exec]",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-14T17:04:48.411000Z",
-      "nextRunAt": "2026-03-14T18:04:48.358000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": null
     },
     {
       "id": "exec-inbox-triage-evening-2026-03-14",
@@ -132,6 +104,20 @@
       "timeoutSeconds": null
     },
     {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-14T18:30:00.058000Z",
+      "nextRunAt": "2026-03-14T19:00:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": 60
+    },
+    {
       "id": "exec-evening-sweep-2026-03-14",
       "name": "Pip \u2014 Evening Sweep [exec]",
       "agentId": "main",
@@ -143,6 +129,20 @@
       "lastDurationMs": 1,
       "consecutiveErrors": 0,
       "lastError": null,
+      "timeoutSeconds": null
+    },
+    {
+      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
+      "name": "Pip \u2014 Cron Watchdog [exec]",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "0 * * * *",
+      "lastRunAt": "2026-03-14T18:04:48.411000Z",
+      "nextRunAt": "2026-03-14T19:04:48.358000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": null
     },
     {
@@ -288,7 +288,7 @@
     {
       "id": "e60b96d1-4d23-48f3-b4e5-75bd7a47d308",
       "name": "Pip \u2014 Weekly Timing & Overlap Audit",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 7 * * 0",
       "lastRunAt": "2026-03-08T06:02:40.906000Z",
@@ -302,7 +302,7 @@
     {
       "id": "b8cfbcf7-d0a6-4770-b973-dec3579b7cf6",
       "name": "Pip \u2014 Weekly Registry Refresh",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "30 7 * * 0",
       "lastRunAt": "2026-03-08T06:30:00.045000Z",
@@ -330,7 +330,7 @@
     {
       "id": "9100c6c2-0426-4afa-9ffe-8307b3008571",
       "name": "Pip \u2014 Weekly Ops Report",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8 * * 0",
       "lastRunAt": "2026-03-08T07:00:26.017000Z",
@@ -442,7 +442,7 @@
     {
       "id": "bb5246f5-c8f2-4a0e-a751-452ee8c685d1",
       "name": "Pip \u2014 Weekly Cron Health Scorecard",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 20 * * 0",
       "lastRunAt": "2026-03-08T19:09:52.666000Z",
@@ -456,7 +456,7 @@
     {
       "id": "845c5849-73c0-4938-8370-24f41c4cf9e3",
       "name": "Pip \u2014 Weekly Cost Review [exec]",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 21 * * 0",
       "lastRunAt": null,
@@ -596,7 +596,7 @@
     {
       "id": "4b290764-5a2c-4b3b-ac98-9ae711fe0e18",
       "name": "Weekly Cron Schedule Digest",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "30 7 * * 1",
       "lastRunAt": null,
@@ -666,7 +666,7 @@
     {
       "id": "2d7b4c9c-bc45-4c92-bcc0-2c651b4ae8f8",
       "name": "Pip \u2014 Monthly Cost Review [exec]",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 22 28-31 * *",
       "lastRunAt": null,
@@ -679,8 +679,8 @@
     }
   ],
   "errors": {
-    "total": 1,
+    "total": 2,
     "critical": 1,
-    "warning": 0
+    "warning": 1
   }
 }
