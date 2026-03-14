@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-14T23:16:12Z",
+  "generatedAt": "2026-03-14T23:17:12Z",
   "generatorVersion": "1.1.0",
   "system": {
     "status": "OK",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 279,
+    "sessionCount": 281,
     "agentCount": 19
   },
   "budget": {
@@ -106,15 +106,15 @@
     {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
-      "agentId": "main",
+      "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T23:13:40.085000Z",
+      "lastRunAt": "2026-03-14T23:16:47.547000Z",
       "nextRunAt": "2026-03-14T23:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 2,
       "consecutiveErrors": 0,
-      "lastError": "isolated job requires payload.kind=agentTurn",
+      "lastError": null,
       "timeoutSeconds": 90
     },
     {
