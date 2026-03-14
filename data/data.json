@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-14T23:13:04Z",
+  "generatedAt": "2026-03-14T23:16:12Z",
   "generatorVersion": "1.1.0",
   "system": {
     "status": "OK",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 278,
+    "sessionCount": 279,
     "agentCount": 19
   },
   "budget": {
@@ -53,26 +53,12 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-14T23:09:46.637000Z",
-      "nextRunAt": "2026-03-14T23:14:46.637000Z",
+      "lastRunAt": "2026-03-14T23:14:46.676000Z",
+      "nextRunAt": "2026-03-14T23:19:46.676000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 15503,
+      "lastDurationMs": 10036,
       "consecutiveErrors": 0,
       "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "circuit-breaker-gateway-spend-monitor",
-      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-14T23:00:12.118000Z",
-      "nextRunAt": "2026-03-14T23:15:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": 60
     },
     {
@@ -104,18 +90,32 @@
       "timeoutSeconds": null
     },
     {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
+      "id": "circuit-breaker-gateway-spend-monitor",
+      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
+      "agentId": "main",
       "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T23:11:50.400000Z",
+      "schedule": "*/15 * * * *",
+      "lastRunAt": "2026-03-14T23:15:00.040000Z",
       "nextRunAt": "2026-03-14T23:30:00Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 6,
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-14T23:13:40.085000Z",
+      "nextRunAt": "2026-03-14T23:30:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 2,
       "consecutiveErrors": 0,
       "lastError": "isolated job requires payload.kind=agentTurn",
-      "timeoutSeconds": 60
+      "timeoutSeconds": 90
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
