@@ -91,6 +91,9 @@ for j in jobs:
         ms = sched.get('everyMs', 0)
         mins = ms // 60000
         schedule_str = f'every {mins}m'
+    elif sched.get('kind') == 'at':
+        at_val = sched.get('at', '')
+        schedule_str = f'at {at_val}' if at_val else ''
     else:
         schedule_str = ''
 
@@ -102,6 +105,9 @@ for j in jobs:
 
     last_error = state.get('lastError') or state.get('lastErrorReason')
 
+    raw_status = state.get('lastRunStatus') or state.get('lastStatus') or 'unknown'
+    last_dur = state.get('lastDurationMs')
+
     crons.append({
         'id': j.get('id', ''),
         'name': j.get('name', ''),
@@ -110,8 +116,8 @@ for j in jobs:
         'schedule': schedule_str,
         'lastRunAt': ms_to_iso(state.get('lastRunAtMs')),
         'nextRunAt': ms_to_iso(state.get('nextRunAtMs')),
-        'lastRunStatus': state.get('lastRunStatus') or state.get('lastStatus', 'unknown'),
-        'lastDurationMs': state.get('lastDurationMs', 0),
+        'lastRunStatus': raw_status,
+        'lastDurationMs': last_dur,
         'consecutiveErrors': state.get('consecutiveErrors', 0),
         'lastError': last_error,
         'timeoutSeconds': timeout_seconds
@@ -119,7 +125,7 @@ for j in jobs:
 
 snapshot = {
     "generatedAt": timestamp,
-    "generatorVersion": "1.1.0",
+    "generatorVersion": "1.2.0",
     "system": {
         "status": sys_status,
         "gatewayStatus": gateway,
@@ -137,7 +143,7 @@ snapshot = {
     },
     "pipelines": [
         {"name": "Champagne Brief (Mon)", "schedule": "Mondays 06:00-09:00", "status": "ok", "statusNote": "Pipeline fix applied Mar 14 — Sigrid handles curation", "lastSuccess": "2026-03-14"},
-        {"name": "To-Do Tackler (Nightly)", "schedule": "Daily 23:00", "status": "broken", "statusNote": "Sigrid timing out — needs runTimeoutSeconds >= 480", "lastSuccess": "2026-03-13"},
+        {"name": "To-Do Tackler (Nightly)", "schedule": "Daily 23:00", "status": "ok", "statusNote": "Sigrid timeout fixed (600s) — running ok since Mar 14", "lastSuccess": "2026-03-14"},
         {"name": "Nightly Maintenance", "schedule": "Daily 21:30", "status": "ok", "statusNote": "End-of-Day sequence running", "lastSuccess": "2026-03-14"},
         {"name": "RE Daily / Weekly", "schedule": "PAUSED", "status": "paused", "statusNote": "Cost-cutting — re-enable when cost pressure eases", "lastSuccess": "2026-03-01"}
     ],
