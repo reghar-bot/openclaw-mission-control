@@ -588,7 +588,7 @@
            placeholder="••••••••••" autocomplete="current-password"
            autofocus>
     <div class="gate-hint" id="gate-hint"></div>
-    <div class="gate-footer">SHA-256 · sessionStorage · read-only</div>
+    <div class="gate-footer">SHA-256 · localStorage · read-only</div>
   </div>
 </div>
 
@@ -777,7 +777,7 @@ const hintEl  = document.getElementById('gate-hint');
 async function tryUnlock(val) {
   const h = await sha256(val);
   if (h === HASH) {
-    sessionStorage.setItem(SESSION_KEY, '1');
+    localStorage.setItem(SESSION_KEY, '1');
     gateEl.style.display = 'none';
     dashEl.style.display = 'block';
     loadData();
@@ -789,7 +789,7 @@ async function tryUnlock(val) {
   }
 }
 
-if (sessionStorage.getItem(SESSION_KEY) === '1') {
+if (localStorage.getItem(SESSION_KEY) === '1') {
   gateEl.style.display = 'none';
   dashEl.style.display = 'block';
 }
@@ -1173,7 +1173,7 @@ async function loadData() {
 }
 
 // ── Auto refresh every 5 minutes ─────────────────────
-if (sessionStorage.getItem(SESSION_KEY) === '1') {
+if (localStorage.getItem(SESSION_KEY) === '1') {
   setInterval(loadData, 300000);
 }
 </script>
