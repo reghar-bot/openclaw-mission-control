@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-14T17:23:21.240585Z",
-  "generatorVersion": "1.0.0",
+  "generatedAt": "2026-03-14T17:47:24Z",
+  "generatorVersion": "1.1.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 219,
+    "sessionCount": 225,
     "agentCount": 19
   },
   "budget": {
@@ -19,7 +19,7 @@
   "pipelines": [
     {
       "name": "Champagne Brief (Mon)",
-      "schedule": "Mondays 06:00\u201309:00",
+      "schedule": "Mondays 06:00-09:00",
       "status": "ok",
       "statusNote": "Pipeline fix applied Mar 14 \u2014 Sigrid handles curation",
       "lastSuccess": "2026-03-14"
@@ -28,14 +28,14 @@
       "name": "To-Do Tackler (Nightly)",
       "schedule": "Daily 23:00",
       "status": "broken",
-      "statusNote": "Sigrid timing out at 300s \u2014 needs 480s minimum",
+      "statusNote": "Sigrid timing out \u2014 needs runTimeoutSeconds >= 480",
       "lastSuccess": "2026-03-13"
     },
     {
       "name": "Nightly Maintenance",
       "schedule": "Daily 21:30",
       "status": "ok",
-      "statusNote": "End-of-Day completed last night",
+      "statusNote": "End-of-Day sequence running",
       "lastSuccess": "2026-03-14"
     },
     {
@@ -53,10 +53,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-14T17:21:04.086000Z",
-      "nextRunAt": "2026-03-14T17:26:04.086000Z",
+      "lastRunAt": "2026-03-14T17:46:04.377000Z",
+      "nextRunAt": "2026-03-14T17:51:04.377000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 30430,
+      "lastDurationMs": 16702,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -67,8 +67,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T17:00:00.052000Z",
-      "nextRunAt": "2026-03-14T17:30:00Z",
+      "lastRunAt": "2026-03-14T17:30:00.053000Z",
+      "nextRunAt": "2026-03-14T18:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -81,8 +81,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-14T17:15:00.057000Z",
-      "nextRunAt": "2026-03-14T17:30:00Z",
+      "lastRunAt": "2026-03-14T17:45:00.059000Z",
+      "nextRunAt": "2026-03-14T18:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -95,12 +95,12 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-14T17:30:00Z",
-      "lastRunStatus": "unknown",
+      "lastRunAt": "2026-03-14T17:30:00.053000Z",
+      "nextRunAt": "2026-03-14T18:00:00Z",
+      "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
-      "lastError": null,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": 60
     },
     {
@@ -606,6 +606,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
+    },
+    {
+      "id": "80d11363-51a0-410e-845c-7389e8d36ab5",
+      "name": "Anselme \u2192 Vesslan Weekly Analytics Handoff",
+      "agentId": "nolea-analyst",
+      "enabled": true,
+      "schedule": "45 7 * * 1",
+      "lastRunAt": "2026-03-14T17:38:47.877000Z",
+      "nextRunAt": "2026-03-16T06:45:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 34712,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "be478b00-887c-4729-bea5-3cf6d09bbfac",
