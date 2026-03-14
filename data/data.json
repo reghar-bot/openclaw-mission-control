@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-14T23:17:12Z",
-  "generatorVersion": "1.1.0",
+  "generatedAt": "2026-03-14T23:29:51Z",
+  "generatorVersion": "1.2.0",
   "system": {
     "status": "OK",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 281,
+    "sessionCount": 283,
     "agentCount": 19
   },
   "budget": {
@@ -27,9 +27,9 @@
     {
       "name": "To-Do Tackler (Nightly)",
       "schedule": "Daily 23:00",
-      "status": "broken",
-      "statusNote": "Sigrid timing out \u2014 needs runTimeoutSeconds >= 480",
-      "lastSuccess": "2026-03-13"
+      "status": "ok",
+      "statusNote": "Sigrid timeout fixed (600s) \u2014 running ok since Mar 14",
+      "lastSuccess": "2026-03-14"
     },
     {
       "name": "Nightly Maintenance",
@@ -53,27 +53,13 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-14T23:14:46.676000Z",
-      "nextRunAt": "2026-03-14T23:19:46.676000Z",
+      "lastRunAt": "2026-03-14T23:24:46.771000Z",
+      "nextRunAt": "2026-03-14T23:29:46.771000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 10036,
+      "lastDurationMs": 18347,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
-    },
-    {
-      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
-      "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 15m",
-      "lastRunAt": "2026-03-14T23:05:13.539000Z",
-      "nextRunAt": "2026-03-14T23:20:13.539000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
-      "consecutiveErrors": 0,
-      "lastError": "quiet-hours",
-      "timeoutSeconds": null
     },
     {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
@@ -109,13 +95,27 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-14T23:16:47.547000Z",
+      "lastRunAt": "2026-03-14T23:17:00.489000Z",
       "nextRunAt": "2026-03-14T23:30:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 2,
+      "lastRunStatus": "ok",
+      "lastDurationMs": 14698,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 90
+    },
+    {
+      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
+      "name": "Discord Relay \u2014 Pending Posts",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 15m",
+      "lastRunAt": "2026-03-14T23:20:13.565000Z",
+      "nextRunAt": "2026-03-14T23:35:13.565000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "quiet-hours",
+      "timeoutSeconds": null
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
@@ -168,7 +168,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-15T01:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -196,7 +196,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-15T02:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -210,7 +210,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-15T03:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -294,7 +294,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-15T07:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
@@ -308,7 +308,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-15T08:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
@@ -434,7 +434,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-15T20:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
@@ -486,11 +486,11 @@
       "name": "Nolea design manual \u2014 Sunday deadline check",
       "agentId": "main",
       "enabled": true,
-      "schedule": "",
+      "schedule": "at 2026-03-15T21:59:00.000Z",
       "lastRunAt": null,
       "nextRunAt": "2026-03-15T21:59:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -588,7 +588,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-16T05:55:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -630,7 +630,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-16T06:30:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
@@ -682,11 +682,11 @@
       "name": "Reminder: Evaluate Nolea Multi-Agent Marketing Team",
       "agentId": "main",
       "enabled": true,
-      "schedule": "",
+      "schedule": "at 2026-03-21T08:00:00.000Z",
       "lastRunAt": null,
       "nextRunAt": "2026-03-21T08:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -700,7 +700,7 @@
       "lastRunAt": null,
       "nextRunAt": "2026-03-28T21:00:00Z",
       "lastRunStatus": "unknown",
-      "lastDurationMs": 0,
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
