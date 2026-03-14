@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-03-14T16:09:33Z",
+  "generated_at": "2026-03-14T17:11:37Z",
   "summary": {
-    "total_crons": 40,
-    "healthy": 39,
+    "total_crons": 43,
+    "healthy": 42,
     "warning": 0,
     "failing": 1,
     "gateway": "running"
@@ -13,7 +13,7 @@
       "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
       "enabled": true,
       "createdAtMs": 1773487800000,
-      "updatedAtMs": 1773504000056,
+      "updatedAtMs": 1773507600052,
       "schedule": {
         "kind": "cron",
         "expr": "*/15 * * * *",
@@ -26,8 +26,8 @@
         "timeoutMs": 60000
       },
       "state": {
-        "nextRunAtMs": 1773504900000,
-        "lastRunAtMs": 1773504000056,
+        "nextRunAtMs": 1773508500000,
+        "lastRunAtMs": 1773507600052,
         "lastRunStatus": "skipped",
         "lastStatus": "skipped",
         "lastDurationMs": 0,
@@ -38,11 +38,46 @@
       "sessionTarget": "main"
     },
     {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "agentId": "main",
+      "name": "Approval Handler \u2014 Pending Items",
+      "enabled": true,
+      "createdAtMs": 1773506463603,
+      "updatedAtMs": 1773508281393,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 300000,
+        "anchorMs": 1773506463603
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Reghar. Check /Users/reghar/.openclaw/workspace/pending-approvals.md for any PENDING_REGHAR items. If the file does not exist or has no PENDING_REGHAR entries, reply APPROVAL_HANDLER_OK and stop immediately \u2014 do not post anywhere. If PENDING_REGHAR items exist: post each to Discord #decisions (channel 1478320408586620982) with relevant details and update the file marking items AWAITING_APPROVAL with timestamp. Keep response minimal.",
+        "model": "claude-max/claude-haiku-4",
+        "timeoutSeconds": 60
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773508563970,
+        "lastRunAtMs": 1773508263970,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 17423,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
       "name": "System Resource Monitor (bash)",
       "enabled": true,
       "createdAtMs": 1773473536662,
-      "updatedAtMs": 1773504000056,
+      "updatedAtMs": 1773507600052,
       "schedule": {
         "kind": "cron",
         "expr": "*/30 * * * *",
@@ -57,8 +92,8 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1773505800000,
-        "lastRunAtMs": 1773504000056,
+        "nextRunAtMs": 1773509400000,
+        "lastRunAtMs": 1773507600052,
         "lastRunStatus": "skipped",
         "lastStatus": "skipped",
         "lastDurationMs": 0,
@@ -73,7 +108,7 @@
       "name": "Pip \u2014 Cron Watchdog [exec]",
       "enabled": true,
       "createdAtMs": 1773474848551,
-      "updatedAtMs": 1773504288418,
+      "updatedAtMs": 1773507888411,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -90,8 +125,8 @@
         "channel": "last"
       },
       "state": {
-        "nextRunAtMs": 1773507888358,
-        "lastRunAtMs": 1773504288418,
+        "nextRunAtMs": 1773511488358,
+        "lastRunAtMs": 1773507888411,
         "lastRunStatus": "skipped",
         "lastStatus": "skipped",
         "lastDurationMs": 0,
@@ -640,6 +675,62 @@
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "a1100629-dc82-4589-adaa-a78d3eb3a1c4",
+      "agentId": "main",
+      "name": "Morning Briefing \u2014 Email & Calendar",
+      "enabled": true,
+      "createdAtMs": 1773506454884,
+      "updatedAtMs": 1773506454884,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Reghar. Check email unreads via: gog gmail search \"is:unread\" --max 5 -a regharassistant@gmail.com. Check today's calendar: gog calendar list \"98caf1856a09c2f04b725a4de47bfc9f3f567bd33f1eb8dc5742dbca51ed07f9@group.calendar.google.com\" -a regharassistant@gmail.com --days 1. Post a brief summary to #heartbeats (Discord channel 1482394003751174146). Format: \ud83e\udec0 08:00 | Email: X unreads | Calendar: X events today | [list events]. Keep it concise. Sign off as [Reghar-haiku].",
+        "model": "claude-max/claude-haiku-4",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773558000000
+      }
+    },
+    {
+      "id": "0aa06100-388f-445f-90f7-853458a31946",
+      "agentId": "main",
+      "name": "Daily Housekeeping \u2014 Stale Items",
+      "enabled": true,
+      "createdAtMs": 1773506477832,
+      "updatedAtMs": 1773506477832,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Europe/Stockholm"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Reghar. Check today's handoff file (/Users/reghar/.openclaw/workspace/handoff-YYYY-MM-DD.md \u2014 compute today's date dynamically) for items tagged Day 3+ with no forward movement. If found, send a Telegram stale-item poll to 113533963 for each item: text='Your call needed: [item] has been open X days \u2014 when should we work on this?' with buttons: [['\ud83d\udcc5 This week','stale_thisweek'],['\u23ed Next week','stale_nextweek'],['\u23f3 Defer','stale_defer'],['\ud83d\uddd1 Drop','stale_drop']]. If no stale items found, reply HOUSEKEEPING_OK and stop. Do not post to Discord.",
+        "model": "claude-max/claude-haiku-4",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1773561600000
       }
     },
     {
