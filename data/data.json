@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-15T12:23:50Z",
+  "generatedAt": "2026-03-15T12:30:28Z",
   "generatorVersion": "1.2.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 426,
+    "sessionCount": 429,
     "agentCount": 19
   },
   "budget": {
@@ -48,20 +48,6 @@
   ],
   "crons": [
     {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T12:19:53.728000Z",
-      "nextRunAt": "2026-03-15T12:24:53.728000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 38933,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
       "name": "System Resource Monitor (bash)",
       "agentId": "main",
@@ -72,7 +58,7 @@
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "lastError": null,
       "timeoutSeconds": null
     },
     {
@@ -86,7 +72,7 @@
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "lastError": null,
       "timeoutSeconds": 60
     },
     {
@@ -102,6 +88,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-15T12:29:53.818000Z",
+      "nextRunAt": "2026-03-15T12:34:53.818000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 20317,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
