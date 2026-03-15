@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-15T08:00:41Z",
+  "generatedAt": "2026-03-15T08:30:49Z",
   "generatorVersion": "1.2.0",
   "system": {
-    "status": "WARNING",
+    "status": "OK",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 369,
+    "sessionCount": 375,
     "agentCount": 19
   },
   "budget": {
@@ -53,8 +53,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T07:30:11.085000Z",
-      "nextRunAt": "2026-03-15T08:00:00Z",
+      "lastRunAt": "2026-03-15T08:00:27.801000Z",
+      "nextRunAt": "2026-03-15T08:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -62,29 +62,15 @@
       "timeoutSeconds": null
     },
     {
-      "id": "b6139283-6b73-4948-b60f-a60662352bce",
-      "name": "Reghar \u2014 Morning Proposal Review",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 9 * * *",
-      "lastRunAt": "2026-03-14T08:00:00.060000Z",
-      "nextRunAt": "2026-03-15T08:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 163203,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
       "id": "circuit-breaker-gateway-spend-monitor",
       "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-15T07:45:06.311000Z",
-      "nextRunAt": "2026-03-15T08:00:00Z",
+      "lastRunAt": "2026-03-15T08:15:39.062000Z",
+      "nextRunAt": "2026-03-15T08:30:00Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
+      "lastDurationMs": 1,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -95,27 +81,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T07:30:11.085000Z",
-      "nextRunAt": "2026-03-15T08:00:00Z",
+      "lastRunAt": "2026-03-15T08:00:27.801000Z",
+      "nextRunAt": "2026-03-15T08:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 16300,
+      "lastDurationMs": 16780,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 90
-    },
-    {
-      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
-      "name": "Pip \u2014 Cron Watchdog [exec]",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-15T07:04:48.400000Z",
-      "nextRunAt": "2026-03-15T08:04:48.358000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": null
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -123,10 +95,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T07:59:51.356000Z",
-      "nextRunAt": "2026-03-15T08:04:51.356000Z",
+      "lastRunAt": "2026-03-15T08:29:51.624000Z",
+      "nextRunAt": "2026-03-15T08:34:51.624000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 13464,
+      "lastDurationMs": 42082,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -137,26 +109,26 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-15T07:50:45.161000Z",
-      "nextRunAt": "2026-03-15T08:05:45.161000Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 94426,
-      "consecutiveErrors": 1,
-      "lastError": "Telegram send failed: chat not found (chat_id=1482394003751174146). Likely: bot not started in DM, bot removed from group/channel, group migrated (new -100\u2026 id), or wrong bot token. Input was: \"1482394003751174146\".",
+      "lastRunAt": "2026-03-15T08:20:45.254000Z",
+      "nextRunAt": "2026-03-15T08:35:45.254000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 19667,
+      "consecutiveErrors": 0,
+      "lastError": null,
       "timeoutSeconds": null
     },
     {
-      "id": "1381b6f4-52d4-425b-8eac-6a7272e0cb8d",
-      "name": "Decision Escalation \u2014 Morning [exec]",
-      "agentId": "main",
+      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
+      "name": "Pip \u2014 Cron Watchdog [exec]",
+      "agentId": "assistant",
       "enabled": true,
-      "schedule": "24 9 * * *",
-      "lastRunAt": "2026-03-14T08:24:00.053000Z",
-      "nextRunAt": "2026-03-15T08:24:00Z",
-      "lastRunStatus": "pending",
-      "lastDurationMs": 0,
+      "schedule": "0 * * * *",
+      "lastRunAt": "2026-03-15T08:04:48.395000Z",
+      "nextRunAt": "2026-03-15T09:04:48.358000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 1,
       "consecutiveErrors": 0,
-      "lastError": null,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": null
     },
     {
@@ -510,6 +482,20 @@
       "timeoutSeconds": 300
     },
     {
+      "id": "b6139283-6b73-4948-b60f-a60662352bce",
+      "name": "Reghar \u2014 Morning Proposal Review",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 9 * * *",
+      "lastRunAt": "2026-03-15T08:00:06.886000Z",
+      "nextRunAt": "2026-03-16T08:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 20915,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
       "id": "cffd55d9-521f-4b87-9e1b-56073bab3f42",
       "name": "Champagne Brief \u2014 Judge + Revision",
       "agentId": "main",
@@ -522,6 +508,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "1381b6f4-52d4-425b-8eac-6a7272e0cb8d",
+      "name": "Decision Escalation \u2014 Morning [exec]",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "24 9 * * *",
+      "lastRunAt": "2026-03-15T08:24:00.040000Z",
+      "nextRunAt": "2026-03-16T08:24:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
     },
     {
       "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
@@ -595,8 +595,8 @@
     }
   ],
   "errors": {
-    "total": 1,
+    "total": 0,
     "critical": 0,
-    "warning": 1
+    "warning": 0
   }
 }
