@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-15T07:30:24Z",
+  "generatedAt": "2026-03-15T08:00:41Z",
   "generatorVersion": "1.2.0",
   "system": {
-    "status": "OK",
+    "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 359,
+    "sessionCount": 369,
     "agentCount": 19
   },
   "budget": {
@@ -53,66 +53,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T07:01:30.477000Z",
-      "nextRunAt": "2026-03-15T07:30:00Z",
+      "lastRunAt": "2026-03-15T07:30:11.085000Z",
+      "nextRunAt": "2026-03-15T08:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
-      "id": "circuit-breaker-gateway-spend-monitor",
-      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-15T07:15:06.259000Z",
-      "nextRunAt": "2026-03-15T07:30:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T07:01:30.477000Z",
-      "nextRunAt": "2026-03-15T07:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 19322,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 90
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T07:29:51.089000Z",
-      "nextRunAt": "2026-03-15T07:34:51.089000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 17930,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
-      "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 15m",
-      "lastRunAt": "2026-03-15T07:20:45.071000Z",
-      "nextRunAt": "2026-03-15T07:35:45.071000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 120007,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -132,6 +76,34 @@
       "timeoutSeconds": 300
     },
     {
+      "id": "circuit-breaker-gateway-spend-monitor",
+      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/15 * * * *",
+      "lastRunAt": "2026-03-15T07:45:06.311000Z",
+      "nextRunAt": "2026-03-15T08:00:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-15T07:30:11.085000Z",
+      "nextRunAt": "2026-03-15T08:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 16300,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 90
+    },
+    {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
       "name": "Pip \u2014 Cron Watchdog [exec]",
       "agentId": "assistant",
@@ -143,6 +115,34 @@
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-15T07:59:51.356000Z",
+      "nextRunAt": "2026-03-15T08:04:51.356000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 13464,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
+      "name": "Discord Relay \u2014 Pending Posts",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 15m",
+      "lastRunAt": "2026-03-15T07:50:45.161000Z",
+      "nextRunAt": "2026-03-15T08:05:45.161000Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 94426,
+      "consecutiveErrors": 1,
+      "lastError": "Telegram send failed: chat not found (chat_id=1482394003751174146). Likely: bot not started in DM, bot removed from group/channel, group migrated (new -100\u2026 id), or wrong bot token. Input was: \"1482394003751174146\".",
       "timeoutSeconds": null
     },
     {
@@ -595,8 +595,8 @@
     }
   ],
   "errors": {
-    "total": 0,
+    "total": 1,
     "critical": 0,
-    "warning": 0
+    "warning": 1
   }
 }
