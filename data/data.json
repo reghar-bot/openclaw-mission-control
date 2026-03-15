@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-15T13:00:58Z",
+  "generatedAt": "2026-03-15T13:08:47Z",
   "generatorVersion": "1.2.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 436,
+    "sessionCount": 437,
     "agentCount": 19
   },
   "budget": {
@@ -48,18 +48,18 @@
   ],
   "crons": [
     {
-      "id": "56394e92-899d-438d-8587-2b7c80c9730e",
-      "name": "System Resource Monitor (bash)",
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
       "agentId": "main",
       "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T12:30:16.293000Z",
-      "nextRunAt": "2026-03-15T13:00:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-15T13:04:54.117000Z",
+      "nextRunAt": "2026-03-15T13:09:54.117000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 42265,
       "consecutiveErrors": 0,
       "lastError": null,
-      "timeoutSeconds": null
+      "timeoutSeconds": 60
     },
     {
       "id": "circuit-breaker-gateway-spend-monitor",
@@ -67,13 +67,27 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-15T12:45:27.096000Z",
-      "nextRunAt": "2026-03-15T13:00:00Z",
+      "lastRunAt": "2026-03-15T13:00:42.746000Z",
+      "nextRunAt": "2026-03-15T13:15:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
-      "lastError": null,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": 60
+    },
+    {
+      "id": "56394e92-899d-438d-8587-2b7c80c9730e",
+      "name": "System Resource Monitor (bash)",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-15T13:00:42.746000Z",
+      "nextRunAt": "2026-03-15T13:30:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
     },
     {
       "id": "exec-mc-snapshot-1773508840670",
@@ -81,10 +95,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T12:30:16.293000Z",
-      "nextRunAt": "2026-03-15T13:00:00Z",
+      "lastRunAt": "2026-03-15T13:00:42.746000Z",
+      "nextRunAt": "2026-03-15T13:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 35740,
+      "lastDurationMs": 38636,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -95,27 +109,13 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-15T12:04:48.395000Z",
-      "nextRunAt": "2026-03-15T13:04:48.358000Z",
+      "lastRunAt": "2026-03-15T13:04:48.406000Z",
+      "nextRunAt": "2026-03-15T14:04:48.358000Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
+      "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": null
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T12:59:54.078000Z",
-      "nextRunAt": "2026-03-15T13:04:54.078000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 46607,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
     },
     {
       "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
