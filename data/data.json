@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-15T07:01:41Z",
+  "generatedAt": "2026-03-15T07:30:24Z",
   "generatorVersion": "1.2.0",
   "system": {
     "status": "OK",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 356,
+    "sessionCount": 359,
     "agentCount": 19
   },
   "budget": {
@@ -48,27 +48,13 @@
   ],
   "crons": [
     {
-      "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
-      "name": "Morning Context Briefing",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 8 * * *",
-      "lastRunAt": "2026-03-14T07:00:00.053000Z",
-      "nextRunAt": "2026-03-15T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 60329,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 180
-    },
-    {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
       "name": "System Resource Monitor (bash)",
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T06:32:27.052000Z",
-      "nextRunAt": "2026-03-15T07:00:00Z",
+      "lastRunAt": "2026-03-15T07:01:30.477000Z",
+      "nextRunAt": "2026-03-15T07:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -76,29 +62,15 @@
       "timeoutSeconds": null
     },
     {
-      "id": "9100c6c2-0426-4afa-9ffe-8307b3008571",
-      "name": "Pip \u2014 Weekly Ops Report",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 8 * * 0",
-      "lastRunAt": "2026-03-08T07:00:26.017000Z",
-      "nextRunAt": "2026-03-15T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 48150,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 180
-    },
-    {
       "id": "circuit-breaker-gateway-spend-monitor",
       "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-15T06:45:45.307000Z",
-      "nextRunAt": "2026-03-15T07:00:00Z",
+      "lastRunAt": "2026-03-15T07:15:06.259000Z",
+      "nextRunAt": "2026-03-15T07:30:00Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
+      "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -109,27 +81,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T06:32:27.052000Z",
-      "nextRunAt": "2026-03-15T07:00:00Z",
+      "lastRunAt": "2026-03-15T07:01:30.477000Z",
+      "nextRunAt": "2026-03-15T07:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 14748,
+      "lastDurationMs": 19322,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 90
-    },
-    {
-      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
-      "name": "Pip \u2014 Cron Watchdog [exec]",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-15T06:04:48.403000Z",
-      "nextRunAt": "2026-03-15T07:04:48.358000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": null
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -137,10 +95,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T06:59:50.826000Z",
-      "nextRunAt": "2026-03-15T07:04:50.826000Z",
+      "lastRunAt": "2026-03-15T07:29:51.089000Z",
+      "nextRunAt": "2026-03-15T07:34:51.089000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 17701,
+      "lastDurationMs": 17930,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -151,12 +109,12 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-15T06:50:44.970000Z",
-      "nextRunAt": "2026-03-15T07:05:44.970000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
+      "lastRunAt": "2026-03-15T07:20:45.071000Z",
+      "nextRunAt": "2026-03-15T07:35:45.071000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 120007,
       "consecutiveErrors": 0,
-      "lastError": "quiet-hours",
+      "lastError": null,
       "timeoutSeconds": null
     },
     {
@@ -172,6 +130,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
+    },
+    {
+      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
+      "name": "Pip \u2014 Cron Watchdog [exec]",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 * * * *",
+      "lastRunAt": "2026-03-15T07:04:48.400000Z",
+      "nextRunAt": "2026-03-15T08:04:48.358000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
     },
     {
       "id": "1381b6f4-52d4-425b-8eac-6a7272e0cb8d",
@@ -496,6 +468,20 @@
       "timeoutSeconds": 300
     },
     {
+      "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
+      "name": "Morning Context Briefing",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "0 8 * * *",
+      "lastRunAt": "2026-03-15T07:00:10.720000Z",
+      "nextRunAt": "2026-03-16T07:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 22386,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 180
+    },
+    {
       "id": "54dbb899-f7c9-491c-a04f-9b478950bb07",
       "name": "Camilla Daily Brief \u2014 Vesslan",
       "agentId": "strategist",
@@ -575,6 +561,20 @@
       "nextRunAt": "2026-03-22T06:30:00Z",
       "lastRunStatus": "ok",
       "lastDurationMs": 131064,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 180
+    },
+    {
+      "id": "9100c6c2-0426-4afa-9ffe-8307b3008571",
+      "name": "Pip \u2014 Weekly Ops Report",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 8 * * 0",
+      "lastRunAt": "2026-03-15T07:00:33.106000Z",
+      "nextRunAt": "2026-03-22T07:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 57371,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
