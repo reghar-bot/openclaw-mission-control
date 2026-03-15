@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-15T19:01:04Z",
+  "generatedAt": "2026-03-15T19:30:44Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 144,
+    "sessionCount": 150,
     "agentCount": 19
   },
   "budget": {
@@ -53,27 +53,13 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T18:30:24.912000Z",
-      "nextRunAt": "2026-03-15T19:00:00Z",
+      "lastRunAt": "2026-03-15T19:00:53.261000Z",
+      "nextRunAt": "2026-03-15T19:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
-    },
-    {
-      "id": "bb5246f5-c8f2-4a0e-a751-452ee8c685d1",
-      "name": "Pip \u2014 Weekly Cron Health Scorecard",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 20 * * 0",
-      "lastRunAt": "2026-03-08T19:09:52.666000Z",
-      "nextRunAt": "2026-03-15T19:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 17613,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
     },
     {
       "id": "circuit-breaker-gateway-spend-monitor",
@@ -81,8 +67,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-15T18:45:37.701000Z",
-      "nextRunAt": "2026-03-15T19:00:00Z",
+      "lastRunAt": "2026-03-15T19:15:24.594000Z",
+      "nextRunAt": "2026-03-15T19:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -90,46 +76,18 @@
       "timeoutSeconds": 60
     },
     {
-      "id": "exec-inbox-triage-evening-2026-03-14",
-      "name": "Pip \u2014 Inbox Triage Evening [exec]",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 20 * * *",
-      "lastRunAt": "2026-03-14T19:00:00.049000Z",
-      "nextRunAt": "2026-03-15T19:00:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-15T18:30:24.912000Z",
-      "nextRunAt": "2026-03-15T19:00:00Z",
+      "lastRunAt": "2026-03-15T19:00:53.261000Z",
+      "nextRunAt": "2026-03-15T19:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 29186,
+      "lastDurationMs": 37831,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
-      "name": "Pip \u2014 Cron Watchdog [exec]",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-15T18:04:48.396000Z",
-      "nextRunAt": "2026-03-15T19:04:48.358000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": null
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -137,10 +95,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T18:59:57.215000Z",
-      "nextRunAt": "2026-03-15T19:04:57.215000Z",
+      "lastRunAt": "2026-03-15T19:29:57.472000Z",
+      "nextRunAt": "2026-03-15T19:34:57.472000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 27110,
+      "lastDurationMs": 32243,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -158,6 +116,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
+    },
+    {
+      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
+      "name": "Pip \u2014 Cron Watchdog [exec]",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 * * * *",
+      "lastRunAt": "2026-03-15T19:04:48.401000Z",
+      "nextRunAt": "2026-03-15T20:04:48.358000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
     },
     {
       "id": "9e3b80ae-8947-42ca-9ae0-0df166c135da",
@@ -510,6 +482,20 @@
       "timeoutSeconds": 120
     },
     {
+      "id": "exec-inbox-triage-evening-2026-03-14",
+      "name": "Pip \u2014 Inbox Triage Evening [exec]",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 20 * * *",
+      "lastRunAt": "2026-03-15T19:00:53.261000Z",
+      "nextRunAt": "2026-03-16T19:00:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
+    },
+    {
       "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
       "name": "Ragnar's Inbox \u2014 Weekly Draft (Wed + Sun)",
       "agentId": "main",
@@ -578,6 +564,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
+    },
+    {
+      "id": "bb5246f5-c8f2-4a0e-a751-452ee8c685d1",
+      "name": "Pip \u2014 Weekly Cron Health Scorecard",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 20 * * 0",
+      "lastRunAt": "2026-03-15T19:00:26.415000Z",
+      "nextRunAt": "2026-03-22T19:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 26846,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "2d7b4c9c-bc45-4c92-bcc0-2c651b4ae8f8",
