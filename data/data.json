@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-14T23:34:02Z",
+  "generatedAt": "2026-03-15T00:00:11Z",
   "generatorVersion": "1.2.0",
   "system": {
     "status": "OK",
     "gatewayStatus": "running",
     "gatewayPid": 30166,
-    "sessionCount": 283,
+    "sessionCount": 288,
     "agentCount": 19
   },
   "budget": {
@@ -48,48 +48,6 @@
   ],
   "crons": [
     {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-14T23:29:46.801000Z",
-      "nextRunAt": "2026-03-14T23:34:46.801000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 21032,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
-      "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 15m",
-      "lastRunAt": "2026-03-14T23:20:13.565000Z",
-      "nextRunAt": "2026-03-14T23:35:13.565000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "quiet-hours",
-      "timeoutSeconds": null
-    },
-    {
-      "id": "circuit-breaker-gateway-spend-monitor",
-      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-14T23:30:09.975000Z",
-      "nextRunAt": "2026-03-14T23:45:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": 60
-    },
-    {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
       "name": "System Resource Monitor (bash)",
       "agentId": "main",
@@ -100,8 +58,22 @@
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "lastError": null,
       "timeoutSeconds": null
+    },
+    {
+      "id": "circuit-breaker-gateway-spend-monitor",
+      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/15 * * * *",
+      "lastRunAt": "2026-03-14T23:45:00.042000Z",
+      "nextRunAt": "2026-03-15T00:00:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "exec-mc-snapshot-1773508840670",
@@ -118,9 +90,23 @@
       "timeoutSeconds": 90
     },
     {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-14T23:59:47.078000Z",
+      "nextRunAt": "2026-03-15T00:04:47.078000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 12490,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
+    },
+    {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
       "name": "Pip \u2014 Cron Watchdog [exec]",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 * * * *",
       "lastRunAt": "2026-03-14T23:05:04.108000Z",
@@ -129,6 +115,20 @@
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
+    },
+    {
+      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
+      "name": "Discord Relay \u2014 Pending Posts",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 15m",
+      "lastRunAt": "2026-03-14T23:50:13.646000Z",
+      "nextRunAt": "2026-03-15T00:05:13.646000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "quiet-hours",
       "timeoutSeconds": null
     },
     {
@@ -302,7 +302,7 @@
     {
       "id": "0aa06100-388f-445f-90f7-853458a31946",
       "name": "Daily Housekeeping \u2014 Stale Items",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 9 * * *",
       "lastRunAt": null,
@@ -330,7 +330,7 @@
     {
       "id": "b6139283-6b73-4948-b60f-a60662352bce",
       "name": "Reghar \u2014 Morning Proposal Review",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 9 * * *",
       "lastRunAt": "2026-03-14T08:00:00.060000Z",
@@ -400,7 +400,7 @@
     {
       "id": "exec-inbox-triage-evening-2026-03-14",
       "name": "Pip \u2014 Inbox Triage Evening [exec]",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 20 * * *",
       "lastRunAt": "2026-03-14T19:00:00.049000Z",
@@ -414,7 +414,7 @@
     {
       "id": "exec-evening-sweep-2026-03-14",
       "name": "Pip \u2014 Evening Sweep [exec]",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 20 * * *",
       "lastRunAt": "2026-03-14T19:00:22.730000Z",
@@ -456,7 +456,7 @@
     {
       "id": "3e06f445-c4dc-4be1-ae5d-f31bca21fdeb",
       "name": "End of Day \u2014 Reflection, Situation & Handoff",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "30 21 * * *",
       "lastRunAt": "2026-03-14T20:30:00.053000Z",
