@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-03-15T13:08:58Z",
-  "generatorVersion": "1.2.0",
+  "generatedAt": "2026-03-15T13:14:28Z",
+  "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 437,
+    "sessionCount": 438,
     "agentCount": 19
   },
   "budget": {
-    "currentMonth": null,
-    "limit": 250.0,
+    "currentMonth": 12.4,
+    "limit": 200,
     "dayOfMonth": 15,
     "daysInMonth": 31,
-    "projected": null,
-    "status": "unknown"
+    "projected": 25.63,
+    "status": "ok"
   },
   "pipelines": [
     {
@@ -53,10 +53,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T13:04:54.117000Z",
-      "nextRunAt": "2026-03-15T13:09:54.117000Z",
+      "lastRunAt": "2026-03-15T13:09:54.159000Z",
+      "nextRunAt": "2026-03-15T13:14:54.159000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 42265,
+      "lastDurationMs": 25432,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
