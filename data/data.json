@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-15T12:18:22Z",
+  "generatedAt": "2026-03-15T12:23:50Z",
   "generatorVersion": "1.2.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 425,
+    "sessionCount": 426,
     "agentCount": 19
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-15T12:14:53.660000Z",
-      "nextRunAt": "2026-03-15T12:19:53.660000Z",
+      "lastRunAt": "2026-03-15T12:19:53.728000Z",
+      "nextRunAt": "2026-03-15T12:24:53.728000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 21346,
+      "lastDurationMs": 38933,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
