@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-16T10:00:14Z",
+  "generatedAt": "2026-03-16T10:30:14Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 22758,
-    "sessionCount": 386,
+    "sessionCount": 392,
     "agentCount": 19
   },
   "budget": {
@@ -53,8 +53,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T09:00:00.043000Z",
-      "nextRunAt": "2026-03-16T10:00:00Z",
+      "lastRunAt": "2026-03-16T10:00:00.048000Z",
+      "nextRunAt": "2026-03-16T10:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -62,29 +62,15 @@
       "timeoutSeconds": null
     },
     {
-      "id": "7379cb5d-f0e2-423c-8455-1bd659f5984a",
-      "name": "Champagne Pipeline Watchdog",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 11 * * *",
-      "lastRunAt": "2026-03-15T10:00:27.123000Z",
-      "nextRunAt": "2026-03-16T10:00:00Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 24868,
-      "consecutiveErrors": 1,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
       "id": "circuit-breaker-gateway-spend-monitor",
       "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-16T09:45:00.051000Z",
-      "nextRunAt": "2026-03-16T10:00:00Z",
+      "lastRunAt": "2026-03-16T10:15:00.056000Z",
+      "nextRunAt": "2026-03-16T10:30:00Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
+      "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -95,27 +81,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T09:00:00.043000Z",
-      "nextRunAt": "2026-03-16T10:00:00Z",
+      "lastRunAt": "2026-03-16T10:00:00.048000Z",
+      "nextRunAt": "2026-03-16T10:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 36474,
+      "lastDurationMs": 49269,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
-      "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 15m",
-      "lastRunAt": "2026-03-15T09:05:45.380000Z",
-      "nextRunAt": "2026-03-16T10:00:40.771000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 17341,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -123,13 +95,27 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-16T09:56:03.868000Z",
-      "nextRunAt": "2026-03-16T10:01:03.868000Z",
+      "lastRunAt": "2026-03-16T10:26:24.374000Z",
+      "nextRunAt": "2026-03-16T10:31:24.374000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 21600,
+      "lastDurationMs": 13664,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
+    },
+    {
+      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
+      "name": "Discord Relay \u2014 Pending Posts",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 15m",
+      "lastRunAt": "2026-03-16T10:23:03.918000Z",
+      "nextRunAt": "2026-03-16T10:32:24.250000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 120241,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
@@ -137,8 +123,8 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-16T09:04:48.407000Z",
-      "nextRunAt": "2026-03-16T10:04:48.358000Z",
+      "lastRunAt": "2026-03-16T10:04:48.385000Z",
+      "nextRunAt": "2026-03-16T11:04:48.358000Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -326,6 +312,20 @@
       "consecutiveErrors": 0,
       "lastError": "main job requires payload.kind=\"systemEvent\"",
       "timeoutSeconds": null
+    },
+    {
+      "id": "7379cb5d-f0e2-423c-8455-1bd659f5984a",
+      "name": "Champagne Pipeline Watchdog",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 11 * * *",
+      "lastRunAt": "2026-03-16T10:00:49.317000Z",
+      "nextRunAt": "2026-03-17T10:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 32581,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
     },
     {
       "id": "0a5f690e-a56b-441e-b70b-a33dee760200",
@@ -693,8 +693,8 @@
     }
   ],
   "errors": {
-    "total": 4,
+    "total": 3,
     "critical": 0,
-    "warning": 4
+    "warning": 3
   }
 }
