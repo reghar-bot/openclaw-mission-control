@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-16T07:01:38Z",
+  "generatedAt": "2026-03-16T07:30:15Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 334,
+    "sessionCount": 342,
     "agentCount": 19
   },
   "budget": {
@@ -48,41 +48,13 @@
   ],
   "crons": [
     {
-      "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
-      "name": "Morning Context Briefing",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 8 * * *",
-      "lastRunAt": "2026-03-15T07:00:10.720000Z",
-      "nextRunAt": "2026-03-16T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 22386,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 180
-    },
-    {
-      "id": "54dbb899-f7c9-491c-a04f-9b478950bb07",
-      "name": "Camilla Daily Brief \u2014 Vesslan",
-      "agentId": "strategist",
-      "enabled": true,
-      "schedule": "0 8 * * 1-5",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-16T07:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 480
-    },
-    {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
       "name": "System Resource Monitor (bash)",
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T06:33:36.576000Z",
-      "nextRunAt": "2026-03-16T07:00:00Z",
+      "lastRunAt": "2026-03-16T07:01:24.913000Z",
+      "nextRunAt": "2026-03-16T07:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -95,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-16T06:45:41.844000Z",
-      "nextRunAt": "2026-03-16T07:00:00Z",
+      "lastRunAt": "2026-03-16T07:15:00.044000Z",
+      "nextRunAt": "2026-03-16T07:30:00Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
+      "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -109,10 +81,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T06:33:36.576000Z",
-      "nextRunAt": "2026-03-16T07:00:00Z",
+      "lastRunAt": "2026-03-16T07:01:24.913000Z",
+      "nextRunAt": "2026-03-16T07:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 41826,
+      "lastDurationMs": 42995,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -123,41 +95,13 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-16T06:59:45.372000Z",
-      "nextRunAt": "2026-03-16T07:04:45.372000Z",
+      "lastRunAt": "2026-03-16T07:26:25.090000Z",
+      "nextRunAt": "2026-03-16T07:31:25.090000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 58696,
+      "lastDurationMs": 17163,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
-    },
-    {
-      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
-      "name": "Pip \u2014 Cron Watchdog [exec]",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-16T06:05:09.545000Z",
-      "nextRunAt": "2026-03-16T07:04:48.358000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": null
-    },
-    {
-      "id": "be478b00-887c-4729-bea5-3cf6d09bbfac",
-      "name": "Pip \u2014 Monday Approval Flag Check",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "20 8 * * 1",
-      "lastRunAt": "2026-03-09T15:33:35.374000Z",
-      "nextRunAt": "2026-03-16T07:20:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 35643,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
     },
     {
       "id": "b6139283-6b73-4948-b60f-a60662352bce",
@@ -186,6 +130,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
+      "name": "Pip \u2014 Cron Watchdog [exec]",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 * * * *",
+      "lastRunAt": "2026-03-16T07:06:24.903000Z",
+      "nextRunAt": "2026-03-16T08:04:48.358000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 1,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
     },
     {
       "id": "1381b6f4-52d4-425b-8eac-6a7272e0cb8d",
@@ -340,6 +298,34 @@
       "consecutiveErrors": 1,
       "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
       "timeoutSeconds": 120
+    },
+    {
+      "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
+      "name": "Morning Context Briefing",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "0 8 * * *",
+      "lastRunAt": "2026-03-16T07:00:46.127000Z",
+      "nextRunAt": "2026-03-17T07:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 38786,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 180
+    },
+    {
+      "id": "54dbb899-f7c9-491c-a04f-9b478950bb07",
+      "name": "Camilla Daily Brief \u2014 Vesslan",
+      "agentId": "strategist",
+      "enabled": true,
+      "schedule": "0 8 * * 1-5",
+      "lastRunAt": "2026-03-16T07:02:07.908000Z",
+      "nextRunAt": "2026-03-17T07:00:00Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 254793,
+      "consecutiveErrors": 1,
+      "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
+      "timeoutSeconds": 480
     },
     {
       "id": "0a5f690e-a56b-441e-b70b-a33dee760200",
@@ -580,6 +566,20 @@
       "timeoutSeconds": 300
     },
     {
+      "id": "be478b00-887c-4729-bea5-3cf6d09bbfac",
+      "name": "Pip \u2014 Monday Approval Flag Check",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "20 8 * * 1",
+      "lastRunAt": "2026-03-16T07:20:00.042000Z",
+      "nextRunAt": "2026-03-23T07:20:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 79120,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
       "id": "2d7b4c9c-bc45-4c92-bcc0-2c651b4ae8f8",
       "name": "Pip \u2014 Monthly Cost Review [exec]",
       "agentId": "assistant",
@@ -665,8 +665,8 @@
     }
   ],
   "errors": {
-    "total": 3,
+    "total": 4,
     "critical": 0,
-    "warning": 3
+    "warning": 4
   }
 }
