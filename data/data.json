@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-16T00:32:06Z",
+  "generatedAt": "2026-03-16T01:01:42Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 229,
+    "sessionCount": 237,
     "agentCount": 19
   },
   "budget": {
@@ -48,74 +48,18 @@
   ],
   "crons": [
     {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-16T00:24:59.977000Z",
-      "nextRunAt": "2026-03-16T00:29:59.977000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 19412,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
       "name": "System Resource Monitor (bash)",
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T00:00:17.413000Z",
-      "nextRunAt": "2026-03-16T00:30:00Z",
+      "lastRunAt": "2026-03-16T00:31:40.630000Z",
+      "nextRunAt": "2026-03-16T01:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
-    },
-    {
-      "id": "circuit-breaker-gateway-spend-monitor",
-      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-16T00:15:19.575000Z",
-      "nextRunAt": "2026-03-16T00:30:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T00:00:17.413000Z",
-      "nextRunAt": "2026-03-16T00:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 34695,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
-      "name": "Daily Conversation & Workflow Audit",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "30 1 * * *",
-      "lastRunAt": "2026-03-15T00:30:12.341000Z",
-      "nextRunAt": "2026-03-16T00:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 15706,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
     },
     {
       "id": "ab196a29-f9e8-43a9-bdd0-10b6b10e2b3b",
@@ -130,6 +74,48 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "circuit-breaker-gateway-spend-monitor",
+      "name": "Circuit Breaker \u2014 Gateway & Spend Monitor [exec]",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "*/15 * * * *",
+      "lastRunAt": "2026-03-16T00:45:00.036000Z",
+      "nextRunAt": "2026-03-16T01:00:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-16T00:31:54.465000Z",
+      "nextRunAt": "2026-03-16T01:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 33440,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-16T00:56:40.858000Z",
+      "nextRunAt": "2026-03-16T01:01:40.858000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 17107,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
@@ -466,6 +452,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 900
+    },
+    {
+      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
+      "name": "Daily Conversation & Workflow Audit",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "30 1 * * *",
+      "lastRunAt": "2026-03-16T00:30:00.018000Z",
+      "nextRunAt": "2026-03-17T00:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 100612,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
