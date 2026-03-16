@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-16T10:30:14Z",
+  "generatedAt": "2026-03-16T11:00:14Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 22758,
-    "sessionCount": 392,
+    "sessionCount": 397,
     "agentCount": 19
   },
   "budget": {
@@ -53,8 +53,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T10:00:00.048000Z",
-      "nextRunAt": "2026-03-16T10:30:00Z",
+      "lastRunAt": "2026-03-16T10:30:00.049000Z",
+      "nextRunAt": "2026-03-16T11:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -67,8 +67,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-16T10:15:00.056000Z",
-      "nextRunAt": "2026-03-16T10:30:00Z",
+      "lastRunAt": "2026-03-16T10:45:00.050000Z",
+      "nextRunAt": "2026-03-16T11:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -81,10 +81,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T10:00:00.048000Z",
-      "nextRunAt": "2026-03-16T10:30:00Z",
+      "lastRunAt": "2026-03-16T10:30:00.049000Z",
+      "nextRunAt": "2026-03-16T11:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 49269,
+      "lastDurationMs": 35993,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -95,26 +95,26 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-16T10:26:24.374000Z",
-      "nextRunAt": "2026-03-16T10:31:24.374000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 13664,
-      "consecutiveErrors": 0,
-      "lastError": null,
+      "lastRunAt": "2026-03-16T10:56:24.738000Z",
+      "nextRunAt": "2026-03-16T11:01:24.738000Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 60017,
+      "consecutiveErrors": 1,
+      "lastError": "cron: job execution timed out",
       "timeoutSeconds": 60
     },
     {
       "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
       "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-16T10:23:03.918000Z",
-      "nextRunAt": "2026-03-16T10:32:24.250000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 120241,
+      "lastRunAt": "2026-03-16T10:47:26.374000Z",
+      "nextRunAt": "2026-03-16T11:02:26.374000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
       "consecutiveErrors": 0,
-      "lastError": null,
+      "lastError": "disabled",
       "timeoutSeconds": null
     },
     {
@@ -176,7 +176,7 @@
     {
       "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
       "name": "Daily Conversation & Workflow Audit",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "30 1 * * *",
       "lastRunAt": "2026-03-16T00:30:00.018000Z",
@@ -190,7 +190,7 @@
     {
       "id": "ab196a29-f9e8-43a9-bdd0-10b6b10e2b3b",
       "name": "Nightly System Audit",
-      "agentId": "main",
+      "agentId": "assistant",
       "enabled": true,
       "schedule": "0 2 * * *",
       "lastRunAt": "2026-03-16T01:00:00.046000Z",
@@ -693,8 +693,8 @@
     }
   ],
   "errors": {
-    "total": 3,
+    "total": 4,
     "critical": 0,
-    "warning": 3
+    "warning": 4
   }
 }
