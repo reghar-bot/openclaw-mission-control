@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-16T01:31:56Z",
+  "generatedAt": "2026-03-16T02:00:12Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 34381,
-    "sessionCount": 246,
+    "sessionCount": 253,
     "agentCount": 19
   },
   "budget": {
@@ -48,18 +48,18 @@
   ],
   "crons": [
     {
-      "id": "32912067-1bce-49ed-8ebd-f4c732d9bf10",
-      "name": "Nightly Memory Consolidation",
+      "id": "15b8ed4e-16d3-46ff-8475-62835171890a",
+      "name": "QMD \u2014 Nightly Re-index [exec]",
       "agentId": "main",
       "enabled": true,
-      "schedule": "30 2 * * *",
-      "lastRunAt": "2026-03-15T01:30:09.054000Z",
-      "nextRunAt": "2026-03-16T01:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 85435,
+      "schedule": "0 3 * * *",
+      "lastRunAt": "2026-03-15T02:00:00.043000Z",
+      "nextRunAt": "2026-03-16T02:00:00Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": null,
-      "timeoutSeconds": 300
+      "timeoutSeconds": null
     },
     {
       "id": "56394e92-899d-438d-8587-2b7c80c9730e",
@@ -67,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T01:01:31.300000Z",
-      "nextRunAt": "2026-03-16T01:30:00Z",
+      "lastRunAt": "2026-03-16T01:31:44.801000Z",
+      "nextRunAt": "2026-03-16T02:00:00Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
+      "lastDurationMs": 1,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -81,8 +81,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-16T01:15:00.029000Z",
-      "nextRunAt": "2026-03-16T01:30:00Z",
+      "lastRunAt": "2026-03-16T01:45:00.048000Z",
+      "nextRunAt": "2026-03-16T02:00:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -95,10 +95,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-16T01:01:31.300000Z",
-      "nextRunAt": "2026-03-16T01:30:00Z",
+      "lastRunAt": "2026-03-16T01:31:44.802000Z",
+      "nextRunAt": "2026-03-16T02:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 34742,
+      "lastDurationMs": 38712,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -109,27 +109,13 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-16T01:27:08.316000Z",
-      "nextRunAt": "2026-03-16T01:32:08.316000Z",
+      "lastRunAt": "2026-03-16T01:57:25.800000Z",
+      "nextRunAt": "2026-03-16T02:02:25.800000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 17320,
+      "lastDurationMs": 15919,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
-    },
-    {
-      "id": "15b8ed4e-16d3-46ff-8475-62835171890a",
-      "name": "QMD \u2014 Nightly Re-index [exec]",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 3 * * *",
-      "lastRunAt": "2026-03-15T02:00:00.043000Z",
-      "nextRunAt": "2026-03-16T02:00:00Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": null
     },
     {
       "id": "6563163b-9920-43b2-9e18-26f14f683c11",
@@ -466,6 +452,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "32912067-1bce-49ed-8ebd-f4c732d9bf10",
+      "name": "Nightly Memory Consolidation",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "30 2 * * *",
+      "lastRunAt": "2026-03-16T01:30:00.046000Z",
+      "nextRunAt": "2026-03-17T01:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 104755,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
