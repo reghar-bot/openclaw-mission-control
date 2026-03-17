@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-17T19:00:20Z",
+  "generatedAt": "2026-03-17T19:30:25Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 22758,
-    "sessionCount": 232,
+    "sessionCount": 240,
     "agentCount": 15
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-17T18:30:00.041000Z",
-      "nextRunAt": "2026-03-17T19:00:00Z",
+      "lastRunAt": "2026-03-17T19:00:00.045000Z",
+      "nextRunAt": "2026-03-17T19:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 63266,
+      "lastDurationMs": 65113,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -67,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-17T18:58:27.240000Z",
-      "nextRunAt": "2026-03-17T19:03:27.240000Z",
+      "lastRunAt": "2026-03-17T19:28:27.472000Z",
+      "nextRunAt": "2026-03-17T19:33:27.472000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 21179,
+      "lastDurationMs": 13948,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -81,10 +81,10 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-17T18:49:18.143000Z",
-      "nextRunAt": "2026-03-17T19:04:18.143000Z",
+      "lastRunAt": "2026-03-17T19:19:18.231000Z",
+      "nextRunAt": "2026-03-17T19:34:18.231000Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
+      "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": "disabled",
       "timeoutSeconds": null
