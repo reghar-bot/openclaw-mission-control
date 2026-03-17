@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-17T19:30:25Z",
+  "generatedAt": "2026-03-17T20:00:22Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 22758,
-    "sessionCount": 240,
+    "sessionCount": 249,
     "agentCount": 15
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-17T19:00:00.045000Z",
-      "nextRunAt": "2026-03-17T19:30:00Z",
+      "lastRunAt": "2026-03-17T19:30:00.044000Z",
+      "nextRunAt": "2026-03-17T20:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 65113,
+      "lastDurationMs": 66703,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -67,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-17T19:28:27.472000Z",
-      "nextRunAt": "2026-03-17T19:33:27.472000Z",
+      "lastRunAt": "2026-03-17T19:58:27.703000Z",
+      "nextRunAt": "2026-03-17T20:03:27.703000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 13948,
+      "lastDurationMs": 14967,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -81,10 +81,10 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-17T19:19:18.231000Z",
-      "nextRunAt": "2026-03-17T19:34:18.231000Z",
+      "lastRunAt": "2026-03-17T19:49:18.296000Z",
+      "nextRunAt": "2026-03-17T20:04:18.296000Z",
       "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
+      "lastDurationMs": 1,
       "consecutiveErrors": 0,
       "lastError": "disabled",
       "timeoutSeconds": null
@@ -284,6 +284,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
+    },
+    {
+      "id": "80225149-55ae-49c3-a4fe-5f322bd22d09",
+      "name": "Pip \u2014 Weekly File Lifecycle Manager",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 2 * * 0",
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-22T01:00:00Z",
+      "lastRunStatus": "idle",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
     },
     {
       "id": "e60b96d1-4d23-48f3-b4e5-75bd7a47d308",
