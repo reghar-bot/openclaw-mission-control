@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-17T06:00:12Z",
+  "generatedAt": "2026-03-17T06:30:14Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 22758,
-    "sessionCount": 360,
+    "sessionCount": 365,
     "agentCount": 19
   },
   "budget": {
@@ -53,8 +53,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-17T05:30:00.042000Z",
-      "nextRunAt": "2026-03-17T06:00:00Z",
+      "lastRunAt": "2026-03-17T06:00:00.033000Z",
+      "nextRunAt": "2026-03-17T06:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -67,8 +67,8 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/15 * * * *",
-      "lastRunAt": "2026-03-17T05:45:00.042000Z",
-      "nextRunAt": "2026-03-17T06:00:00Z",
+      "lastRunAt": "2026-03-17T06:15:00.040000Z",
+      "nextRunAt": "2026-03-17T06:30:00Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -81,10 +81,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-17T05:30:00.042000Z",
-      "nextRunAt": "2026-03-17T06:00:00Z",
+      "lastRunAt": "2026-03-17T06:00:00.033000Z",
+      "nextRunAt": "2026-03-17T06:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 34975,
+      "lastDurationMs": 29520,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -95,10 +95,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-17T05:58:04.401000Z",
-      "nextRunAt": "2026-03-17T06:03:04.401000Z",
+      "lastRunAt": "2026-03-17T06:28:04.654000Z",
+      "nextRunAt": "2026-03-17T06:33:04.654000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 14549,
+      "lastDurationMs": 33152,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -109,41 +109,13 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-17T05:48:34.798000Z",
-      "nextRunAt": "2026-03-17T06:03:34.798000Z",
+      "lastRunAt": "2026-03-17T06:18:34.874000Z",
+      "nextRunAt": "2026-03-17T06:33:34.874000Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": "disabled",
       "timeoutSeconds": null
-    },
-    {
-      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
-      "name": "Pip \u2014 Cron Watchdog [exec]",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-17T05:04:48.400000Z",
-      "nextRunAt": "2026-03-17T06:04:48.358000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "main job requires payload.kind=\"systemEvent\"",
-      "timeoutSeconds": null
-    },
-    {
-      "id": "34be02c4-488a-4fe5-97f8-3cfc2b037ece",
-      "name": "Pip \u2014 Daily Cost Report",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "17 7 * * *",
-      "lastRunAt": "2026-03-16T06:17:00.042000Z",
-      "nextRunAt": "2026-03-17T06:17:00Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 30578,
-      "consecutiveErrors": 1,
-      "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
-      "timeoutSeconds": 120
     },
     {
       "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
@@ -172,6 +144,20 @@
       "consecutiveErrors": 1,
       "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
       "timeoutSeconds": 480
+    },
+    {
+      "id": "6563163b-9920-43b2-9e18-26f14f683c11",
+      "name": "Pip \u2014 Cron Watchdog [exec]",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 * * * *",
+      "lastRunAt": "2026-03-17T06:04:48.400000Z",
+      "nextRunAt": "2026-03-17T07:04:48.358000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
     },
     {
       "id": "b6139283-6b73-4948-b60f-a60662352bce",
@@ -368,6 +354,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
+    },
+    {
+      "id": "34be02c4-488a-4fe5-97f8-3cfc2b037ece",
+      "name": "Pip \u2014 Daily Cost Report",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "17 7 * * *",
+      "lastRunAt": "2026-03-17T06:17:00.042000Z",
+      "nextRunAt": "2026-03-18T06:17:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 24590,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
     },
     {
       "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
@@ -721,8 +721,8 @@
     }
   ],
   "errors": {
-    "total": 4,
+    "total": 3,
     "critical": 0,
-    "warning": 4
+    "warning": 3
   }
 }
