@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T11:00:10Z",
+  "generatedAt": "2026-03-18T11:30:10Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 77656,
-    "sessionCount": 161,
+    "sessionCount": 162,
     "agentCount": 14
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T10:30:00.044000Z",
-      "nextRunAt": "2026-03-18T11:00:00Z",
+      "lastRunAt": "2026-03-18T11:00:00.042000Z",
+      "nextRunAt": "2026-03-18T11:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 48811,
+      "lastDurationMs": 51039,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -67,12 +67,12 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-18T10:51:59.339000Z",
-      "nextRunAt": "2026-03-18T11:06:59.339000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
-      "consecutiveErrors": 0,
-      "lastError": "disabled",
+      "lastRunAt": "2026-03-18T11:21:59.415000Z",
+      "nextRunAt": "2026-03-18T11:36:59.415000Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 9646,
+      "consecutiveErrors": 2,
+      "lastError": "Telegram send failed: chat not found (chat_id=1482394003751174146). Likely: bot not started in DM, bot removed from group/channel, group migrated (new -100\u2026 id), or wrong bot token. Input was: \"1482394003751174146\".",
       "timeoutSeconds": null
     },
     {
@@ -609,8 +609,8 @@
     }
   ],
   "errors": {
-    "total": 3,
-    "critical": 1,
+    "total": 4,
+    "critical": 2,
     "warning": 2
   }
 }
