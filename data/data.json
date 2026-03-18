@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T00:00:23Z",
+  "generatedAt": "2026-03-18T00:31:17Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 77656,
-    "sessionCount": 312,
+    "sessionCount": 319,
     "agentCount": 14
   },
   "budget": {
@@ -53,41 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-17T23:30:00.043000Z",
-      "nextRunAt": "2026-03-18T00:00:00Z",
+      "lastRunAt": "2026-03-18T00:00:00.039000Z",
+      "nextRunAt": "2026-03-18T00:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 39319,
+      "lastDurationMs": 55892,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-17T23:58:30.630000Z",
-      "nextRunAt": "2026-03-18T00:03:30.630000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 16487,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
-      "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "every 15m",
-      "lastRunAt": "2026-03-17T23:49:18.977000Z",
-      "nextRunAt": "2026-03-18T00:04:18.977000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 0,
-      "consecutiveErrors": 0,
-      "lastError": "disabled",
-      "timeoutSeconds": null
     },
     {
       "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
@@ -102,6 +74,34 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-18T00:28:30.881000Z",
+      "nextRunAt": "2026-03-18T00:33:30.881000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 14031,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
+      "name": "Discord Relay \u2014 Pending Posts",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "every 15m",
+      "lastRunAt": "2026-03-18T00:19:19.074000Z",
+      "nextRunAt": "2026-03-18T00:34:19.074000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 1,
+      "consecutiveErrors": 0,
+      "lastError": "disabled",
+      "timeoutSeconds": null
     },
     {
       "id": "ab196a29-f9e8-43a9-bdd0-10b6b10e2b3b",
