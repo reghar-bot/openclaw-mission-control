@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T08:03:34Z",
+  "generatedAt": "2026-03-18T08:30:16Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 77656,
-    "sessionCount": 120,
+    "sessionCount": 128,
     "agentCount": 14
   },
   "budget": {
@@ -48,57 +48,15 @@
   ],
   "crons": [
     {
-      "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
-      "name": "Cost Tracker \u2014 Daily Report",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "0 9 * * *",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-18T08:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
-      "id": "b6139283-6b73-4948-b60f-a60662352bce",
-      "name": "Reghar \u2014 Morning Proposal Review",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 9 * * *",
-      "lastRunAt": "2026-03-17T08:00:00.043000Z",
-      "nextRunAt": "2026-03-18T08:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 17720,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
-      "name": "Secret Expiry Monitor",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 9 * * *",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-18T08:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T07:30:00.033000Z",
-      "nextRunAt": "2026-03-18T08:00:00Z",
+      "lastRunAt": "2026-03-18T08:03:23.709000Z",
+      "nextRunAt": "2026-03-18T08:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 63904,
+      "lastDurationMs": 34441,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -109,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-18T07:56:06.214000Z",
-      "nextRunAt": "2026-03-18T08:01:06.214000Z",
+      "lastRunAt": "2026-03-18T08:29:27.782000Z",
+      "nextRunAt": "2026-03-18T08:34:27.782000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 17044,
+      "lastDurationMs": 9494,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -123,8 +81,8 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-18T07:51:58.858000Z",
-      "nextRunAt": "2026-03-18T08:06:58.858000Z",
+      "lastRunAt": "2026-03-18T08:21:58.919000Z",
+      "nextRunAt": "2026-03-18T08:36:58.919000Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
@@ -283,6 +241,48 @@
       "lastDurationMs": 15034,
       "consecutiveErrors": 1,
       "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
+      "name": "Cost Tracker \u2014 Daily Report",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "0 9 * * *",
+      "lastRunAt": "2026-03-18T08:04:14.868000Z",
+      "nextRunAt": "2026-03-19T08:00:00Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 10564,
+      "consecutiveErrors": 1,
+      "lastError": "Error: Telegram send failed: chat not found (chat_id=1482394003751174146). Likely: bot not started in DM, bot removed from group/channel, group migrated (new -100\u2026 id), or wrong bot token. Input was: \"1482394003751174146\".",
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "b6139283-6b73-4948-b60f-a60662352bce",
+      "name": "Reghar \u2014 Morning Proposal Review",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 9 * * *",
+      "lastRunAt": "2026-03-18T08:00:00.044000Z",
+      "nextRunAt": "2026-03-19T08:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 203665,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
+      "name": "Secret Expiry Monitor",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 9 * * *",
+      "lastRunAt": "2026-03-18T08:03:58.150000Z",
+      "nextRunAt": "2026-03-19T08:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 16718,
+      "consecutiveErrors": 0,
+      "lastError": null,
       "timeoutSeconds": 120
     },
     {
@@ -609,8 +609,8 @@
     }
   ],
   "errors": {
-    "total": 5,
+    "total": 6,
     "critical": 1,
-    "warning": 4
+    "warning": 5
   }
 }
