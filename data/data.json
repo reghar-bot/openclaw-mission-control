@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T05:31:56Z",
+  "generatedAt": "2026-03-18T06:00:49Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 77656,
-    "sessionCount": 390,
+    "sessionCount": 397,
     "agentCount": 14
   },
   "budget": {
@@ -48,29 +48,15 @@
   ],
   "crons": [
     {
-      "id": "651ec939-7ffd-45fe-9ceb-b8aa8c90f006",
-      "name": "Automation Scout Report",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "30 6 * * 1,3,5",
-      "lastRunAt": "2026-03-16T05:30:00.042000Z",
-      "nextRunAt": "2026-03-18T05:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 97629,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T05:00:00.038000Z",
-      "nextRunAt": "2026-03-18T05:30:00Z",
+      "lastRunAt": "2026-03-18T05:31:36.536000Z",
+      "nextRunAt": "2026-03-18T06:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 60425,
+      "lastDurationMs": 57324,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -81,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "every 5m",
-      "lastRunAt": "2026-03-18T05:26:38.115000Z",
-      "nextRunAt": "2026-03-18T05:31:38.115000Z",
+      "lastRunAt": "2026-03-18T05:57:36.133000Z",
+      "nextRunAt": "2026-03-18T06:02:36.133000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 13874,
+      "lastDurationMs": 11216,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -95,8 +81,8 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-18T05:21:58.396000Z",
-      "nextRunAt": "2026-03-18T05:36:58.396000Z",
+      "lastRunAt": "2026-03-18T05:51:58.485000Z",
+      "nextRunAt": "2026-03-18T06:06:58.485000Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 1,
       "consecutiveErrors": 0,
@@ -312,6 +298,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 900
+    },
+    {
+      "id": "651ec939-7ffd-45fe-9ceb-b8aa8c90f006",
+      "name": "Automation Scout Report",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "30 6 * * 1,3,5",
+      "lastRunAt": "2026-03-18T05:30:00.043000Z",
+      "nextRunAt": "2026-03-20T05:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 96493,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
