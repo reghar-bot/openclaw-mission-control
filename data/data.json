@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T23:00:11Z",
+  "generatedAt": "2026-03-18T23:30:11Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 218,
+    "sessionCount": 216,
     "agentCount": 14
   },
   "budget": {
@@ -53,24 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T22:30:28.250000Z",
-      "nextRunAt": "2026-03-18T23:00:00Z",
+      "lastRunAt": "2026-03-18T23:00:00.054000Z",
+      "nextRunAt": "2026-03-18T23:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 28080,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
-      "name": "System Nervous System",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "20 */4 * * *",
-      "lastRunAt": "2026-03-18T19:22:05.753000Z",
-      "nextRunAt": "2026-03-18T23:22:05.709000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 11829,
+      "lastDurationMs": 30604,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -158,6 +144,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
+    },
+    {
+      "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
+      "name": "System Nervous System",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "20 */4 * * *",
+      "lastRunAt": "2026-03-18T23:22:05.759000Z",
+      "nextRunAt": "2026-03-19T03:22:05.709000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 14066,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
@@ -511,14 +511,28 @@
     },
     {
       "id": "3d331c0d-0020-4de3-9a6a-9a794a1d1211",
-      "name": "Anselme \u2014 Nolea Weekly Report + Handoff",
-      "agentId": "nolea-analyst",
+      "name": "Anselme \u2014 GA4 + GSC Weekly",
+      "agentId": "anselme",
       "enabled": true,
       "schedule": "20 7 * * 1",
       "lastRunAt": "2026-03-16T06:30:23.669000Z",
       "nextRunAt": "2026-03-23T06:20:00Z",
       "lastRunStatus": "ok",
       "lastDurationMs": 192907,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 480
+    },
+    {
+      "id": "6b69aedf-fc15-4165-966a-89b93eec7a82",
+      "name": "Anselme \u2014 Google Ads Weekly Analysis",
+      "agentId": "anselme",
+      "enabled": true,
+      "schedule": "40 7 * * 1",
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-23T06:40:00Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 600
