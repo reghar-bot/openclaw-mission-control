@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-18T16:01:38Z",
+  "generatedAt": "2026-03-18T16:30:08Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
@@ -48,29 +48,15 @@
   ],
   "crons": [
     {
-      "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
-      "name": "Ragnar's Inbox \u2014 Weekly Draft (Wed + Sun)",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 17 * * 3,0",
-      "lastRunAt": "2026-03-15T16:00:11.559000Z",
-      "nextRunAt": "2026-03-18T16:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 40652,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T15:30:00.052000Z",
-      "nextRunAt": "2026-03-18T16:00:00Z",
+      "lastRunAt": "2026-03-18T16:01:30.236000Z",
+      "nextRunAt": "2026-03-18T16:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 42697,
+      "lastDurationMs": 28053,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -410,6 +396,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
+    },
+    {
+      "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
+      "name": "Ragnar's Inbox \u2014 Weekly Draft (Wed + Sun)",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "0 17 * * 3,0",
+      "lastRunAt": "2026-03-18T16:00:00.042000Z",
+      "nextRunAt": "2026-03-22T16:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 90194,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "bb5246f5-c8f2-4a0e-a751-452ee8c685d1",
