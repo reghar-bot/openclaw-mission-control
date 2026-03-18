@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T12:00:12Z",
+  "generatedAt": "2026-03-18T12:30:11Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 77656,
-    "sessionCount": 163,
+    "sessionCount": 165,
     "agentCount": 14
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T11:30:00.048000Z",
-      "nextRunAt": "2026-03-18T12:00:00Z",
+      "lastRunAt": "2026-03-18T12:00:00.049000Z",
+      "nextRunAt": "2026-03-18T12:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 45836,
+      "lastDurationMs": 37214,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -90,18 +90,18 @@
       "timeoutSeconds": 300
     },
     {
-      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
-      "name": "Discord Relay \u2014 Pending Posts",
+      "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
+      "name": "Discord Relay",
       "agentId": "main",
       "enabled": true,
       "schedule": "0 */4 * * *",
-      "lastRunAt": "2026-03-18T11:36:59.463000Z",
-      "nextRunAt": "2026-03-18T15:03:53.310000Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 5874,
-      "consecutiveErrors": 3,
-      "lastError": "Telegram send failed: chat not found (chat_id=1482394003751174146). Likely: bot not started in DM, bot removed from group/channel, group migrated (new -100\u2026 id), or wrong bot token. Input was: \"1482394003751174146\".",
-      "timeoutSeconds": null
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-18T15:02:52.404000Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
     },
     {
       "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
@@ -623,8 +623,8 @@
     }
   ],
   "errors": {
-    "total": 4,
-    "critical": 2,
+    "total": 3,
+    "critical": 1,
     "warning": 2
   }
 }
