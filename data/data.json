@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T10:30:25Z",
+  "generatedAt": "2026-03-18T11:00:10Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 77656,
-    "sessionCount": 157,
+    "sessionCount": 161,
     "agentCount": 14
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T10:00:00.045000Z",
-      "nextRunAt": "2026-03-18T10:30:00Z",
+      "lastRunAt": "2026-03-18T10:30:00.044000Z",
+      "nextRunAt": "2026-03-18T11:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 46156,
+      "lastDurationMs": 48811,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -64,11 +64,11 @@
     {
       "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
       "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "assistant",
+      "agentId": "main",
       "enabled": true,
       "schedule": "every 15m",
-      "lastRunAt": "2026-03-18T10:21:59.250000Z",
-      "nextRunAt": "2026-03-18T10:36:59.250000Z",
+      "lastRunAt": "2026-03-18T10:51:59.339000Z",
+      "nextRunAt": "2026-03-18T11:06:59.339000Z",
       "lastRunStatus": "skipped",
       "lastDurationMs": 1,
       "consecutiveErrors": 0,
@@ -137,12 +137,12 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "30 23 * * *",
-      "lastRunAt": "2026-03-17T22:30:00.044000Z",
+      "lastRunAt": "2026-03-18T10:45:59.052000Z",
       "nextRunAt": "2026-03-18T22:30:00Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 60534,
-      "consecutiveErrors": 1,
-      "lastError": "\u26a0\ufe0f \u2709\ufe0f Message failed",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 20062,
+      "consecutiveErrors": 0,
+      "lastError": null,
       "timeoutSeconds": 900
     },
     {
@@ -221,12 +221,12 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8 * * *",
-      "lastRunAt": "2026-03-18T07:05:17.962000Z",
+      "lastRunAt": "2026-03-18T10:45:51.631000Z",
       "nextRunAt": "2026-03-19T07:00:00Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 15034,
-      "consecutiveErrors": 1,
-      "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 7399,
+      "consecutiveErrors": 0,
+      "lastError": null,
       "timeoutSeconds": 120
     },
     {
@@ -409,7 +409,7 @@
       "lastDurationMs": 480020,
       "consecutiveErrors": 1,
       "lastError": "cron: job execution timed out",
-      "timeoutSeconds": 1200
+      "timeoutSeconds": 900
     },
     {
       "id": "673f0e2b-e93f-44a8-a9ba-de9e31524a0f",
@@ -609,8 +609,8 @@
     }
   ],
   "errors": {
-    "total": 5,
+    "total": 3,
     "critical": 1,
-    "warning": 4
+    "warning": 2
   }
 }
