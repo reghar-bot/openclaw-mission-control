@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-18T00:31:17Z",
+  "generatedAt": "2026-03-18T01:02:14Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 77656,
-    "sessionCount": 319,
+    "sessionCount": 325,
     "agentCount": 14
   },
   "budget": {
@@ -48,62 +48,6 @@
   ],
   "crons": [
     {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-18T00:00:00.039000Z",
-      "nextRunAt": "2026-03-18T00:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 55892,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
-      "name": "Daily Conversation & Workflow Audit",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "30 1 * * *",
-      "lastRunAt": "2026-03-17T00:30:00.041000Z",
-      "nextRunAt": "2026-03-18T00:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 54219,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "every 5m",
-      "lastRunAt": "2026-03-18T00:28:30.881000Z",
-      "nextRunAt": "2026-03-18T00:33:30.881000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 14031,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
-    },
-    {
-      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
-      "name": "Discord Relay \u2014 Pending Posts",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "every 15m",
-      "lastRunAt": "2026-03-18T00:19:19.074000Z",
-      "nextRunAt": "2026-03-18T00:34:19.074000Z",
-      "lastRunStatus": "skipped",
-      "lastDurationMs": 1,
-      "consecutiveErrors": 0,
-      "lastError": "disabled",
-      "timeoutSeconds": null
-    },
-    {
       "id": "ab196a29-f9e8-43a9-bdd0-10b6b10e2b3b",
       "name": "Nightly System Audit",
       "agentId": "assistant",
@@ -116,6 +60,48 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-18T00:30:43.672000Z",
+      "nextRunAt": "2026-03-18T01:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 55765,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "every 5m",
+      "lastRunAt": "2026-03-18T00:58:31.129000Z",
+      "nextRunAt": "2026-03-18T01:03:31.129000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 26772,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "2bc4a56a-dfd2-44b5-b0dc-6dcb2b8144d2",
+      "name": "Discord Relay \u2014 Pending Posts",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "every 15m",
+      "lastRunAt": "2026-03-18T00:49:19.162000Z",
+      "nextRunAt": "2026-03-18T01:04:19.162000Z",
+      "lastRunStatus": "skipped",
+      "lastDurationMs": 0,
+      "consecutiveErrors": 0,
+      "lastError": "disabled",
+      "timeoutSeconds": null
     },
     {
       "id": "32912067-1bce-49ed-8ebd-f4c732d9bf10",
@@ -312,6 +298,20 @@
       "consecutiveErrors": 1,
       "lastError": "\u26a0\ufe0f \u2709\ufe0f Message failed",
       "timeoutSeconds": 900
+    },
+    {
+      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
+      "name": "Daily Conversation & Workflow Audit",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "30 1 * * *",
+      "lastRunAt": "2026-03-18T00:30:00.050000Z",
+      "nextRunAt": "2026-03-19T00:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 43622,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
