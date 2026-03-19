@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T05:00:11Z",
+  "generatedAt": "2026-03-19T05:30:20Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 227,
+    "sessionCount": 231,
     "agentCount": 14
   },
   "budget": {
@@ -48,48 +48,6 @@
   ],
   "crons": [
     {
-      "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
-      "name": "Cost Tracker \u2014 Daily Report",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "0 6 * * *",
-      "lastRunAt": "2026-03-18T10:10:04.684000Z",
-      "nextRunAt": "2026-03-19T05:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 11973,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-19T04:30:00.047000Z",
-      "nextRunAt": "2026-03-19T05:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 27019,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
-      "name": "Secret Expiry Monitor",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "15 6 * * *",
-      "lastRunAt": "2026-03-18T08:03:58.150000Z",
-      "nextRunAt": "2026-03-19T05:15:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 16718,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
       "id": "b6139283-6b73-4948-b60f-a60662352bce",
       "name": "Reghar \u2014 Morning Proposal Review",
       "agentId": "assistant",
@@ -99,6 +57,20 @@
       "nextRunAt": "2026-03-19T05:30:00Z",
       "lastRunStatus": "ok",
       "lastDurationMs": 203665,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-19T05:00:00.052000Z",
+      "nextRunAt": "2026-03-19T05:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 41217,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -326,6 +298,34 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 900
+    },
+    {
+      "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
+      "name": "Cost Tracker \u2014 Daily Report",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "0 6 * * *",
+      "lastRunAt": "2026-03-19T05:00:41.269000Z",
+      "nextRunAt": "2026-03-20T05:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 9615,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
+      "name": "Secret Expiry Monitor",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "15 6 * * *",
+      "lastRunAt": "2026-03-19T05:15:00.047000Z",
+      "nextRunAt": "2026-03-20T05:15:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 4179,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
     },
     {
       "id": "651ec939-7ffd-45fe-9ceb-b8aa8c90f006",
