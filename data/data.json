@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T05:30:20Z",
+  "generatedAt": "2026-03-19T06:00:11Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 231,
+    "sessionCount": 232,
     "agentCount": 14
   },
   "budget": {
@@ -48,29 +48,15 @@
   ],
   "crons": [
     {
-      "id": "b6139283-6b73-4948-b60f-a60662352bce",
-      "name": "Reghar \u2014 Morning Proposal Review",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "30 6 * * *",
-      "lastRunAt": "2026-03-18T08:00:00.044000Z",
-      "nextRunAt": "2026-03-19T05:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 203665,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-19T05:00:00.052000Z",
-      "nextRunAt": "2026-03-19T05:30:00Z",
+      "lastRunAt": "2026-03-19T05:30:09.510000Z",
+      "nextRunAt": "2026-03-19T06:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 41217,
+      "lastDurationMs": 37096,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -339,6 +325,20 @@
       "lastDurationMs": 96493,
       "consecutiveErrors": 0,
       "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "b6139283-6b73-4948-b60f-a60662352bce",
+      "name": "Reghar \u2014 Morning Proposal Review",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "30 6 * * *",
+      "lastRunAt": "2026-03-19T05:30:00.051000Z",
+      "nextRunAt": "2026-03-20T05:30:00Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 9459,
+      "consecutiveErrors": 1,
+      "lastError": "\u26a0\ufe0f \u2709\ufe0f Message failed",
       "timeoutSeconds": 300
     },
     {
@@ -693,8 +693,8 @@
     }
   ],
   "errors": {
-    "total": 2,
+    "total": 3,
     "critical": 0,
-    "warning": 2
+    "warning": 3
   }
 }
