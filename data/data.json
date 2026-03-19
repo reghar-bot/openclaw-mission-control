@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T06:30:10Z",
+  "generatedAt": "2026-03-19T07:00:34Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 235,
+    "sessionCount": 233,
     "agentCount": 14
   },
   "budget": {
@@ -47,20 +47,6 @@
     }
   ],
   "crons": [
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-19T06:00:00.047000Z",
-      "nextRunAt": "2026-03-19T06:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 34672,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
     {
       "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
       "name": "Morning Context Briefing",
@@ -116,6 +102,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-19T06:30:00.048000Z",
+      "nextRunAt": "2026-03-19T07:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 44521,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
