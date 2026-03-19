@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T08:00:10Z",
+  "generatedAt": "2026-03-19T08:30:11Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 221,
+    "sessionCount": 214,
     "agentCount": 14
   },
   "budget": {
@@ -48,32 +48,32 @@
   ],
   "crons": [
     {
-      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
-      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-19T07:01:54.595000Z",
-      "nextRunAt": "2026-03-19T08:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 18881,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-19T07:30:00.054000Z",
-      "nextRunAt": "2026-03-19T08:00:00Z",
+      "lastRunAt": "2026-03-19T08:00:00.048000Z",
+      "nextRunAt": "2026-03-19T08:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 30865,
+      "lastDurationMs": 28596,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
+    },
+    {
+      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
+      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "0 8-23 * * *",
+      "lastRunAt": "2026-03-19T08:00:28.644000Z",
+      "nextRunAt": "2026-03-19T09:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 16304,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
     },
     {
       "id": "7379cb5d-f0e2-423c-8455-1bd659f5984a",
