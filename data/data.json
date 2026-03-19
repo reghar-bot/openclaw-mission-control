@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T06:00:11Z",
+  "generatedAt": "2026-03-19T06:30:10Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 232,
+    "sessionCount": 235,
     "agentCount": 14
   },
   "budget": {
@@ -53,27 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-19T05:30:09.510000Z",
-      "nextRunAt": "2026-03-19T06:00:00Z",
+      "lastRunAt": "2026-03-19T06:00:00.047000Z",
+      "nextRunAt": "2026-03-19T06:30:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 37096,
+      "lastDurationMs": 34672,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "every 240m",
-      "lastRunAt": "2026-03-19T02:27:21.585000Z",
-      "nextRunAt": "2026-03-19T06:27:21.585000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 3589,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
     },
     {
       "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
@@ -172,6 +158,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "every 240m",
+      "lastRunAt": "2026-03-19T06:27:21.635000Z",
+      "nextRunAt": "2026-03-19T10:27:21.635000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 5074,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "881ffc11-a0a0-4808-b1cb-a194012db2e5",
