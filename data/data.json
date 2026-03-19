@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-19T21:04:24Z",
+  "generatedAt": "2026-03-19T22:04:24Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
@@ -53,27 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-19T20:04:13.066000Z",
-      "nextRunAt": "2026-03-19T21:04:13.012000Z",
+      "lastRunAt": "2026-03-19T21:04:13.064000Z",
+      "nextRunAt": "2026-03-19T22:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 36634,
+      "lastDurationMs": 34990,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
-      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-19T21:00:00.040000Z",
-      "nextRunAt": "2026-03-19T22:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 15306,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -242,6 +228,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
+      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 8-23 * * *",
+      "lastRunAt": "2026-03-19T22:00:00.047000Z",
+      "nextRunAt": "2026-03-20T07:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 13811,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
     },
     {
       "id": "881ffc11-a0a0-4808-b1cb-a194012db2e5",
