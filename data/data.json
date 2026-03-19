@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T00:30:21Z",
+  "generatedAt": "2026-03-19T01:02:38Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 214,
+    "sessionCount": 215,
     "agentCount": 14
   },
   "budget": {
@@ -48,34 +48,6 @@
   ],
   "crons": [
     {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-19T00:00:00.064000Z",
-      "nextRunAt": "2026-03-19T00:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 33332,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
-      "name": "Daily Conversation & Workflow Audit",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "30 1 * * *",
-      "lastRunAt": "2026-03-18T00:30:00.050000Z",
-      "nextRunAt": "2026-03-19T00:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 43622,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
       "id": "ab196a29-f9e8-43a9-bdd0-10b6b10e2b3b",
       "name": "Nightly System Audit",
       "agentId": "assistant",
@@ -88,6 +60,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "*/30 * * * *",
+      "lastRunAt": "2026-03-19T00:30:10.420000Z",
+      "nextRunAt": "2026-03-19T01:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 30274,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "e5b40149-61c5-4d8c-bdb7-c301a9cd7f53",
@@ -312,6 +298,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 900
+    },
+    {
+      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
+      "name": "Daily Conversation & Workflow Audit",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "30 1 * * *",
+      "lastRunAt": "2026-03-19T00:30:00.051000Z",
+      "nextRunAt": "2026-03-20T00:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 10369,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "0a5f690e-a56b-441e-b70b-a33dee760200",
