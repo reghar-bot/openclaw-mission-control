@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T13:00:10Z",
+  "generatedAt": "2026-03-19T14:04:24Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 197,
+    "sessionCount": 198,
     "agentCount": 14
   },
   "budget": {
@@ -48,29 +48,15 @@
   ],
   "crons": [
     {
-      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
-      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-19T12:00:35.306000Z",
-      "nextRunAt": "2026-03-19T13:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 18692,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
       "id": "exec-mc-snapshot-1773508840670",
       "name": "Mission Control Snapshot",
       "agentId": "isolated",
       "enabled": true,
-      "schedule": "*/30 * * * *",
-      "lastRunAt": "2026-03-19T12:30:00.058000Z",
-      "nextRunAt": "2026-03-19T13:00:00Z",
+      "schedule": "0 * * * *",
+      "lastRunAt": "2026-03-19T13:00:00.051000Z",
+      "nextRunAt": "2026-03-19T14:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 32438,
+      "lastDurationMs": 29720,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -88,6 +74,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
+    },
+    {
+      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
+      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "0 8-23 * * *",
+      "lastRunAt": "2026-03-19T14:00:00.070000Z",
+      "nextRunAt": "2026-03-19T15:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 18200,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
     },
     {
       "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
@@ -242,6 +242,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
+    },
+    {
+      "id": "3d9764a5-2914-4231-b8e9-462d7dafa9ac",
+      "name": "Automation Scout Research \u2014 Sigrid Part 2 (Podcasts+ClawHub+Ideas)",
+      "agentId": "researcher",
+      "enabled": true,
+      "schedule": "0 6 * * 1,3,5",
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-20T05:00:00Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 600
     },
     {
       "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
