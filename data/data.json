@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-19T20:04:22Z",
+  "generatedAt": "2026-03-19T21:04:24Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 199,
+    "sessionCount": 191,
     "agentCount": 14
   },
   "budget": {
@@ -53,27 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-19T19:04:13.069000Z",
-      "nextRunAt": "2026-03-19T20:04:13.012000Z",
+      "lastRunAt": "2026-03-19T20:04:13.066000Z",
+      "nextRunAt": "2026-03-19T21:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 31078,
+      "lastDurationMs": 36634,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "3e06f445-c4dc-4be1-ae5d-f31bca21fdeb",
-      "name": "End of Day \u2014 Reflection, Situation & Handoff",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "30 21 * * *",
-      "lastRunAt": "2026-03-18T20:30:00.049000Z",
-      "nextRunAt": "2026-03-19T20:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 73451,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 480
     },
     {
       "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
@@ -81,12 +67,12 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-19T20:00:36.772000Z",
-      "nextRunAt": "2026-03-19T21:00:00Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 17330,
-      "consecutiveErrors": 2,
-      "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
+      "lastRunAt": "2026-03-19T21:00:00.040000Z",
+      "nextRunAt": "2026-03-19T22:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 15306,
+      "consecutiveErrors": 0,
+      "lastError": null,
       "timeoutSeconds": null
     },
     {
@@ -102,20 +88,6 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
-    },
-    {
-      "id": "1c13b028-3c8f-47dc-9d2e-8e76bf6d7ba9",
-      "name": "Overnight To-Do Tackler",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "30 23 * * *",
-      "lastRunAt": "2026-03-18T22:30:00.052000Z",
-      "nextRunAt": "2026-03-19T22:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 28198,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 900
     },
     {
       "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
@@ -144,20 +116,6 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
-    },
-    {
-      "id": "fd6a1592-3f90-4d8d-aeff-d43456059820",
-      "name": "Daily Conversation & Workflow Audit",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "30 1 * * *",
-      "lastRunAt": "2026-03-19T00:30:00.051000Z",
-      "nextRunAt": "2026-03-20T00:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 10369,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
     },
     {
       "id": "ab196a29-f9e8-43a9-bdd0-10b6b10e2b3b",
@@ -202,18 +160,18 @@
       "timeoutSeconds": 300
     },
     {
-      "id": "0a5f690e-a56b-441e-b70b-a33dee760200",
-      "name": "Automation Scout Research \u2014 Sigrid Part 1 (GitHub+Reddit+YT+HN)",
+      "id": "3e5ce5a8-8a59-468f-a50c-350b697467dc",
+      "name": "Automation Scout \u2014 Full Pipeline (Mon/Wed/Fri)",
       "agentId": "researcher",
       "enabled": true,
       "schedule": "30 5 * * 1,3,5",
-      "lastRunAt": "2026-03-18T04:30:00.051000Z",
+      "lastRunAt": null,
       "nextRunAt": "2026-03-20T04:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 355726,
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
       "consecutiveErrors": 0,
       "lastError": null,
-      "timeoutSeconds": 900
+      "timeoutSeconds": 1800
     },
     {
       "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
@@ -230,20 +188,6 @@
       "timeoutSeconds": 120
     },
     {
-      "id": "3d9764a5-2914-4231-b8e9-462d7dafa9ac",
-      "name": "Automation Scout Research \u2014 Sigrid Part 2 (Podcasts+ClawHub+Ideas)",
-      "agentId": "researcher",
-      "enabled": true,
-      "schedule": "0 6 * * 1,3,5",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-20T05:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 600
-    },
-    {
       "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
       "name": "Secret Expiry Monitor",
       "agentId": "assistant",
@@ -258,32 +202,18 @@
       "timeoutSeconds": 120
     },
     {
-      "id": "651ec939-7ffd-45fe-9ceb-b8aa8c90f006",
-      "name": "Automation Scout Report",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "30 6 * * 1,3,5",
-      "lastRunAt": "2026-03-18T05:30:00.043000Z",
-      "nextRunAt": "2026-03-20T05:30:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 96493,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "b6139283-6b73-4948-b60f-a60662352bce",
-      "name": "Reghar \u2014 Morning Proposal Review",
+      "id": "32f8616e-d4c3-4ba7-aab0-4988002be39d",
+      "name": "Daily Health Check \u2014 CRM + Champagne Pipeline",
       "agentId": "assistant",
       "enabled": true,
-      "schedule": "30 6 * * *",
-      "lastRunAt": "2026-03-19T05:30:00.051000Z",
-      "nextRunAt": "2026-03-20T05:30:00Z",
-      "lastRunStatus": "error",
-      "lastDurationMs": 9459,
-      "consecutiveErrors": 1,
-      "lastError": "\u26a0\ufe0f \u2709\ufe0f Message failed",
-      "timeoutSeconds": 300
+      "schedule": "0 8 * * *",
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-20T07:00:00Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
     },
     {
       "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
@@ -314,34 +244,6 @@
       "timeoutSeconds": 480
     },
     {
-      "id": "ce3025a8-8d29-47fe-ac22-8269cb842466",
-      "name": "CRM Daily Canary",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 8 * * *",
-      "lastRunAt": "2026-03-19T07:01:46.912000Z",
-      "nextRunAt": "2026-03-20T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 7683,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
-      "id": "7379cb5d-f0e2-423c-8455-1bd659f5984a",
-      "name": "Champagne Pipeline Watchdog",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 11 * * *",
-      "lastRunAt": "2026-03-19T10:00:39.647000Z",
-      "nextRunAt": "2026-03-20T10:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 28786,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
       "id": "881ffc11-a0a0-4808-b1cb-a194012db2e5",
       "name": "Agent Health Score",
       "agentId": "assistant",
@@ -354,6 +256,20 @@
       "consecutiveErrors": 2,
       "lastError": "Discord recipient is required. Use \"channel:<id>\" for channels or \"user:<id>\" for DMs.",
       "timeoutSeconds": 180
+    },
+    {
+      "id": "3e06f445-c4dc-4be1-ae5d-f31bca21fdeb",
+      "name": "End of Day \u2014 Reflection, Situation & Handoff",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "30 21 * * *",
+      "lastRunAt": "2026-03-19T20:30:00.017000Z",
+      "nextRunAt": "2026-03-20T20:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 25148,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 480
     },
     {
       "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
@@ -437,7 +353,7 @@
       "lastDurationMs": 131064,
       "consecutiveErrors": 0,
       "lastError": null,
-      "timeoutSeconds": 180
+      "timeoutSeconds": 300
     },
     {
       "id": "9100c6c2-0426-4afa-9ffe-8307b3008571",
@@ -564,34 +480,6 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 600
-    },
-    {
-      "id": "fb780bd7-30b8-4eb1-8495-3545775aecbb",
-      "name": "Portfolio State Digest",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "40 7 * * 1",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-23T06:40:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "1d1a162d-fc49-4bae-950e-c50b3dd0c8b9",
-      "name": "Revenue Log Update",
-      "agentId": "strategist",
-      "enabled": true,
-      "schedule": "0 8 * * 1",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-23T07:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 480
     },
     {
       "id": "78babec5-32fd-4902-81e1-f120926238b0",
@@ -721,8 +609,8 @@
     }
   ],
   "errors": {
-    "total": 4,
-    "critical": 2,
-    "warning": 2
+    "total": 2,
+    "critical": 1,
+    "warning": 1
   }
 }
