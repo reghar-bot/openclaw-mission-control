@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-19T15:04:23Z",
+  "generatedAt": "2026-03-19T16:04:22Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
@@ -53,41 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-19T14:04:13.056000Z",
-      "nextRunAt": "2026-03-19T15:04:13.012000Z",
+      "lastRunAt": "2026-03-19T15:04:13.067000Z",
+      "nextRunAt": "2026-03-19T16:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 34326,
+      "lastDurationMs": 33937,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
-      "name": "System Nervous System",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "20 */4 * * *",
-      "lastRunAt": "2026-03-19T11:22:05.771000Z",
-      "nextRunAt": "2026-03-19T15:22:05.709000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 8215,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
-      "name": "Discord Relay",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "40 */4 * * *",
-      "lastRunAt": "2026-03-19T11:42:52.455000Z",
-      "nextRunAt": "2026-03-19T15:42:52.404000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 5921,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
     },
     {
       "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
@@ -95,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-19T15:00:00.053000Z",
-      "nextRunAt": "2026-03-19T16:00:00Z",
+      "lastRunAt": "2026-03-19T16:00:00.018000Z",
+      "nextRunAt": "2026-03-19T17:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 8225,
+      "lastDurationMs": 20261,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -116,6 +88,34 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
+    },
+    {
+      "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
+      "name": "System Nervous System",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "20 */4 * * *",
+      "lastRunAt": "2026-03-19T15:22:05.770000Z",
+      "nextRunAt": "2026-03-19T19:22:05.709000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 55887,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
+      "name": "Discord Relay",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "40 */4 * * *",
+      "lastRunAt": "2026-03-19T15:42:52.464000Z",
+      "nextRunAt": "2026-03-19T19:42:52.404000Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 11596,
+      "consecutiveErrors": 1,
+      "lastError": "\u26a0\ufe0f \u270d\ufe0f Write: `to ~/.openclaw/workspace/pending-discord-posts.jsonl` failed",
+      "timeoutSeconds": 120
     },
     {
       "id": "881ffc11-a0a0-4808-b1cb-a194012db2e5",
@@ -707,8 +707,8 @@
     }
   ],
   "errors": {
-    "total": 3,
+    "total": 4,
     "critical": 0,
-    "warning": 3
+    "warning": 4
   }
 }
