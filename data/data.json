@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-20T02:04:24Z",
+  "generatedAt": "2026-03-20T03:04:21Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
@@ -53,27 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-20T01:04:13.082000Z",
-      "nextRunAt": "2026-03-20T02:04:13.012000Z",
+      "lastRunAt": "2026-03-20T02:04:13.072000Z",
+      "nextRunAt": "2026-03-20T03:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 26521,
+      "lastDurationMs": 29470,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "every 240m",
-      "lastRunAt": "2026-03-19T22:27:21.829000Z",
-      "nextRunAt": "2026-03-20T02:27:21.829000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 3855,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 60
     },
     {
       "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
@@ -144,6 +130,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "every 240m",
+      "lastRunAt": "2026-03-20T02:27:21.881000Z",
+      "nextRunAt": "2026-03-20T06:27:21.881000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 10662,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "32f8616e-d4c3-4ba7-aab0-4988002be39d",
