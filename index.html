@@ -321,6 +321,109 @@
     }
     table.cron-table tr:last-child td { border-bottom: none; }
     table.cron-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .failing-mobile-list {
+      display: none;
+      padding: 14px;
+      gap: 10px;
+    }
+    .failing-mobile-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+    .failing-mobile-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .failing-mobile-title {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .failing-mobile-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.45;
+      word-break: break-word;
+    }
+    .failing-mobile-agent {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .failing-mobile-count {
+      flex-shrink: 0;
+      min-width: 52px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .failing-mobile-count-value {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .failing-mobile-count-label {
+      display: block;
+      margin-top: 4px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .failing-mobile-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .failing-mobile-meta-item {
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+      padding: 8px 9px;
+      min-width: 0;
+    }
+    .failing-mobile-meta-label {
+      display: block;
+      margin-bottom: 4px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .failing-mobile-meta-value {
+      display: block;
+      font-size: 11px;
+      color: var(--text-primary);
+      line-height: 1.45;
+      word-break: break-word;
+    }
+    .failing-mobile-error {
+      display: grid;
+      gap: 6px;
+      padding-top: 2px;
+      border-top: 1px solid rgba(42,42,58,0.65);
+    }
+    .failing-mobile-error-text {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      word-break: break-word;
+    }
     .cron-name {
       font-weight: 500;
       color: var(--text-primary);
@@ -688,6 +791,92 @@
       gap: 2px;
       min-width: 520px;
     }
+    .cal-mobile-list {
+      display: none;
+      padding: 14px;
+      gap: 12px;
+    }
+    .cal-mobile-day {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .cal-mobile-day-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(42,42,58,0.6);
+    }
+    .cal-mobile-day-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .cal-mobile-day-count {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+    .cal-mobile-empty {
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .cal-mobile-events {
+      display: grid;
+      gap: 0;
+    }
+    .cal-mobile-event {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 10px;
+      padding: 10px 12px;
+      border-top: 1px solid rgba(42,42,58,0.45);
+    }
+    .cal-mobile-event:first-child {
+      border-top: none;
+    }
+    .cal-mobile-time {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .cal-mobile-event-main {
+      min-width: 0;
+      display: grid;
+      gap: 5px;
+    }
+    .cal-mobile-event-name {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+    .cal-mobile-event-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .cal-mobile-event-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      line-height: 1.45;
+      word-break: break-word;
+    }
     .cal-day-header {
       font-family: var(--font-mono); font-size: 9px; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
@@ -1020,11 +1209,38 @@
         max-width: min(280px, calc(100vw - 48px));
       }
       .agents-grid { grid-template-columns: 1fr; }
+      .failing-mobile-list { display: grid !important; }
+      table.cron-table { display: none !important; }
+      .failing-mobile-meta { grid-template-columns: 1fr; }
       .cal-wrapper {
-        padding: 12px 14px;
+        padding: 10px 12px 0;
         overflow-x: auto;
       }
-      .cal-grid { min-width: 460px; }
+      .cal-grid {
+        min-width: 420px;
+        grid-template-columns: 28px repeat(7, minmax(48px, 1fr));
+      }
+      .cal-day-header { font-size: 8px; padding: 3px 0 6px; }
+      .cal-hour-label {
+        font-size: 8px;
+        padding-right: 4px;
+        height: 18px;
+      }
+      .cal-cell {
+        height: 18px;
+        padding: 1px;
+        gap: 1px;
+      }
+      .cal-block {
+        height: 12px;
+        min-width: 10px;
+      }
+      .cal-mobile-list { display: grid; }
+      .cal-legend {
+        padding: 10px 14px 14px;
+        gap: 8px;
+      }
+      .cal-legend-item { font-size: 8px; }
       .backlog-summary { grid-template-columns: 1fr 1fr; }
       .backlog-row {
         gap: 8px;
@@ -1181,6 +1397,7 @@
             </thead>
             <tbody id="failing-tbody"></tbody>
           </table>
+          <div class="failing-mobile-list" id="failing-mobile-list" style="display:none"></div>
         </div>
       </div>
 
@@ -1290,6 +1507,7 @@
       <div class="cal-wrapper">
         <div class="cal-grid" id="cal-grid"><!-- rendered by JS --></div>
       </div>
+      <div class="cal-mobile-list" id="cal-mobile-list"><!-- rendered by JS --></div>
       <div class="cal-legend" id="cal-legend"><!-- rendered by JS --></div>
     </div>
 
@@ -1620,13 +1838,19 @@ function render(data) {
   const allClear = document.getElementById('all-clear-msg');
   const failTable = document.getElementById('failing-table');
   const failTbody = document.getElementById('failing-tbody');
+  const failMobileList = document.getElementById('failing-mobile-list');
   failingMeta.textContent = failing.length + ' failing';
   if (failing.length === 0) {
     allClear.style.display = 'flex';
     failTable.style.display = 'none';
+    if (failMobileList) failMobileList.style.display = 'none';
   } else {
     allClear.style.display = 'none';
     failTable.style.display = 'table';
+    if (failMobileList) {
+      failMobileList.style.display = 'grid';
+      failMobileList.innerHTML = '';
+    }
     failTbody.innerHTML = '';
     failing
       .sort((a, b) => (b.consecutiveErrors || 0) - (a.consecutiveErrors || 0))
@@ -1643,6 +1867,38 @@ function render(data) {
           <td><span class="last-run-ts">${relTime(cron.lastRunAt)}</span></td>
         `;
         failTbody.appendChild(tr);
+
+        if (failMobileList) {
+          const card = document.createElement('div');
+          card.className = 'failing-mobile-card';
+          card.innerHTML = `
+            <div class="failing-mobile-top">
+              <div class="failing-mobile-title">
+                <div class="failing-mobile-name">${escapeHtml(cron.name || cron.id || 'Unnamed cron')}</div>
+                <div class="failing-mobile-agent" style="color:${agentColor(cron.agentId)}">${escapeHtml(cron.agentId || '—')}</div>
+              </div>
+              <div class="failing-mobile-count">
+                <span class="failing-mobile-count-value" style="color:${errs >= 2 ? 'var(--status-crit)' : 'var(--status-warn)'}">${errs}</span>
+                <span class="failing-mobile-count-label">Errors</span>
+              </div>
+            </div>
+            <div class="failing-mobile-meta">
+              <div class="failing-mobile-meta-item">
+                <span class="failing-mobile-meta-label">Category</span>
+                <span class="failing-mobile-meta-value"><span class="err-cat ${cat}">${cat}</span></span>
+              </div>
+              <div class="failing-mobile-meta-item">
+                <span class="failing-mobile-meta-label">Last Run</span>
+                <span class="failing-mobile-meta-value">${relTime(cron.lastRunAt)}</span>
+              </div>
+            </div>
+            <div class="failing-mobile-error">
+              <span class="failing-mobile-meta-label">Last Error</span>
+              <span class="failing-mobile-error-text">${escapeHtml(cron.lastError || '—')}</span>
+            </div>
+          `;
+          failMobileList.appendChild(card);
+        }
       });
   }
 
@@ -2043,6 +2299,7 @@ function parseCronSchedule(schedule) {
 function renderCronCalendar(data) {
   const grid = document.getElementById('cal-grid');
   const legend = document.getElementById('cal-legend');
+  const mobileList = document.getElementById('cal-mobile-list');
   if (!grid) return;
 
   const crons = (data && data.crons) || [];
@@ -2076,6 +2333,27 @@ function renderCronCalendar(data) {
   });
 
   const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const mobileDayBuckets = Array.from({ length: 7 }, () => []);
+  crons.forEach(cron => {
+    if (!cron.enabled) return;
+    const parsed = parseCronSchedule(cron.schedule);
+    if (!parsed) return;
+    parsed.days.forEach(jsD => {
+      const col = jsDay2col(jsD);
+      if (col < 0 || col > 6) return;
+      mobileDayBuckets[col].push({
+        hour: parsed.hour,
+        minute: 0,
+        name: cron.name || cron.id,
+        schedule: cron.schedule,
+        nextRun: cron.nextRunAt,
+        agentId: cron.agentId || '—',
+        color: agentColor(cron.agentId),
+        status: cronStatusClass(cron),
+      });
+    });
+  });
+  mobileDayBuckets.forEach(bucket => bucket.sort((a, b) => a.hour - b.hour || a.name.localeCompare(b.name)));
   grid.innerHTML = '';
 
   // Header row: empty corner + 7 day labels
@@ -2133,6 +2411,38 @@ function renderCronCalendar(data) {
     li.innerHTML = `<div class="cal-legend-dot" style="background:${item.color}"></div>${item.label}`;
     legend.appendChild(li);
   });
+
+  if (mobileList) {
+    mobileList.innerHTML = '';
+    days.forEach((dayLabel, index) => {
+      const dayWrap = document.createElement('div');
+      dayWrap.className = 'cal-mobile-day';
+      const items = mobileDayBuckets[index];
+      const countLabel = items.length ? `${items.length} run${items.length !== 1 ? 's' : ''}` : 'No runs';
+      const eventsHtml = items.length
+        ? `<div class="cal-mobile-events">${items.map(item => `
+            <div class="cal-mobile-event">
+              <div class="cal-mobile-time">${String(item.hour).padStart(2, '0')}:00</div>
+              <div class="cal-mobile-event-main">
+                <div class="cal-mobile-event-name">
+                  <span class="cal-mobile-event-dot" style="background:${item.color};opacity:${item.status === 'paused' ? '0.35' : '0.8'}"></span>
+                  <span>${escapeHtml(item.name)}</span>
+                </div>
+                <div class="cal-mobile-event-sub">${escapeHtml(item.agentId)} · ${escapeHtml(item.schedule || '—')} · ${escapeHtml(item.nextRun ? relTime(item.nextRun) : '—')}</div>
+              </div>
+            </div>
+          `).join('')}</div>`
+        : '<div class="cal-mobile-empty">Nothing scheduled.</div>';
+      dayWrap.innerHTML = `
+        <div class="cal-mobile-day-header">
+          <span class="cal-mobile-day-name">${dayLabel}</span>
+          <span class="cal-mobile-day-count">${countLabel}</span>
+        </div>
+        ${eventsHtml}
+      `;
+      mobileList.appendChild(dayWrap);
+    });
+  }
 }
 
 
