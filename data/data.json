@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-20T04:04:22Z",
+  "generatedAt": "2026-03-20T05:04:21Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "CRITICAL",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 82,
+    "sessionCount": 87,
     "agentCount": 14
   },
   "budget": {
@@ -53,41 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-20T03:04:13.078000Z",
-      "nextRunAt": "2026-03-20T04:04:13.012000Z",
+      "lastRunAt": "2026-03-20T04:04:13.073000Z",
+      "nextRunAt": "2026-03-20T05:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 24407,
+      "lastDurationMs": 25106,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "3e5ce5a8-8a59-468f-a50c-350b697467dc",
-      "name": "Automation Scout \u2014 Full Pipeline (Mon/Wed/Fri)",
-      "agentId": "researcher",
-      "enabled": true,
-      "schedule": "30 5 * * 1,3,5",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-20T04:30:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 1800
-    },
-    {
-      "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
-      "name": "Cost Tracker \u2014 Daily Report",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "0 6 * * *",
-      "lastRunAt": "2026-03-19T05:00:41.269000Z",
-      "nextRunAt": "2026-03-20T05:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 9615,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
     },
     {
       "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
@@ -272,6 +244,20 @@
       "timeoutSeconds": 300
     },
     {
+      "id": "2ee4e00c-f65d-4891-9787-ff77a784443f",
+      "name": "Cost Tracker \u2014 Daily Report",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "0 6 * * *",
+      "lastRunAt": "2026-03-20T05:00:00.069000Z",
+      "nextRunAt": "2026-03-21T05:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 15405,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
+    },
+    {
       "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
       "name": "Reminder: Evaluate Nolea Multi-Agent Marketing Team",
       "agentId": "main",
@@ -410,6 +396,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 900
+    },
+    {
+      "id": "3e5ce5a8-8a59-468f-a50c-350b697467dc",
+      "name": "Automation Scout \u2014 Full Pipeline (Mon/Wed/Fri)",
+      "agentId": "researcher",
+      "enabled": true,
+      "schedule": "30 5 * * 1,3,5",
+      "lastRunAt": "2026-03-20T04:30:00.047000Z",
+      "nextRunAt": "2026-03-23T04:30:00Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 185250,
+      "consecutiveErrors": 1,
+      "lastError": "\u26a0\ufe0f \u2709\ufe0f Message failed",
+      "timeoutSeconds": 1800
     },
     {
       "id": "b786cb07-8927-4b04-a709-8dafe21adcc2",
@@ -609,8 +609,8 @@
     }
   ],
   "errors": {
-    "total": 4,
+    "total": 5,
     "critical": 3,
-    "warning": 1
+    "warning": 2
   }
 }
