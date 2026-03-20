@@ -1109,6 +1109,9 @@
 // ── Password gate ──────────────────────────────────────
 const HASH = '7d95b960e3e0240d89ccfcc31bf51b8b84152fc5520b44b3beea6cccd40bbb7b';
 const SESSION_KEY = 'mc_auth_v1';
+const TAB_STORAGE_KEY = 'mc_active_tab_v1';
+const DEFAULT_TAB = 'overview';
+const VALID_TABS = ['overview', 'agents', 'decisions', 'ops'];
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -1211,27 +1214,77 @@ function el(tag, cls, html) {
   return e;
 }
 
+function normalizeTabName(tabName) {
+  return VALID_TABS.includes(tabName) ? tabName : DEFAULT_TAB;
+}
+
+function readStoredTab() {
+  try {
+    return normalizeTabName(localStorage.getItem(TAB_STORAGE_KEY));
+  } catch (_) {
+    return DEFAULT_TAB;
+  }
+}
+
+function writeStoredTab(tabName) {
+  try {
+    localStorage.setItem(TAB_STORAGE_KEY, tabName);
+  } catch (_) {
+    // localStorage may be unavailable; fail soft.
+  }
+}
+
+function readHashTab() {
+  const hash = (window.location.hash || '').replace(/^#/, '').trim().toLowerCase();
+  return VALID_TABS.includes(hash) ? hash : null;
+}
+
+function updateHash(tabName) {
+  const nextHash = '#' + tabName;
+  if (window.location.hash === nextHash) return;
+  if (history && typeof history.replaceState === 'function') {
+    history.replaceState(null, '', nextHash);
+    return;
+  }
+  window.location.hash = tabName;
+}
+
 function initTabs() {
   const buttons = Array.from(document.querySelectorAll('[data-tab-target]'));
   const panels = Array.from(document.querySelectorAll('[data-tab-panel]'));
   if (!buttons.length || !panels.length) return;
 
-  const setActiveTab = (tabName) => {
+  const setActiveTab = (tabName, options = {}) => {
+    const { persist = true, updateUrl = true } = options;
+    const normalizedTab = normalizeTabName(tabName);
+
     buttons.forEach(button => {
-      const active = button.dataset.tabTarget === tabName;
+      const active = button.dataset.tabTarget === normalizedTab;
       button.classList.toggle('active', active);
       button.setAttribute('aria-selected', active ? 'true' : 'false');
     });
+
     panels.forEach(panel => {
-      panel.classList.toggle('active', panel.dataset.tabPanel === tabName);
+      panel.classList.toggle('active', panel.dataset.tabPanel === normalizedTab);
     });
+
+    if (persist) writeStoredTab(normalizedTab);
+    if (updateUrl) updateHash(normalizedTab);
   };
 
   buttons.forEach(button => {
     button.addEventListener('click', () => setActiveTab(button.dataset.tabTarget));
   });
 
-  setActiveTab('overview');
+  window.addEventListener('hashchange', () => {
+    const hashTab = readHashTab();
+    if (hashTab) {
+      setActiveTab(hashTab, { persist: true, updateUrl: false });
+    }
+  });
+
+  const initialTab = readHashTab() || readStoredTab();
+  setActiveTab(initialTab);
 }
 
 // ── Aggregate system status ────────────────────────────
