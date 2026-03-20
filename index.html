@@ -2158,20 +2158,180 @@ const AGENT_GROUPS = [
   },
 ];
 
+const ACTIVITY_WINDOW_HOURS = 2;
+
 const AGENT_DIRECTORY = {
-  Reghar: { id: 'main', emoji: '🧠', color: '#3b82f6', fallbackHoursAgo: 0.2 },
-  Pip: { id: 'assistant', emoji: '🤖', color: '#6b7280', fallbackHoursAgo: 18 },
-  Sigrid: { id: 'researcher', emoji: '🔬', color: '#8b5cf6', fallbackHoursAgo: 4 },
-  Inkwell: { id: 'writer', emoji: '✍️', color: '#10b981', fallbackHoursAgo: 3.5 },
-  Kodex: { id: 'developer', emoji: '⚙️', color: '#f97316', fallbackHoursAgo: 11 },
-  Dais: { id: 'designer', emoji: '🎨', color: '#06b6d4', fallbackHoursAgo: 0.05 },
-  Vessel: { id: 'nolea-operator', emoji: '⛵', color: '#ec4899', fallbackHoursAgo: 24 },
-  Anselme: { id: 'nolea-analyst', emoji: '📊', color: '#ec4899', fallbackHoursAgo: 6 },
-  Margot: { id: 'nolea-sommelier', emoji: '🍷', color: '#ec4899', fallbackHoursAgo: 24 },
-  Charles: { id: 'leon-assistant', emoji: '🧩', color: '#0d9488', fallbackHoursAgo: 24 },
-  'Kevin-G': { id: 'leon-builder', emoji: '🛠️', color: '#0d9488', fallbackHoursAgo: 24 },
-  'Costco Guy': { id: 'leon-designer', emoji: '🛒', color: '#0d9488', fallbackHoursAgo: 24 },
+  Reghar: {
+    runtimeIds: ['main'],
+    emoji: '🧠',
+    color: '#3b82f6',
+    notes: 'Orchestrator + system cron owner',
+  },
+  Pip: {
+    runtimeIds: ['assistant'],
+    emoji: '🤖',
+    color: '#6b7280',
+    notes: 'Assistant / triage runtime',
+  },
+  Sigrid: {
+    runtimeIds: ['researcher'],
+    emoji: '🔬',
+    color: '#8b5cf6',
+    notes: 'Research runtime',
+  },
+  Inkwell: {
+    runtimeIds: ['writer'],
+    emoji: '✍️',
+    color: '#10b981',
+    notes: 'Writer runtime',
+  },
+  Kodex: {
+    runtimeIds: ['developer'],
+    emoji: '⚙️',
+    color: '#f97316',
+    notes: 'Developer runtime',
+  },
+  Dais: {
+    runtimeIds: ['designer'],
+    emoji: '🎨',
+    color: '#06b6d4',
+    notes: 'Designer runtime',
+  },
+  Vessel: {
+    runtimeIds: ['nolea-operator', 'nolea-strategist', 'vesslan'],
+    emoji: '⛵',
+    color: '#ec4899',
+    notes: 'Canonical Nolea operator; includes older Vesslan naming if it appears',
+  },
+  Anselme: {
+    runtimeIds: ['nolea-analyst'],
+    emoji: '📊',
+    color: '#ec4899',
+    notes: 'Nolea analytics runtime',
+  },
+  Margot: {
+    runtimeIds: ['nolea-sommelier'],
+    emoji: '🍷',
+    color: '#ec4899',
+    notes: 'Wine specialist runtime',
+  },
+  Charles: {
+    runtimeIds: ['leon-assistant'],
+    emoji: '🧩',
+    color: '#0d9488',
+    notes: 'Leon assistant runtime',
+  },
+  'Kevin-G': {
+    runtimeIds: ['leon-builder'],
+    emoji: '🛠️',
+    color: '#0d9488',
+    notes: 'Leon builder runtime',
+  },
+  'Costco Guy': {
+    runtimeIds: ['leon-designer'],
+    emoji: '🛒',
+    color: '#0d9488',
+    notes: 'Leon design runtime',
+  },
 };
+
+const RUNTIME_AGENT_INDEX = Object.entries(AGENT_DIRECTORY).reduce((index, [agentName, entry]) => {
+  (entry.runtimeIds || []).forEach(runtimeId => {
+    if (!runtimeId) return;
+    index[String(runtimeId).toLowerCase()] = agentName;
+  });
+  return index;
+}, {});
+
+function normalizeRuntimeId(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+function getAgentDirectoryEntry(agentName) {
+  return AGENT_DIRECTORY[agentName] || null;
+}
+
+function resolveLifecycleAgentNameFromRuntimeId(runtimeId) {
+  return RUNTIME_AGENT_INDEX[normalizeRuntimeId(runtimeId)] || null;
+}
+
+function getRuntimeIdsForLifecycleAgent(agentName) {
+  const entry = getAgentDirectoryEntry(agentName);
+  return entry && Array.isArray(entry.runtimeIds) ? entry.runtimeIds.map(normalizeRuntimeId) : [];
+}
+
+function collectAgentOpsStats(crons) {
+  const stats = {};
+
+  Object.keys(AGENT_DIRECTORY).forEach(agentName => {
+    stats[agentName] = {
+      cronCount: 0,
+      lastRunAt: null,
+      runtimeIds: getRuntimeIdsForLifecycleAgent(agentName),
+      unresolvedRuntimeIds: [],
+    };
+  });
+
+  (Array.isArray(crons) ? crons : []).forEach(cron => {
+    const runtimeId = normalizeRuntimeId(cron.agentId);
+    const agentName = resolveLifecycleAgentNameFromRuntimeId(runtimeId);
+
+    if (!agentName) {
+      if (runtimeId) {
+        if (!stats.__unmapped) {
+          stats.__unmapped = {
+            cronCount: 0,
+            lastRunAt: null,
+            runtimeIds: [],
+            unresolvedRuntimeIds: [],
+          };
+        }
+        stats.__unmapped.cronCount += 1;
+        if (!stats.__unmapped.unresolvedRuntimeIds.includes(runtimeId)) {
+          stats.__unmapped.unresolvedRuntimeIds.push(runtimeId);
+        }
+      }
+      return;
+    }
+
+    const bucket = stats[agentName];
+    bucket.cronCount += 1;
+    if (runtimeId && !bucket.runtimeIds.includes(runtimeId)) {
+      bucket.runtimeIds.push(runtimeId);
+    }
+
+    if (cron.lastRunAt) {
+      const ts = new Date(cron.lastRunAt).getTime();
+      if (!Number.isNaN(ts) && (!bucket.lastRunAt || ts > bucket.lastRunAt)) {
+        bucket.lastRunAt = ts;
+      }
+    }
+  });
+
+  return stats;
+}
+
+function getAgentActivityState(agentName, opsStats) {
+  const directory = getAgentDirectoryEntry(agentName) || {};
+  const ops = (opsStats && opsStats[agentName]) || null;
+  const lastRunAt = ops && ops.lastRunAt ? ops.lastRunAt : null;
+  const hoursAgo = lastRunAt ? (Date.now() - lastRunAt) / 3600000 : Infinity;
+  const isActive = hoursAgo < ACTIVITY_WINDOW_HOURS;
+  const runtimeIds = ops && Array.isArray(ops.runtimeIds) && ops.runtimeIds.length
+    ? ops.runtimeIds
+    : getRuntimeIdsForLifecycleAgent(agentName);
+
+  return {
+    isActive,
+    statusLabel: isActive ? 'ACTIVE' : 'IDLE',
+    statusClass: isActive ? 'active' : 'idle',
+    hoursAgo,
+    lastRunAt,
+    cronCount: ops ? ops.cronCount : 0,
+    runtimeIds,
+    notes: directory.notes || '',
+  };
+}
 
 function getLifecycleCurrentTeam(data) {
   const lifecycle = (data && data.agentLifecycle) || {};
@@ -2198,22 +2358,12 @@ function getOrderedLifecycleGroups(items) {
   }).filter(group => group.items.length);
 }
 
-function collectAgentOpsStats(crons) {
-  const stats = {};
-  (Array.isArray(crons) ? crons : []).forEach(cron => {
-    const key = cron.agentId || 'unknown';
-    if (!stats[key]) {
-      stats[key] = { cronCount: 0, lastRunAt: null };
-    }
-    stats[key].cronCount += 1;
-    if (cron.lastRunAt) {
-      const ts = new Date(cron.lastRunAt).getTime();
-      if (!Number.isNaN(ts) && (!stats[key].lastRunAt || ts > stats[key].lastRunAt)) {
-        stats[key].lastRunAt = ts;
-      }
-    }
-  });
-  return stats;
+function formatRuntimeIds(runtimeIds) {
+  return Array.isArray(runtimeIds) && runtimeIds.length ? runtimeIds.join(', ') : '—';
+}
+
+function formatLastActive(lastRunAt) {
+  return lastRunAt ? relTime(lastRunAt) : 'No mapped activity yet';
 }
 
 function renderAgentTeam(data) {
@@ -2231,12 +2381,8 @@ function renderAgentTeam(data) {
     wrapper.className = 'agent-group';
 
     const activeCount = group.items.reduce((count, item) => {
-      const directory = AGENT_DIRECTORY[item.agent] || {};
-      const ops = opsStats[directory.id] || null;
-      const hoursAgo = ops && ops.lastRunAt
-        ? (Date.now() - ops.lastRunAt) / 3600000
-        : (directory.fallbackHoursAgo ?? Infinity);
-      return count + (hoursAgo < 2 ? 1 : 0);
+      const activity = getAgentActivityState(item.agent, opsStats);
+      return count + (activity.isActive ? 1 : 0);
     }, 0);
 
     wrapper.innerHTML = `
@@ -2252,27 +2398,23 @@ function renderAgentTeam(data) {
     cards.style.padding = '0 18px 18px';
 
     group.items.forEach(item => {
-      const directory = AGENT_DIRECTORY[item.agent] || {};
-      const ops = opsStats[directory.id] || null;
-      const fallbackHoursAgo = directory.fallbackHoursAgo ?? Infinity;
-      const hoursAgo = ops && ops.lastRunAt
-        ? (Date.now() - ops.lastRunAt) / 3600000
-        : fallbackHoursAgo;
-      const isActive = hoursAgo < 2;
-      const statusCls = isActive ? 'active' : 'idle';
+      const directory = getAgentDirectoryEntry(item.agent) || {};
+      const activity = getAgentActivityState(item.agent, opsStats);
       const card = document.createElement('div');
       card.className = 'agent-card';
       card.style.setProperty('--agent-color', directory.color || group.color || 'var(--accent)');
       card.innerHTML = `
         <div class="agent-card-top">
           <span class="agent-emoji">${escapeHtml(directory.emoji || '•')}</span>
-          <span class="agent-status-dot ${statusCls}"></span>
+          <span class="agent-status-dot ${activity.statusClass}"></span>
         </div>
         <div class="agent-card-name">${escapeHtml(item.agent || 'Unknown')}</div>
         <div class="agent-card-role">${escapeHtml(item.role || 'Role not specified')}</div>
+        <div class="agent-card-role" style="font-size:10px;color:var(--text-secondary);margin-top:6px;">runtime: ${escapeHtml(formatRuntimeIds(activity.runtimeIds))}</div>
+        <div class="agent-card-role" style="font-size:10px;color:var(--text-muted);margin-top:4px;">last active: ${escapeHtml(formatLastActive(activity.lastRunAt))}</div>
         <div class="agent-card-footer">
           <span class="agent-card-model">${escapeHtml(item.defaultModel || 'model —')}</span>
-          <span class="agent-status-label ${statusCls}">${isActive ? 'ACTIVE' : 'IDLE'}</span>
+          <span class="agent-status-label ${activity.statusClass}">${activity.statusLabel}</span>
         </div>
       `;
       cards.appendChild(card);
@@ -2283,8 +2425,11 @@ function renderAgentTeam(data) {
   });
 
   if (metaEl) {
+    const unmapped = opsStats.__unmapped && opsStats.__unmapped.unresolvedRuntimeIds.length
+      ? ` · unmapped runtime ids: ${opsStats.__unmapped.unresolvedRuntimeIds.join(', ')}`
+      : '';
     metaEl.textContent = currentTeam.length
-      ? `${currentTeam.length} agents from lifecycle source`
+      ? `${currentTeam.length} agents from lifecycle source · ${ACTIVITY_WINDOW_HOURS}h activity window${unmapped}`
       : 'No team data';
   }
 }
