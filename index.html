@@ -892,6 +892,7 @@
       <nav class="tabs-nav" aria-label="Mission Control views">
         <button class="tab-button active" type="button" data-tab-target="overview" aria-selected="true">Overview</button>
         <button class="tab-button" type="button" data-tab-target="agents" aria-selected="false">Agents</button>
+        <button class="tab-button" type="button" data-tab-target="team" aria-selected="false">Team</button>
         <button class="tab-button" type="button" data-tab-target="decisions" aria-selected="false">Decisions</button>
         <button class="tab-button" type="button" data-tab-target="ops" aria-selected="false">Ops</button>
       </nav>
@@ -1063,6 +1064,35 @@
 
       </section>
 
+      <section class="tab-panel" data-tab-panel="team">
+
+    <div class="section-card one-col" style="margin-bottom:16px;" id="team-overview-card">
+      <div class="section-header">
+        <span class="section-title">Current Team</span>
+        <span class="section-meta" id="lifecycle-team-meta">Mission Control visibility</span>
+      </div>
+      <div class="section-body" id="lifecycle-team-summary" style="border-bottom:1px solid var(--border); display:none;"></div>
+      <div class="backlog-list" id="lifecycle-current-team"><!-- rendered by JS --></div>
+    </div>
+
+    <div class="section-card one-col" style="margin-bottom:16px;" id="team-candidates-card">
+      <div class="section-header">
+        <span class="section-title">Candidate Agents / Capabilities</span>
+        <span class="section-meta" id="lifecycle-candidates-meta">Pipeline</span>
+      </div>
+      <div class="backlog-list" id="lifecycle-candidates"><!-- rendered by JS --></div>
+    </div>
+
+    <div class="section-card one-col" style="margin-bottom:24px;" id="team-review-card">
+      <div class="section-header">
+        <span class="section-title">Under Review / At Risk</span>
+        <span class="section-meta" id="lifecycle-review-meta">Escalations</span>
+      </div>
+      <div class="backlog-list" id="lifecycle-under-review"><!-- rendered by JS --></div>
+    </div>
+
+      </section>
+
       <section class="tab-panel" data-tab-panel="decisions">
         <div class="section-card one-col" style="margin-bottom:24px;" id="decisions-card">
           <div class="section-header">
@@ -1111,7 +1141,7 @@ const HASH = '7d95b960e3e0240d89ccfcc31bf51b8b84152fc5520b44b3beea6cccd40bbb7b';
 const SESSION_KEY = 'mc_auth_v1';
 const TAB_STORAGE_KEY = 'mc_active_tab_v1';
 const DEFAULT_TAB = 'overview';
-const VALID_TABS = ['overview', 'agents', 'decisions', 'ops'];
+const VALID_TABS = ['overview', 'agents', 'team', 'decisions', 'ops'];
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -1528,6 +1558,7 @@ function render(data) {
   // ── New sections
   renderAgentTeam(data);
   renderCronCalendar(data);
+  renderLifecycleTeam(data);
   renderBacklog(data);
   renderDailyLogs(data);
 }
@@ -1557,6 +1588,27 @@ const MOCK_DATA = {
     { name: 'Nightly Maintenance', schedule: 'Daily 02:00–04:00', status: 'ok', statusNote: 'Audit + Memory + QMD completed at 03:47', lastSuccess: '2026-03-14' },
     { name: 'RE Daily / Weekly', schedule: 'PAUSED', status: 'paused', statusNote: 'Cost-cutting — re-enable when cost pressure eases', lastSuccess: '2026-03-01' }
   ],
+  agentLifecycle: {
+    purpose: 'Visible source of truth for current team, candidates, and review status.',
+    governance: [
+      'New agent ideas should be recorded before becoming permanent hires.',
+      'Candidates usually move through idea → researching → trial → your-call → approved/rejected.',
+      'Firing, retiring, or decommissioning an agent always requires Ragnar sign-off.'
+    ],
+    currentTeam: [
+      { agent: 'Reghar', role: 'orchestrator / final judgment / strategic control', group: 'core', defaultModel: 'claude-sonnet', status: 'healthy', stage: 'approved', decisionLevel: 'your-call', currentAssessment: 'Strong at synthesis and final judgment.', knownIssues: 'Can become fallback for edge cases.', nextLikelyImprovement: 'Push more cheap first-pass routing.' },
+      { agent: 'Pip', role: 'assistant / triage / operations support', group: 'core', defaultModel: 'low-cost fast model', status: 'healthy', stage: 'approved', decisionLevel: 'review', currentAssessment: 'Useful low-cost operator and review surface.', knownIssues: 'Role boundaries still broad.', nextLikelyImprovement: 'Sharpen into explicit first-pass routing.' },
+      { agent: 'Charles', role: 'repo-bound implementation contractor', group: 'specialist', defaultModel: 'claude-sonnet', status: 'under-review', stage: 'approved', decisionLevel: 'your-call', currentAssessment: 'Useful with strict repo boundaries.', knownIssues: 'Boundary drift risk.', nextLikelyImprovement: 'Monitor scope containment.' }
+    ],
+    candidates: [
+      { agent: 'Pip First-Pass Router', role: 'cheap first-pass routing / triage layer', group: 'candidate', defaultModel: 'low-cost fast model', stage: 'researching', decisionLevel: 'review', candidateType: 'agent-mode', rationale: 'Reduce expensive main-agent handling for obvious requests.', currentAssessment: 'Need is real; discipline is main gap.', knownIssues: 'Risk of vague generic helper.', nextLikelyImprovement: 'Trial strict intake pattern.' },
+      { agent: 'Nolea Specialist', role: 'Nolea-native writer / designer / operator specialist', group: 'candidate', defaultModel: 'claude-sonnet', stage: 'idea', decisionLevel: 'your-call', candidateType: 'agent', rationale: 'Frequent domain-specific workload may justify specialization.', currentAssessment: 'Promising but not yet clearly distinct.', knownIssues: 'Could fragment ownership too early.', nextLikelyImprovement: 'Define exact repeated Nolea workload.' },
+      { agent: 'Visual Ops Helper', role: 'screenshot capture / lightweight UI inspection / visual ops support', group: 'candidate', defaultModel: 'low-cost fast model', stage: 'researching', decisionLevel: 'review', candidateType: 'capability', rationale: 'Likely better as a capability before becoming an agent.', currentAssessment: 'Real need exists.', knownIssues: 'May overlap with Dais if agentized too early.', nextLikelyImprovement: 'Trial helper workflow first.' }
+    ],
+    underReview: [
+      { agent: 'Charles', concern: 'Repo boundary drift and ownership leakage', status: 'under-review', stage: 'your-call', decisionLevel: 'your-call', currentAssessment: 'Keep active for now but monitor distinctness.', triggerForDecision: 'Repeat cross-repo leakage or unclear ownership.', note: 'Retirement or firing requires Ragnar sign-off.' }
+    ]
+  },
   crons: [
     { id: 'circuit-breaker', name: 'Circuit Breaker — Gateway & Spend Monitor', agentId: 'main', enabled: true, schedule: '*/15 * * * *', lastRunAt: new Date(Date.now()-14*60000).toISOString(), nextRunAt: new Date(Date.now()+1*60000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 60 },
     { id: 'resource-monitor', name: 'Resource Monitor', agentId: 'main', enabled: true, schedule: '*/15 * * * *', lastRunAt: new Date(Date.now()-15*60000).toISOString(), nextRunAt: new Date(Date.now()+0.5*60000).toISOString(), lastRunStatus: 'skipped', lastDurationMs: 0, consecutiveErrors: 0, lastError: null, timeoutSeconds: 60 },
@@ -1850,6 +1902,111 @@ function renderCronCalendar(data) {
     li.innerHTML = `<div class="cal-legend-dot" style="background:${item.color}"></div>${item.label}`;
     legend.appendChild(li);
   });
+}
+
+
+// ══════════════════════════════════════════════════════
+// SECTION 10: Agent Lifecycle / Team
+// ══════════════════════════════════════════════════════
+
+function lifecycleTag(label, cls) {
+  return `<span class="lifecycle-tag ${escapeHtml((cls || '').toLowerCase())}">${escapeHtml(label || '—')}</span>`;
+}
+
+function renderLifecycleRows(targetId, items, kind) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  if (!Array.isArray(items) || !items.length) {
+    el.innerHTML = '<div class="backlog-empty">No lifecycle entries in this section.</div>';
+    return;
+  }
+
+  el.innerHTML = '';
+  items.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'lifecycle-grid-row';
+    if (kind === 'review') {
+      row.innerHTML = `
+        <div>
+          <div class="lifecycle-card-title">${escapeHtml(item.agent || 'Unknown')}</div>
+          <div class="lifecycle-card-sub">${escapeHtml(item.concern || 'Concern not specified')}</div>
+        </div>
+        <div class="lifecycle-pills">
+          ${lifecycleTag(item.status || 'unknown', item.status || 'unknown')}
+          ${lifecycleTag(item.stage || 'review', item.stage || 'review')}
+          ${lifecycleTag(item.decisionLevel || 'review', item.decisionLevel || 'review')}
+        </div>
+        <div class="lifecycle-notes">${escapeHtml(item.triggerForDecision || '—')}</div>
+        <div class="lifecycle-notes"><strong style="color:var(--text-primary);display:block;margin-bottom:6px;">Assessment</strong>${escapeHtml(item.currentAssessment || item.note || '—')}</div>
+      `;
+    } else {
+      row.innerHTML = `
+        <div>
+          <div class="lifecycle-card-title">${escapeHtml(item.agent || 'Unknown')}</div>
+          <div class="lifecycle-card-sub">${escapeHtml(item.role || 'Role not specified')} · ${escapeHtml(item.group || 'group —')} · ${escapeHtml(item.defaultModel || 'model —')}</div>
+        </div>
+        <div class="lifecycle-pills">
+          ${item.status ? lifecycleTag(item.status, item.status) : ''}
+          ${item.stage ? lifecycleTag(item.stage, item.stage) : ''}
+          ${item.decisionLevel ? lifecycleTag(item.decisionLevel, item.decisionLevel) : ''}
+          ${item.candidateType ? lifecycleTag(item.candidateType, 'review') : ''}
+        </div>
+        <div class="lifecycle-notes"><strong style="color:var(--text-primary);display:block;margin-bottom:6px;">Assessment</strong>${escapeHtml(item.currentAssessment || item.rationale || '—')}</div>
+        <div class="lifecycle-notes"><strong style="color:var(--text-primary);display:block;margin-bottom:6px;">Issues / Next</strong>${escapeHtml(item.knownIssues || '—')}<br><br><strong style="color:var(--text-primary);display:block;margin-bottom:6px;">Next likely improvement</strong>${escapeHtml(item.nextLikelyImprovement || '—')}</div>
+      `;
+    }
+    el.appendChild(row);
+  });
+}
+
+function renderLifecycleTeam(data) {
+  const lifecycle = (data && data.agentLifecycle) || {};
+  const currentTeam = Array.isArray(lifecycle.currentTeam) ? lifecycle.currentTeam : [];
+  const candidates = Array.isArray(lifecycle.candidates) ? lifecycle.candidates : [];
+  const underReview = Array.isArray(lifecycle.underReview) ? lifecycle.underReview : [];
+  const governance = Array.isArray(lifecycle.governance) ? lifecycle.governance : [];
+
+  const teamMeta = document.getElementById('lifecycle-team-meta');
+  const candidatesMeta = document.getElementById('lifecycle-candidates-meta');
+  const reviewMeta = document.getElementById('lifecycle-review-meta');
+  const summaryEl = document.getElementById('lifecycle-team-summary');
+
+  if (teamMeta) teamMeta.textContent = currentTeam.length ? `${currentTeam.length} active role${currentTeam.length !== 1 ? 's' : ''}` : 'No team data';
+  if (candidatesMeta) candidatesMeta.textContent = candidates.length ? `${candidates.length} candidate${candidates.length !== 1 ? 's' : ''}` : 'No candidates';
+  if (reviewMeta) reviewMeta.textContent = underReview.length ? `${underReview.length} flagged item${underReview.length !== 1 ? 's' : ''}` : 'No active review items';
+
+  if (summaryEl) {
+    if (governance.length || lifecycle.purpose) {
+      summaryEl.style.display = 'block';
+      summaryEl.innerHTML = `
+        <div class="lifecycle-summary">
+          <div class="backlog-stat">
+            <div class="backlog-stat-label">Current Team</div>
+            <div class="backlog-stat-value">${currentTeam.length}</div>
+          </div>
+          <div class="backlog-stat">
+            <div class="backlog-stat-label">Candidates</div>
+            <div class="backlog-stat-value">${candidates.length}</div>
+          </div>
+          <div class="backlog-stat">
+            <div class="backlog-stat-label">Under Review</div>
+            <div class="backlog-stat-value">${underReview.length}</div>
+          </div>
+          <div class="backlog-stat">
+            <div class="backlog-stat-label">Governance</div>
+            <div class="lifecycle-notes">${escapeHtml(governance[0] || lifecycle.purpose || 'Lifecycle source of truth')}</div>
+          </div>
+        </div>
+      `;
+    } else {
+      summaryEl.style.display = 'none';
+      summaryEl.innerHTML = '';
+    }
+  }
+
+  renderLifecycleRows('lifecycle-current-team', currentTeam, 'team');
+  renderLifecycleRows('lifecycle-candidates', candidates, 'candidate');
+  renderLifecycleRows('lifecycle-under-review', underReview, 'review');
 }
 
 // ══════════════════════════════════════════════════════

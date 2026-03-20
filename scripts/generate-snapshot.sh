@@ -34,6 +34,14 @@ else
   export AGENT_BACKLOG_MD=''
 fi
 
+# Read agent lifecycle file for Mission Control team visibility
+LIFECYCLE_FILE="/Users/reghar/.openclaw/workspace/AGENT-LIFECYCLE.md"
+if [ -f "$LIFECYCLE_FILE" ]; then
+  export AGENT_LIFECYCLE_MD=$(cat "$LIFECYCLE_FILE")
+else
+  export AGENT_LIFECYCLE_MD=''
+fi
+
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 export CRON_DATA="$CRONS"
@@ -79,6 +87,7 @@ budget_monthly_limit = cost_data.get('budget_monthly', 200)
 budget_daily_limit = cost_data.get('budget_daily', 5)
 
 backlog_md = os.environ.get('AGENT_BACKLOG_MD', '')
+lifecycle_md = os.environ.get('AGENT_LIFECYCLE_MD', '')
 
 try:
     crons_data = json.loads(cron_raw)
@@ -190,6 +199,85 @@ backlog_summary = {
     'items': backlog_items,
 }
 
+
+def parse_lifecycle_section(block, entry_marker='### '):
+    entries = []
+    current = None
+    for raw_line in block.splitlines():
+        line = raw_line.rstrip()
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith(entry_marker):
+            if current:
+                entries.append(current)
+            title = stripped[len(entry_marker):].strip()
+            if ':' in title:
+                _, value = title.split(':', 1)
+                title = value.strip()
+            current = {'agent': title}
+            continue
+        if current is None:
+            continue
+        if stripped.startswith('- '):
+            item = stripped[2:]
+            if ':' in item:
+                key, value = item.split(':', 1)
+                key = key.strip()
+                value = value.strip()
+                normalized_key = {
+                    'default model': 'defaultModel',
+                    'decision-level': 'decisionLevel',
+                    'current assessment': 'currentAssessment',
+                    'known issues': 'knownIssues',
+                    'next likely improvement': 'nextLikelyImprovement',
+                    'candidate-type': 'candidateType',
+                    'trigger-for-decision': 'triggerForDecision',
+                }.get(key, key)
+                current[normalized_key] = value
+        elif stripped.startswith('### '):
+            if current:
+                entries.append(current)
+            title = stripped[4:].strip()
+            current = {'agent': title}
+    if current:
+        entries.append(current)
+    return entries
+
+lifecycle = {
+    'purpose': '',
+    'governance': [],
+    'currentTeam': [],
+    'candidates': [],
+    'underReview': [],
+}
+if lifecycle_md:
+    lines = lifecycle_md.splitlines()
+    current_section = None
+    sections = {
+        'Purpose': [],
+        'Governance': [],
+        'Current Team': [],
+        'Candidate Agents': [],
+        'Under Review / At Risk': [],
+    }
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith('## '):
+            heading = stripped[3:].strip()
+            current_section = heading if heading in sections else None
+            continue
+        if current_section:
+            sections[current_section].append(line)
+
+    purpose_lines = [ln.strip() for ln in sections['Purpose'] if ln.strip() and not ln.strip().startswith('_')]
+    lifecycle['purpose'] = ' '.join(purpose_lines)
+    lifecycle['governance'] = [ln.strip()[2:].strip() for ln in sections['Governance'] if ln.strip().startswith('- ')]
+    lifecycle['currentTeam'] = parse_lifecycle_section("\n".join(sections['Current Team']))
+    lifecycle['candidates'] = parse_lifecycle_section("\n".join(sections['Candidate Agents']))
+    lifecycle['underReview'] = parse_lifecycle_section("\n".join(sections['Under Review / At Risk']))
+
+
 snapshot = {
     "generatedAt": timestamp,
     "generatorVersion": "1.3.0",
@@ -225,7 +313,8 @@ snapshot = {
         "critical": failing,
         "warning": warning_count
     },
-    "agentImprovementBacklog": backlog_summary
+    "agentImprovementBacklog": backlog_summary,
+    "agentLifecycle": lifecycle
 }
 
 with open(output_file, 'w') as f:
