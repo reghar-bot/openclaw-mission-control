@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-20T14:05:24Z",
+  "generatedAt": "2026-03-20T14:06:40Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
@@ -47,20 +47,6 @@
     }
   ],
   "crons": [
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "hourly 08:00-23:59",
-      "lastRunAt": "2026-03-20T14:04:38.926000Z",
-      "nextRunAt": "2026-03-20T14:05:09.409000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 28483,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
       "name": "Approval Handler \u2014 Pending Items",
@@ -665,6 +651,157 @@
         "decisionLevel": "review",
         "nextReviewDate": "2026-03-27",
         "notes": "Cheap route is useful, but should be reviewed if revisions start bouncing between agents or landing on main."
+      }
+    ]
+  },
+  "agentLifecycle": {
+    "purpose": "This file tracks the actual operating team, candidate agents or capabilities, and any active performance or fit concerns that need visibility. It exists so hiring, trialing, improving, and retiring agents becomes an explicit system instead of a vague conversation. Mission Control should render this file so team state is visible without re-reading long chat history.",
+    "governance": [
+      "New agent ideas should be recorded here before they become permanent hires.",
+      "Candidate agents should usually move through `idea -> researching -> trial -> your-call -> approved/rejected`.",
+      "Permanent hire decisions can be surfaced through Mission Control and related decision threads.",
+      "`decision-level: review` means the idea should stay visible and be discussed before building further.",
+      "`decision-level: your-call` means the next meaningful decision belongs to Ragnar.",
+      "Firing, retiring, or decommissioning an agent always requires Ragnar sign-off.",
+      "Capability candidates can live here too when the need is real but it is not yet clear whether the solution should become a full agent, a tool, or a workflow."
+    ],
+    "currentTeam": [
+      {
+        "agent": "Reghar",
+        "role": "orchestrator / final judgment / strategic control",
+        "group": "core",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "your-call",
+        "currentAssessment": "Strong at synthesis, routing, and control decisions. Best kept on strategic and cross-agent work rather than repetitive execution.",
+        "knownIssues": "Can become the fallback for too many edge cases when specialist routing is not enforced tightly.",
+        "nextLikelyImprovement": "Push more cheap first-pass routing and specialist containment so Reghar stays on judgment-heavy work."
+      },
+      {
+        "agent": "Pip",
+        "role": "assistant / triage / operations support",
+        "group": "core",
+        "defaultModel": "low-cost fast model",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Useful as a lightweight operator and review surface. Good candidate to absorb more repetitive triage and quality-review hygiene.",
+        "knownIssues": "Role boundaries are still somewhat broad; risks becoming generic glue instead of a clearly bounded cheap first-pass layer.",
+        "nextLikelyImprovement": "Sharpen Pip into explicit first-pass routing + queue hygiene + weekly review support."
+      },
+      {
+        "agent": "Sigrid",
+        "role": "researcher",
+        "group": "core",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Strong research specialist and useful for structured scans, discovery, and synthesis when the brief is clear.",
+        "knownIssues": "Timeout/cost pressure can make heavy research flows fragile if not scoped tightly.",
+        "nextLikelyImprovement": "Keep tightening bounded research formats and lower-cost prefiltering before deep runs."
+      },
+      {
+        "agent": "Inkwell",
+        "role": "writer / editorial polish",
+        "group": "core",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Good for polished copy, voice shaping, and turning rough thinking into readable output.",
+        "knownIssues": "Can be underused if writing tasks stay bundled inside main sessions instead of being routed cleanly.",
+        "nextLikelyImprovement": "Create clearer routing triggers for premium copy, rewrites, and brand-sensitive language."
+      },
+      {
+        "agent": "Kodex",
+        "role": "developer / systems / automation",
+        "group": "core",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Strong for scripts, pipelines, configs, and practical systems work. Best when changes stay concrete and verification is expected.",
+        "knownIssues": "Can drift into direct implementation outside ideal repo boundaries unless constraints stay explicit.",
+        "nextLikelyImprovement": "More reusable data-pipeline patterns and stronger operating hooks around lifecycle/governance data."
+      },
+      {
+        "agent": "Dais",
+        "role": "designer / visual QA / UI refinement",
+        "group": "core",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Valuable for visual polish, design judgment, and fast refinement passes.",
+        "knownIssues": "Visual QA loop still has manual screenshot/review friction around the edges.",
+        "nextLikelyImprovement": "Better screenshot automation and tighter visual review workflow."
+      },
+      {
+        "agent": "Charles",
+        "role": "repo-bound implementation contractor",
+        "group": "specialist",
+        "defaultModel": "claude-sonnet",
+        "status": "under-review",
+        "stage": "approved",
+        "decisionLevel": "your-call",
+        "currentAssessment": "Useful when kept within strict repo boundaries and clearly scoped implementation tasks.",
+        "knownIssues": "Boundary drift / scope creep risk if ownership lines are not kept explicit.",
+        "nextLikelyImprovement": "Continue boundary enforcement and review whether Charles remains a separate long-term role or a narrower delivery mode."
+      }
+    ],
+    "candidates": [
+      {
+        "agent": "Pip First-Pass Router",
+        "role": "cheap first-pass routing / triage layer",
+        "group": "candidate",
+        "defaultModel": "low-cost fast model",
+        "stage": "researching",
+        "decisionLevel": "review",
+        "candidateType": "agent-mode",
+        "rationale": "A clearer Pip triage mode would reduce expensive main-agent handling for obvious requests and improve routing consistency under live pressure.",
+        "currentAssessment": "The need is real and partially defined already; main remaining work is operational discipline and narrower routing rules.",
+        "knownIssues": "Risk of creating a vague generic helper instead of a strict cheap-routing layer.",
+        "nextLikelyImprovement": "Trial a hard-edged Pip intake pattern for low-risk, obvious routing cases."
+      },
+      {
+        "agent": "Nolea Specialist",
+        "role": "Nolea-native writer / designer / operator specialist",
+        "group": "candidate",
+        "defaultModel": "claude-sonnet",
+        "stage": "idea",
+        "decisionLevel": "your-call",
+        "candidateType": "agent",
+        "rationale": "Nolea work is frequent and domain-specific enough that a dedicated specialist or tightly scoped mode may outperform repeated context rebuilding.",
+        "currentAssessment": "Promising, but not yet clear whether the right answer is a permanent specialist agent, a stronger mode on existing agents, or better Nolea knowledge/routing.",
+        "knownIssues": "Could fragment brand/design/copy responsibility if added too early.",
+        "nextLikelyImprovement": "Define the exact repeated Nolea workload that existing agents handle poorly or expensively."
+      },
+      {
+        "agent": "Visual Ops Helper",
+        "role": "screenshot capture / lightweight UI inspection / visual ops support",
+        "group": "candidate",
+        "defaultModel": "low-cost fast model",
+        "stage": "researching",
+        "decisionLevel": "review",
+        "candidateType": "capability",
+        "rationale": "Repeated screenshot capture and lightweight visual checking should probably become a capability layer before becoming a full agent.",
+        "currentAssessment": "Real need exists; likely better as a capability or helper first, not a standalone personality-led agent.",
+        "knownIssues": "If promoted too early to a full agent, it may become redundant with Dais and general browser tooling.",
+        "nextLikelyImprovement": "Trial a minimal screenshot/visual-ops helper workflow and only agentize it if repeated demand persists."
+      }
+    ],
+    "underReview": [
+      {
+        "agent": "Charles",
+        "concern": "Repo boundary drift and ownership leakage",
+        "status": "under-review",
+        "stage": "your-call",
+        "decisionLevel": "your-call",
+        "currentAssessment": "Keep active for now, but monitor whether Charles stays meaningfully distinct from core developer workflows.",
+        "triggerForDecision": "Repeat cross-repo leakage, unclear ownership, or contractor role no longer buying enough leverage.",
+        "note": "Retirement or firing still requires Ragnar sign-off."
       }
     ]
   }
