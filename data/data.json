@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-20T01:04:22Z",
+  "generatedAt": "2026-03-20T02:04:24Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
@@ -53,38 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-20T00:04:13.060000Z",
-      "nextRunAt": "2026-03-20T01:04:13.012000Z",
+      "lastRunAt": "2026-03-20T01:04:13.082000Z",
+      "nextRunAt": "2026-03-20T02:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 25230,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "e5b40149-61c5-4d8c-bdb7-c301a9cd7f53",
-      "name": "Pip Nightly File Naming Sweep",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "15 2 * * *",
-      "lastRunAt": "2026-03-19T01:15:00.056000Z",
-      "nextRunAt": "2026-03-20T01:15:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 4767,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "32912067-1bce-49ed-8ebd-f4c732d9bf10",
-      "name": "Nightly Memory Consolidation",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "45 2 * * *",
-      "lastRunAt": "2026-03-19T01:45:00.048000Z",
-      "nextRunAt": "2026-03-20T01:45:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 88985,
+      "lastDurationMs": 26521,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -270,6 +242,34 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "e5b40149-61c5-4d8c-bdb7-c301a9cd7f53",
+      "name": "Pip Nightly File Naming Sweep",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "15 2 * * *",
+      "lastRunAt": "2026-03-20T01:15:00.061000Z",
+      "nextRunAt": "2026-03-21T01:15:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 8662,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "32912067-1bce-49ed-8ebd-f4c732d9bf10",
+      "name": "Nightly Memory Consolidation",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "45 2 * * *",
+      "lastRunAt": "2026-03-20T01:45:00.055000Z",
+      "nextRunAt": "2026-03-21T01:45:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 38356,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
