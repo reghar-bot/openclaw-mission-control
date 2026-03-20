@@ -2137,117 +2137,156 @@ async function loadData() {
 // SECTION 8: Agent Team Overview
 // ══════════════════════════════════════════════════════
 
-const AGENT_ROSTER = [
+const AGENT_GROUPS = [
   {
-    id: 'main',
-    name: 'Reghar',
-    emoji: '🧠',
-    role: 'Orchestrator & main agent',
-    model: 'claude-opus-4',
+    key: 'core',
+    title: 'Core Team',
     color: '#3b82f6',
-    lastActivityHoursAgo: 0.2,
+    order: ['Reghar', 'Pip', 'Sigrid', 'Inkwell', 'Kodex', 'Dais'],
   },
   {
-    id: 'researcher',
-    name: 'Sigrid',
-    emoji: '🔬',
-    role: 'Research & intelligence gathering',
-    model: 'claude-sonnet-4',
-    color: '#8b5cf6',
-    lastActivityHoursAgo: 4,
+    key: 'nolea',
+    title: 'Nolea Team',
+    color: '#ec4899',
+    order: ['Vessel', 'Anselme', 'Margot'],
   },
   {
-    id: 'developer',
-    name: 'Kodex',
-    emoji: '⚙️',
-    role: 'Code, automation & systems',
-    model: 'claude-sonnet-4',
-    color: '#f97316',
-    lastActivityHoursAgo: 11,
-  },
-  {
-    id: 'writer',
-    name: 'Inkwell',
-    emoji: '✍️',
-    role: 'Copywriting & editorial output',
-    model: 'claude-sonnet-4',
-    color: '#10b981',
-    lastActivityHoursAgo: 3.5,
-  },
-  {
-    id: 'designer',
-    name: 'Dais',
-    emoji: '🎨',
-    role: 'Design engineering & UI',
-    model: 'claude-sonnet-4',
-    color: '#06b6d4',
-    lastActivityHoursAgo: 0.05,
-  },
-  {
-    id: 'assistant',
-    name: 'Pip',
-    emoji: '🤖',
-    role: 'Personal assistant & scheduling',
-    model: 'claude-haiku-3-5',
-    color: '#6b7280',
-    lastActivityHoursAgo: 18,
-  },
-  {
-    id: 'strategist',
-    name: 'Mechanic',
-    emoji: '🔧',
-    role: 'Infrastructure & maintenance ops',
-    model: 'claude-sonnet-4',
+    key: 'leon',
+    title: 'Leon Team',
     color: '#0d9488',
-    lastActivityHoursAgo: 12,
+    order: ['Charles', 'Kevin-G', 'Costco Guy'],
   },
 ];
 
-function renderAgentTeam(data) {
-  const grid = document.getElementById('agents-grid');
-  if (!grid) return;
+const AGENT_DIRECTORY = {
+  Reghar: { id: 'main', emoji: '🧠', color: '#3b82f6', fallbackHoursAgo: 0.2 },
+  Pip: { id: 'assistant', emoji: '🤖', color: '#6b7280', fallbackHoursAgo: 18 },
+  Sigrid: { id: 'researcher', emoji: '🔬', color: '#8b5cf6', fallbackHoursAgo: 4 },
+  Inkwell: { id: 'writer', emoji: '✍️', color: '#10b981', fallbackHoursAgo: 3.5 },
+  Kodex: { id: 'developer', emoji: '⚙️', color: '#f97316', fallbackHoursAgo: 11 },
+  Dais: { id: 'designer', emoji: '🎨', color: '#06b6d4', fallbackHoursAgo: 0.05 },
+  Vessel: { id: 'nolea-operator', emoji: '⛵', color: '#ec4899', fallbackHoursAgo: 24 },
+  Anselme: { id: 'nolea-analyst', emoji: '📊', color: '#ec4899', fallbackHoursAgo: 6 },
+  Margot: { id: 'nolea-sommelier', emoji: '🍷', color: '#ec4899', fallbackHoursAgo: 24 },
+  Charles: { id: 'leon-assistant', emoji: '🧩', color: '#0d9488', fallbackHoursAgo: 24 },
+  'Kevin-G': { id: 'leon-builder', emoji: '🛠️', color: '#0d9488', fallbackHoursAgo: 24 },
+  'Costco Guy': { id: 'leon-designer', emoji: '🛒', color: '#0d9488', fallbackHoursAgo: 24 },
+};
 
-  // Try to enrich activity data from crons if available
-  const crons = (data && data.crons) || [];
-  const agentLastRun = {};
-  crons.forEach(c => {
-    if (c.agentId && c.lastRunAt) {
-      const t = new Date(c.lastRunAt).getTime();
-      if (!agentLastRun[c.agentId] || t > agentLastRun[c.agentId]) {
-        agentLastRun[c.agentId] = t;
+function getLifecycleCurrentTeam(data) {
+  const lifecycle = (data && data.agentLifecycle) || {};
+  return Array.isArray(lifecycle.currentTeam) ? lifecycle.currentTeam : [];
+}
+
+function getOrderedLifecycleGroups(items) {
+  const byGroup = new Map();
+  items.forEach(item => {
+    const key = String(item.group || '').toLowerCase();
+    if (!byGroup.has(key)) byGroup.set(key, []);
+    byGroup.get(key).push(item);
+  });
+
+  return AGENT_GROUPS.map(group => {
+    const ordered = (byGroup.get(group.key) || []).slice().sort((a, b) => {
+      const ai = group.order.indexOf(a.agent || '');
+      const bi = group.order.indexOf(b.agent || '');
+      const ao = ai === -1 ? 999 : ai;
+      const bo = bi === -1 ? 999 : bi;
+      return ao - bo || String(a.agent || '').localeCompare(String(b.agent || ''));
+    });
+    return { ...group, items: ordered };
+  }).filter(group => group.items.length);
+}
+
+function collectAgentOpsStats(crons) {
+  const stats = {};
+  (Array.isArray(crons) ? crons : []).forEach(cron => {
+    const key = cron.agentId || 'unknown';
+    if (!stats[key]) {
+      stats[key] = { cronCount: 0, lastRunAt: null };
+    }
+    stats[key].cronCount += 1;
+    if (cron.lastRunAt) {
+      const ts = new Date(cron.lastRunAt).getTime();
+      if (!Number.isNaN(ts) && (!stats[key].lastRunAt || ts > stats[key].lastRunAt)) {
+        stats[key].lastRunAt = ts;
       }
     }
   });
+  return stats;
+}
+
+function renderAgentTeam(data) {
+  const grid = document.getElementById('agents-grid');
+  const metaEl = document.getElementById('agents-meta');
+  if (!grid) return;
+
+  const currentTeam = getLifecycleCurrentTeam(data);
+  const groupedTeam = getOrderedLifecycleGroups(currentTeam);
+  const opsStats = collectAgentOpsStats((data && data.crons) || []);
 
   grid.innerHTML = '';
-  AGENT_ROSTER.forEach(agent => {
-    // Use live data if available, else use roster default
-    const lastRun = agentLastRun[agent.id];
-    const hoursAgo = lastRun
-      ? (Date.now() - lastRun) / 3600000
-      : agent.lastActivityHoursAgo;
-    const isActive = hoursAgo < 2; // active if ran within last 2h
-    const statusCls = isActive ? 'active' : 'idle';
+  groupedTeam.forEach(group => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'agent-group';
 
-    const card = document.createElement('div');
-    card.className = 'agent-card';
-    card.style.setProperty('--agent-color', agent.color);
-    card.innerHTML = `
-      <div class="agent-card-top">
-        <span class="agent-emoji">${agent.emoji}</span>
-        <span class="agent-status-dot ${statusCls}"></span>
-      </div>
-      <div class="agent-card-name">${agent.name}</div>
-      <div class="agent-card-role">${agent.role}</div>
-      <div class="agent-card-footer">
-        <span class="agent-card-model">${agent.model}</span>
-        <span class="agent-status-label ${statusCls}">${isActive ? 'ACTIVE' : 'IDLE'}</span>
+    const activeCount = group.items.reduce((count, item) => {
+      const directory = AGENT_DIRECTORY[item.agent] || {};
+      const ops = opsStats[directory.id] || null;
+      const hoursAgo = ops && ops.lastRunAt
+        ? (Date.now() - ops.lastRunAt) / 3600000
+        : (directory.fallbackHoursAgo ?? Infinity);
+      return count + (hoursAgo < 2 ? 1 : 0);
+    }, 0);
+
+    wrapper.innerHTML = `
+      <div class="agent-group-header" style="padding:0 18px 12px;">
+        <span class="agent-dot-lg" style="background:${group.color}"></span>
+        <span class="agent-group-label">${escapeHtml(group.title)}</span>
+        <span class="agent-cron-count">${group.items.length} agent${group.items.length !== 1 ? 's' : ''} · ${activeCount} active</span>
       </div>
     `;
-    grid.appendChild(card);
+
+    const cards = document.createElement('div');
+    cards.className = 'agents-grid';
+    cards.style.padding = '0 18px 18px';
+
+    group.items.forEach(item => {
+      const directory = AGENT_DIRECTORY[item.agent] || {};
+      const ops = opsStats[directory.id] || null;
+      const fallbackHoursAgo = directory.fallbackHoursAgo ?? Infinity;
+      const hoursAgo = ops && ops.lastRunAt
+        ? (Date.now() - ops.lastRunAt) / 3600000
+        : fallbackHoursAgo;
+      const isActive = hoursAgo < 2;
+      const statusCls = isActive ? 'active' : 'idle';
+      const card = document.createElement('div');
+      card.className = 'agent-card';
+      card.style.setProperty('--agent-color', directory.color || group.color || 'var(--accent)');
+      card.innerHTML = `
+        <div class="agent-card-top">
+          <span class="agent-emoji">${escapeHtml(directory.emoji || '•')}</span>
+          <span class="agent-status-dot ${statusCls}"></span>
+        </div>
+        <div class="agent-card-name">${escapeHtml(item.agent || 'Unknown')}</div>
+        <div class="agent-card-role">${escapeHtml(item.role || 'Role not specified')}</div>
+        <div class="agent-card-footer">
+          <span class="agent-card-model">${escapeHtml(item.defaultModel || 'model —')}</span>
+          <span class="agent-status-label ${statusCls}">${isActive ? 'ACTIVE' : 'IDLE'}</span>
+        </div>
+      `;
+      cards.appendChild(card);
+    });
+
+    wrapper.appendChild(cards);
+    grid.appendChild(wrapper);
   });
 
-  document.getElementById('agents-meta').textContent = AGENT_ROSTER.length + ' agents';
+  if (metaEl) {
+    metaEl.textContent = currentTeam.length
+      ? `${currentTeam.length} agents from lifecycle source`
+      : 'No team data';
+  }
 }
 
 // ══════════════════════════════════════════════════════
@@ -2536,31 +2575,8 @@ function renderLifecycleTeam(data) {
 
   if (teamContainer) {
     teamContainer.innerHTML = '';
-    const orderedGroups = [
-      { title: 'Core Team', key: 'core', order: ['Reghar', 'Pip', 'Sigrid', 'Inkwell', 'Kodex', 'Dais', 'Mechanic'] },
-      { title: 'Nolea Team', key: 'nolea', order: ['Vessel', 'Anselme', 'Margot', 'Analyst'] },
-      { title: 'Leon Team', key: 'leon', order: ['Charles', 'Kevin-G', 'Costco Guy'] },
-    ];
-
-    const byGroup = new Map();
-    currentTeam.forEach(item => {
-      const groupKey = String(item.group || '').toLowerCase();
-      if (!byGroup.has(groupKey)) byGroup.set(groupKey, []);
-      byGroup.get(groupKey).push(item);
-    });
-
-    orderedGroups.forEach(group => {
-      let items = byGroup.get(group.key) || [];
-      items = items
-        .filter(item => item.agent !== 'Analyst' || ((item.status || '').toLowerCase() === 'healthy' || (item.stage || '').toLowerCase() === 'approved'))
-        .sort((a, b) => {
-          const ai = group.order.indexOf(a.agent || '');
-          const bi = group.order.indexOf(b.agent || '');
-          const ao = ai === -1 ? 999 : ai;
-          const bo = bi === -1 ? 999 : bi;
-          return ao - bo || String(a.agent || '').localeCompare(String(b.agent || ''));
-        });
-      renderLifecycleGroupSection('lifecycle-current-team', group.title, items);
+    getOrderedLifecycleGroups(currentTeam).forEach(group => {
+      renderLifecycleGroupSection('lifecycle-current-team', group.title, group.items);
     });
 
     if (!teamContainer.innerHTML.trim()) {
