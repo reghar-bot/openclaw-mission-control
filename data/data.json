@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-20T12:04:22Z",
+  "generatedAt": "2026-03-20T13:04:26Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 91,
+    "sessionCount": 89,
     "agentCount": 14
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-20T11:04:13.072000Z",
-      "nextRunAt": "2026-03-20T12:04:13.012000Z",
+      "lastRunAt": "2026-03-20T12:04:13.073000Z",
+      "nextRunAt": "2026-03-20T13:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 24292,
+      "lastDurationMs": 23459,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -67,10 +67,10 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-20T12:00:00.042000Z",
-      "nextRunAt": "2026-03-20T13:00:00Z",
+      "lastRunAt": "2026-03-20T13:00:00.046000Z",
+      "nextRunAt": "2026-03-20T14:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 13916,
+      "lastDurationMs": 17972,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
