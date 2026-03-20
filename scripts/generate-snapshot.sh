@@ -26,6 +26,14 @@ STATUS_OUT=$("$OPENCLAW" status 2>/dev/null || echo "")
 AGENT_COUNT=$(echo "$STATUS_OUT" | grep -oE '[0-9]+ · [0-9]+ bootstrap' | grep -oE '^[0-9]+' || echo "0")
 SESSION_COUNT=$(echo "$STATUS_OUT" | grep -oE 'sessions [0-9]+' | grep -oE '[0-9]+' || echo "0")
 
+# Read agent improvement backlog for Mission Control visibility
+BACKLOG_FILE="/Users/reghar/.openclaw/workspace/AGENT-IMPROVEMENT-BACKLOG.md"
+if [ -f "$BACKLOG_FILE" ]; then
+  export AGENT_BACKLOG_MD=$(cat "$BACKLOG_FILE")
+else
+  export AGENT_BACKLOG_MD=''
+fi
+
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 export CRON_DATA="$CRONS"
@@ -37,6 +45,14 @@ export SNAP_TIME="$TIMESTAMP"
 export SNAP_OUTPUT="$OUTPUT_FILE"
 export SNAP_DAY=$(date +"%d")
 export SNAP_DAYS_IN_MONTH=$(python3 -c "import calendar, datetime; d=datetime.date.today(); print(calendar.monthrange(d.year,d.month)[1])")
+
+# Read budget data from cost-status.json
+COST_STATUS_FILE="/Users/reghar/.openclaw/workspace/logs/cost-status.json"
+if [ -f "$COST_STATUS_FILE" ]; then
+  export COST_STATUS=$(cat "$COST_STATUS_FILE")
+else
+  export COST_STATUS='{}'
+fi
 
 python3 << 'PYEOF'
 import json, os
@@ -51,6 +67,18 @@ timestamp = os.environ.get('SNAP_TIME', '')
 output_file = os.environ.get('SNAP_OUTPUT', '/dev/stdout')
 day_of_month = int(os.environ.get('SNAP_DAY', '1'))
 days_in_month = int(os.environ.get('SNAP_DAYS_IN_MONTH', '31'))
+
+# Parse cost-status.json for budget data
+cost_raw = os.environ.get('COST_STATUS', '{}')
+try:
+    cost_data = json.loads(cost_raw)
+except json.JSONDecodeError:
+    cost_data = {}
+budget_month_usd = cost_data.get('month_usd')
+budget_monthly_limit = cost_data.get('budget_monthly', 200)
+budget_daily_limit = cost_data.get('budget_daily', 5)
+
+backlog_md = os.environ.get('AGENT_BACKLOG_MD', '')
 
 try:
     crons_data = json.loads(cron_raw)
@@ -123,9 +151,48 @@ for j in jobs:
         'timeoutSeconds': timeout_seconds
     })
 
+backlog_items = []
+if backlog_md:
+    lines = backlog_md.splitlines()
+    in_table = False
+    for line in lines:
+        if line.startswith('| Issue | Category | Owner | Status | Decision Level | Next Review Date | Notes |'):
+            in_table = True
+            continue
+        if not in_table:
+            continue
+        if line.startswith('|---'):
+            continue
+        if not line.startswith('|'):
+            if backlog_items:
+                break
+            continue
+        parts = [part.strip() for part in line.strip().strip('|').split('|')]
+        if len(parts) != 7:
+            continue
+        backlog_items.append({
+            'issue': parts[0],
+            'category': parts[1],
+            'owner': parts[2],
+            'status': parts[3],
+            'decisionLevel': parts[4],
+            'nextReviewDate': parts[5],
+            'notes': parts[6],
+        })
+
+backlog_summary = {
+    'total': len(backlog_items),
+    'byDecisionLevel': {
+        'auto': sum(1 for item in backlog_items if item.get('decisionLevel') == 'auto'),
+        'review': sum(1 for item in backlog_items if item.get('decisionLevel') == 'review'),
+        'your-call': sum(1 for item in backlog_items if item.get('decisionLevel') == 'your-call'),
+    },
+    'items': backlog_items,
+}
+
 snapshot = {
     "generatedAt": timestamp,
-    "generatorVersion": "1.2.0",
+    "generatorVersion": "1.3.0",
     "system": {
         "status": sys_status,
         "gatewayStatus": gateway,
@@ -134,12 +201,17 @@ snapshot = {
         "agentCount": agent_count
     },
     "budget": {
-        "currentMonth": None,
-        "limit": 250.00,
+        "currentMonth": budget_month_usd,
+        "limit": budget_monthly_limit,
         "dayOfMonth": day_of_month,
         "daysInMonth": days_in_month,
-        "projected": None,
-        "status": "unknown"
+        "projected": round(budget_month_usd / day_of_month * days_in_month, 2) if budget_month_usd and day_of_month > 0 else None,
+        "status": (
+            "critical" if budget_month_usd is not None and budget_month_usd >= budget_monthly_limit * 0.9
+            else "warning" if budget_month_usd is not None and budget_month_usd >= budget_monthly_limit * 0.7
+            else "ok" if budget_month_usd is not None
+            else "unknown"
+        )
     },
     "pipelines": [
         {"name": "Champagne Brief (Mon)", "schedule": "Mondays 06:00-09:00", "status": "ok", "statusNote": "Pipeline fix applied Mar 14 — Sigrid handles curation", "lastSuccess": "2026-03-14"},
@@ -152,7 +224,8 @@ snapshot = {
         "total": failing + warning_count,
         "critical": failing,
         "warning": warning_count
-    }
+    },
+    "agentImprovementBacklog": backlog_summary
 }
 
 with open(output_file, 'w') as f:

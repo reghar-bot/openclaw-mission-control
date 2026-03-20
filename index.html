@@ -1,3 +1,4 @@
+<!-- v2-agent-team-cron-cal-logs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -562,17 +563,237 @@
       color: var(--status-warn);
     }
 
+    /* ── Agent Team Overview ──────────────────────────── */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 18px;
+    }
+    .agent-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .agent-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--agent-color, var(--accent));
+      opacity: 0.8;
+    }
+    .agent-card:hover { border-color: rgba(224,224,232,0.2); }
+    .agent-card-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .agent-emoji { font-size: 22px; line-height: 1; }
+    .agent-status-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .agent-status-dot.active {
+      background: var(--status-ok);
+      box-shadow: 0 0 6px rgba(34,197,94,0.5);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .agent-status-dot.idle { background: var(--text-muted); }
+    .agent-card-name {
+      font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px;
+    }
+    .agent-card-role {
+      font-size: 11px; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.3;
+    }
+    .agent-card-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;
+    }
+    .agent-card-model {
+      font-family: var(--font-mono);
+      font-size: 9px; color: var(--text-muted); letter-spacing: 0.04em;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 3px; padding: 2px 6px; display: inline-block;
+    }
+    .agent-status-label {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 2px 6px; border-radius: 3px;
+    }
+    .agent-status-label.active { background: rgba(34,197,94,0.12); color: var(--status-ok); }
+    .agent-status-label.idle   { background: rgba(107,107,128,0.1); color: var(--text-muted); }
+
+    /* ── Cron Calendar View ───────────────────────────── */
+    .cal-wrapper { padding: 16px 18px; overflow-x: auto; }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: 36px repeat(7, 1fr);
+      gap: 2px;
+      min-width: 520px;
+    }
+    .cal-day-header {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+      text-align: center; padding: 4px 0 8px;
+    }
+    .cal-hour-label {
+      font-family: var(--font-mono); font-size: 9px; color: var(--text-muted);
+      text-align: right; padding-right: 6px;
+      display: flex; align-items: flex-start; padding-top: 2px; height: 20px;
+    }
+    .cal-cell {
+      height: 20px; background: var(--bg-elevated); border-radius: 2px;
+      position: relative; display: flex; align-items: center; justify-content: flex-start;
+      padding: 1px 2px; gap: 2px;
+    }
+    .cal-cell:hover { background: rgba(255,255,255,0.04); }
+    .cal-block {
+      height: 14px; min-width: 14px; border-radius: 2px;
+      cursor: default; position: relative; flex-shrink: 0;
+    }
+    .cal-block:hover .cal-block-tooltip { display: block; }
+    .cal-block-tooltip {
+      display: none; position: absolute; bottom: calc(100% + 6px); left: 0; z-index: 300;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 6px; padding: 8px 10px; min-width: 180px; white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary);
+      pointer-events: none;
+    }
+    .cal-block-tooltip strong { display: block; color: var(--text-primary); font-size: 11px; margin-bottom: 4px; }
+    .cal-legend {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      padding: 10px 18px 14px; border-top: 1px solid var(--border);
+    }
+    .cal-legend-item {
+      display: flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: 9px; color: var(--text-secondary);
+    }
+    .cal-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+    /* ── Agent Improvement Backlog ───────────────────── */
+    .backlog-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .backlog-stat {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .backlog-stat-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .backlog-stat-value {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .backlog-list { padding: 0; }
+    .backlog-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) 90px 110px 120px;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(42,42,58,0.4);
+    }
+    .backlog-row:last-child { border-bottom: none; }
+    .backlog-issue { font-size: 13px; color: var(--text-primary); }
+    .backlog-meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin-top: 4px; }
+    .decision-tag, .status-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .decision-tag.auto { background: rgba(34,197,94,0.12); color: var(--status-ok); border-color: rgba(34,197,94,0.25); }
+    .decision-tag.review { background: rgba(59,130,246,0.12); color: var(--accent); border-color: rgba(59,130,246,0.25); }
+    .decision-tag.your-call { background: rgba(239,68,68,0.12); color: var(--status-crit); border-color: rgba(239,68,68,0.25); }
+    .status-tag.open, .status-tag.blocked { background: rgba(239,68,68,0.12); color: var(--status-crit); }
+    .status-tag.in-progress { background: rgba(59,130,246,0.12); color: var(--accent); }
+    .status-tag.monitoring { background: rgba(234,179,8,0.12); color: var(--status-warn); }
+    .status-tag.done { background: rgba(34,197,94,0.12); color: var(--status-ok); }
+    .backlog-empty {
+      padding: 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ── Memory / Daily Log Viewer ────────────────────── */
+    .log-list { padding: 0; }
+    .log-entry { border-bottom: 1px solid rgba(42,42,58,0.5); }
+    .log-entry:last-child { border-bottom: none; }
+    .log-entry-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 18px; cursor: pointer; user-select: none; gap: 12px;
+      transition: background 0.1s;
+    }
+    .log-entry-header:hover { background: rgba(255,255,255,0.02); }
+    .log-entry-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .log-entry-chevron {
+      font-size: 10px; color: var(--text-muted);
+      transition: transform 0.2s; flex-shrink: 0; font-family: var(--font-mono);
+    }
+    .log-entry.open .log-entry-chevron { transform: rotate(90deg); }
+    .log-entry-date {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--text-primary);
+    }
+    .log-entry-today {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 2px 6px; border-radius: 3px;
+      background: rgba(59,130,246,0.15); color: var(--accent);
+    }
+    .log-entry-right {
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+      font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);
+    }
+    .log-entry-size { color: var(--text-secondary); }
+    .log-body { display: none; padding: 0 18px 16px; }
+    .log-entry.open .log-body { display: block; }
+    .log-content {
+      background: var(--bg-base); border: 1px solid var(--border);
+      border-radius: 6px; padding: 14px 16px;
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--text-secondary); line-height: 1.7;
+      max-height: 360px; overflow-y: auto;
+      white-space: pre-wrap; word-break: break-word;
+    }
+
     /* ── Responsive ───────────────────────────────── */
     @media (max-width: 900px) {
       .two-col { grid-template-columns: 1fr; }
       .health-bar { grid-template-columns: repeat(2, 1fr); }
       .main-content { padding: 16px; }
       .header { padding: 14px 16px; }
+      .agents-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 480px) {
       .health-bar { grid-template-columns: 1fr 1fr; }
       .activity-row { grid-template-columns: 46px 1fr auto; }
       .activity-dur { display: none; }
+      .agents-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -756,6 +977,46 @@
       </div>
     </div>
 
+    <!-- Section 8: Agent Team Overview -->
+    <div class="section-card one-col" style="margin-bottom:16px;" id="agents-card">
+      <div class="section-header">
+        <span class="section-title">Agent Team</span>
+        <span class="section-meta" id="agents-meta">7 agents</span>
+      </div>
+      <div class="agents-grid" id="agents-grid"><!-- rendered by JS --></div>
+    </div>
+
+    <!-- Section 9: Cron Calendar View -->
+    <div class="section-card one-col" style="margin-bottom:16px;" id="cal-card">
+      <div class="section-header">
+        <span class="section-title">Cron Calendar</span>
+        <span class="section-meta">Weekly schedule view</span>
+      </div>
+      <div class="cal-wrapper">
+        <div class="cal-grid" id="cal-grid"><!-- rendered by JS --></div>
+      </div>
+      <div class="cal-legend" id="cal-legend"><!-- rendered by JS --></div>
+    </div>
+
+    <!-- Section 10: Agent Improvement Backlog -->
+    <div class="section-card one-col" style="margin-bottom:16px;" id="backlog-card">
+      <div class="section-header">
+        <span class="section-title">Agent Improvement Backlog</span>
+        <span class="section-meta" id="backlog-meta">Mission Control visibility</span>
+      </div>
+      <div class="backlog-summary" id="backlog-summary"><!-- rendered by JS --></div>
+      <div class="backlog-list" id="backlog-list"><!-- rendered by JS --></div>
+    </div>
+
+    <!-- Section 11: Memory / Daily Log Viewer -->
+    <div class="section-card one-col" style="margin-bottom:24px;" id="logs-card">
+      <div class="section-header">
+        <span class="section-title">📓 Daily Diary</span>
+        <span class="section-meta">diary/YYYY-MM-DD.md — what happened each day</span>
+      </div>
+      <div class="log-list" id="logs-list"><!-- rendered by JS --></div>
+    </div>
+
   </div><!-- .main-content -->
 </div><!-- #dashboard -->
 
@@ -792,7 +1053,10 @@ async function tryUnlock(val) {
 if (localStorage.getItem(SESSION_KEY) === '1') {
   gateEl.style.display = 'none';
   dashEl.style.display = 'block';
-  loadData();
+  // Load data immediately when session is already authenticated
+  window.addEventListener('DOMContentLoaded', function() {}, false);
+  // Use setTimeout to ensure all functions are defined before calling loadData
+  setTimeout(loadData, 0);
 }
 
 inputEl.addEventListener('keydown', e => {
@@ -801,7 +1065,7 @@ inputEl.addEventListener('keydown', e => {
 });
 
 // ── Helpers ────────────────────────────────────────────
-function fmt$(n) { return n == null ? 'N/A' : '$' + Number(n).toFixed(0); }
+function fmt$(n) { return n == null ? '—' : '$' + Number(n).toFixed(0); }
 function fmtTs(iso) {
   if (!iso) return '—';
   const d = new Date(iso);
@@ -919,8 +1183,8 @@ function render(data) {
   const bgtCard = document.getElementById('card-budget');
   const bgtPct = budget.limit ? (budget.currentMonth / budget.limit) : 0;
   bgtCard.className = 'metric-card ' + (bgtPct > 0.9 ? 'crit' : bgtPct > 0.75 ? 'warn' : 'info');
-  document.getElementById('val-budget').textContent = budget.currentMonth != null ? fmt$(budget.currentMonth) : 'N/A';
-  document.getElementById('sub-budget').textContent = budget.currentMonth != null ? Math.round(bgtPct * 100) + '% of limit' : 'See Anthropic dashboard';
+  document.getElementById('val-budget').textContent = fmt$(budget.currentMonth);
+  document.getElementById('sub-budget').textContent = Math.round(bgtPct * 100) + '% of limit';
 
   // Errors card
   const errCard = document.getElementById('card-errors');
@@ -961,23 +1225,22 @@ function render(data) {
   }
 
   // ── Budget
-  const hasBudgetData = budget.currentMonth != null;
-  const pct = hasBudgetData ? Math.min(100, Math.round(bgtPct * 100)) : 0;
-  document.getElementById('bgt-spent').textContent = hasBudgetData ? fmt$(budget.currentMonth) : 'N/A';
+  const pct = Math.min(100, Math.round(bgtPct * 100));
+  document.getElementById('bgt-spent').textContent = fmt$(budget.currentMonth);
   const barEl = document.getElementById('bgt-bar');
   barEl.style.width = pct + '%';
   barEl.className = 'progress-fill ' + (pct > 90 ? 'crit' : pct > 75 ? 'warn' : 'ok');
-  document.getElementById('bgt-pct').textContent = hasBudgetData ? pct + '%' : 'N/A';
+  document.getElementById('bgt-pct').textContent = pct + '%';
   const bgtStatusEl = document.getElementById('bgt-status');
   const statusMap = { on_track: ['ok', 'ON TRACK'], elevated: ['warn', 'ELEVATED'], over_budget: ['crit', 'OVER BUDGET'] };
-  const [sc, st] = hasBudgetData ? (statusMap[budget.status] || ['ok', 'ON TRACK']) : ['ok', 'SEE DASHBOARD'];
+  const [sc, st] = statusMap[budget.status] || ['ok', 'ON TRACK'];
   bgtStatusEl.className = 'budget-status-tag ' + sc;
   bgtStatusEl.textContent = st;
   document.getElementById('bgt-day').textContent = budget.dayOfMonth || '—';
   document.getElementById('bgt-days').textContent = budget.daysInMonth || 31;
-  document.getElementById('bgt-proj').textContent = hasBudgetData ? fmt$(budget.projected) : 'N/A';
-  const dailyAvg = (hasBudgetData && budget.dayOfMonth && budget.currentMonth)
-    ? '$' + (budget.currentMonth / budget.dayOfMonth).toFixed(2) + '/day' : 'N/A';
+  document.getElementById('bgt-proj').textContent = fmt$(budget.projected);
+  const dailyAvg = budget.dayOfMonth && budget.currentMonth
+    ? '$' + (budget.currentMonth / budget.dayOfMonth).toFixed(2) + '/day' : '—';
   document.getElementById('bgt-daily-avg').textContent = dailyAvg;
   const sys2 = data.system || {};
   document.getElementById('bgt-agents').textContent = sys2.agentCount || '—';
@@ -1100,6 +1363,12 @@ function render(data) {
     wrapper.appendChild(tiles);
     fleetGrid.appendChild(wrapper);
   });
+
+  // ── New sections
+  renderAgentTeam(data);
+  renderCronCalendar(data);
+  renderBacklog(data);
+  renderDailyLogs(data);
 }
 
 // ── Mock data (used when data.json is unavailable) ────
@@ -1158,27 +1427,498 @@ const MOCK_DATA = {
 // ── Data loading ───────────────────────────────────────
 async function loadData() {
   try {
+    // Try fetching data.json from data directory
     const res = await fetch('./data/data.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     render(data);
   } catch (e) {
-    // Show a visible error banner — never silently render stale mock data
-    console.error('data.json fetch failed:', e.message);
-    const tsEl = document.getElementById('last-updated');
-    tsEl.textContent = 'DATA LOAD FAILED: ' + e.message + ' — check console';
-    tsEl.style.color = 'var(--status-crit)';
-    // Still render MOCK so the layout isn't blank, but mark it clearly
+    // Fall back to mock data
+    console.warn('data.json unavailable, using mock data:', e.message);
     render(MOCK_DATA);
-    // Override the generated-at text after render (render() overwrites it)
-    setTimeout(() => {
-      const el = document.getElementById('last-updated');
-      if (el) {
-        el.textContent = 'FETCH ERROR: ' + e.message;
-        el.style.color = 'var(--status-crit)';
-      }
-    }, 50);
+    // Show a subtle indicator
+    const tsEl = document.getElementById('last-updated');
+    tsEl.textContent = 'DEMO DATA (data.json not found)';
+    tsEl.style.color = 'var(--status-warn)';
   }
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 8: Agent Team Overview
+// ══════════════════════════════════════════════════════
+
+const AGENT_ROSTER = [
+  {
+    id: 'main',
+    name: 'Reghar',
+    emoji: '🧠',
+    role: 'Orchestrator & main agent',
+    model: 'claude-opus-4',
+    color: '#3b82f6',
+    lastActivityHoursAgo: 0.2,
+  },
+  {
+    id: 'researcher',
+    name: 'Sigrid',
+    emoji: '🔬',
+    role: 'Research & intelligence gathering',
+    model: 'claude-sonnet-4',
+    color: '#8b5cf6',
+    lastActivityHoursAgo: 4,
+  },
+  {
+    id: 'developer',
+    name: 'Kodex',
+    emoji: '⚙️',
+    role: 'Code, automation & systems',
+    model: 'claude-sonnet-4',
+    color: '#f97316',
+    lastActivityHoursAgo: 11,
+  },
+  {
+    id: 'writer',
+    name: 'Inkwell',
+    emoji: '✍️',
+    role: 'Copywriting & editorial output',
+    model: 'claude-sonnet-4',
+    color: '#10b981',
+    lastActivityHoursAgo: 3.5,
+  },
+  {
+    id: 'designer',
+    name: 'Dais',
+    emoji: '🎨',
+    role: 'Design engineering & UI',
+    model: 'claude-sonnet-4',
+    color: '#06b6d4',
+    lastActivityHoursAgo: 0.05,
+  },
+  {
+    id: 'assistant',
+    name: 'Pip',
+    emoji: '🤖',
+    role: 'Personal assistant & scheduling',
+    model: 'claude-haiku-3-5',
+    color: '#6b7280',
+    lastActivityHoursAgo: 18,
+  },
+  {
+    id: 'strategist',
+    name: 'Mechanic',
+    emoji: '🔧',
+    role: 'Infrastructure & maintenance ops',
+    model: 'claude-sonnet-4',
+    color: '#0d9488',
+    lastActivityHoursAgo: 12,
+  },
+];
+
+function renderAgentTeam(data) {
+  const grid = document.getElementById('agents-grid');
+  if (!grid) return;
+
+  // Try to enrich activity data from crons if available
+  const crons = (data && data.crons) || [];
+  const agentLastRun = {};
+  crons.forEach(c => {
+    if (c.agentId && c.lastRunAt) {
+      const t = new Date(c.lastRunAt).getTime();
+      if (!agentLastRun[c.agentId] || t > agentLastRun[c.agentId]) {
+        agentLastRun[c.agentId] = t;
+      }
+    }
+  });
+
+  grid.innerHTML = '';
+  AGENT_ROSTER.forEach(agent => {
+    // Use live data if available, else use roster default
+    const lastRun = agentLastRun[agent.id];
+    const hoursAgo = lastRun
+      ? (Date.now() - lastRun) / 3600000
+      : agent.lastActivityHoursAgo;
+    const isActive = hoursAgo < 2; // active if ran within last 2h
+    const statusCls = isActive ? 'active' : 'idle';
+
+    const card = document.createElement('div');
+    card.className = 'agent-card';
+    card.style.setProperty('--agent-color', agent.color);
+    card.innerHTML = `
+      <div class="agent-card-top">
+        <span class="agent-emoji">${agent.emoji}</span>
+        <span class="agent-status-dot ${statusCls}"></span>
+      </div>
+      <div class="agent-card-name">${agent.name}</div>
+      <div class="agent-card-role">${agent.role}</div>
+      <div class="agent-card-footer">
+        <span class="agent-card-model">${agent.model}</span>
+        <span class="agent-status-label ${statusCls}">${isActive ? 'ACTIVE' : 'IDLE'}</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  document.getElementById('agents-meta').textContent = AGENT_ROSTER.length + ' agents';
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 9: Cron Calendar View
+// ══════════════════════════════════════════════════════
+
+// Parse a cron schedule string and return {days: [0-6], hour: N} or null
+// Days: 0=Sun,1=Mon,...,6=Sat  (JS convention)
+// We remap to Mon-Sun display (Mon=col0, Sun=col6)
+function parseCronSchedule(schedule) {
+  if (!schedule) return null;
+  const parts = schedule.trim().split(/\s+/);
+  if (parts.length < 5) return null;
+  const [min, hour, , , dow] = parts;
+  if (hour === '*' || hour.includes('/')) return null; // skip "every N min" or wildcard hour
+
+  const h = parseInt(hour, 10);
+  if (isNaN(h)) return null;
+
+  // Parse day-of-week
+  let days = [];
+  if (dow === '*') {
+    days = [0,1,2,3,4,5,6]; // every day (Sun-Sat)
+  } else {
+    // supports: "1", "1,3,5", "1-5"
+    const tokens = dow.split(',');
+    tokens.forEach(t => {
+      if (t.includes('-')) {
+        const [a, b] = t.split('-').map(Number);
+        for (let i = a; i <= b; i++) days.push(i);
+      } else {
+        days.push(parseInt(t, 10));
+      }
+    });
+  }
+  return { hour: h, days }; // days in 0=Sun..6=Sat JS style
+}
+
+function renderCronCalendar(data) {
+  const grid = document.getElementById('cal-grid');
+  const legend = document.getElementById('cal-legend');
+  if (!grid) return;
+
+  const crons = (data && data.crons) || [];
+
+  // Build a map: [dayCol 0-6][hour 0-23] = [{name, color, status}]
+  // Display columns: 0=Mon, 1=Tue, ..., 5=Sat, 6=Sun
+  // JS dow: 0=Sun, 1=Mon,...,6=Sat
+  // Mapping: jsDay 1->col0, 2->col1, ..., 6->col5, 0->col6
+  function jsDay2col(d) { return d === 0 ? 6 : d - 1; }
+
+  const cells = Array.from({length: 24}, () => Array.from({length: 7}, () => []));
+
+  crons.forEach(cron => {
+    if (!cron.enabled) return;
+    const parsed = parseCronSchedule(cron.schedule);
+    if (!parsed) return;
+    const color = agentColor(cron.agentId);
+    const sc = cronStatusClass(cron);
+    parsed.days.forEach(jsD => {
+      const col = jsDay2col(jsD);
+      if (col >= 0 && col <= 6) {
+        cells[parsed.hour][col].push({
+          name: cron.name || cron.id,
+          color,
+          status: sc,
+          schedule: cron.schedule,
+          nextRun: cron.nextRunAt,
+        });
+      }
+    });
+  });
+
+  const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  grid.innerHTML = '';
+
+  // Header row: empty corner + 7 day labels
+  const corner = document.createElement('div');
+  corner.className = 'cal-day-header';
+  grid.appendChild(corner);
+  days.forEach(d => {
+    const h = document.createElement('div');
+    h.className = 'cal-day-header';
+    h.textContent = d;
+    grid.appendChild(h);
+  });
+
+  // Hour rows
+  for (let h = 0; h < 24; h++) {
+    const lbl = document.createElement('div');
+    lbl.className = 'cal-hour-label';
+    lbl.textContent = String(h).padStart(2, '0');
+    grid.appendChild(lbl);
+
+    for (let d = 0; d < 7; d++) {
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell';
+      const events = cells[h][d];
+      events.forEach(ev => {
+        const block = document.createElement('div');
+        block.className = 'cal-block';
+        block.style.background = ev.color;
+        block.style.opacity = ev.status === 'paused' ? '0.3' : '0.75';
+        const nextStr = ev.nextRun ? relTime(ev.nextRun) : '—';
+        block.innerHTML = `<div class="cal-block-tooltip"><strong>${ev.name}</strong>Schedule: ${ev.schedule}<br>Next run: ${nextStr}</div>`;
+        cell.appendChild(block);
+      });
+      grid.appendChild(cell);
+    }
+  }
+
+  // Legend: unique agents represented
+  const seen = new Set();
+  const legendItems = [];
+  crons.forEach(c => {
+    if (!c.enabled) return;
+    const col = agentColor(c.agentId);
+    const key = c.agentId || 'unknown';
+    if (!seen.has(key)) {
+      seen.add(key);
+      legendItems.push({ label: key, color: col });
+    }
+  });
+
+  legend.innerHTML = '';
+  legendItems.sort((a,b) => a.label.localeCompare(b.label)).forEach(item => {
+    const li = document.createElement('div');
+    li.className = 'cal-legend-item';
+    li.innerHTML = `<div class="cal-legend-dot" style="background:${item.color}"></div>${item.label}`;
+    legend.appendChild(li);
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 10: Agent Improvement Backlog
+// ══════════════════════════════════════════════════════
+
+function renderBacklog(data) {
+  const summaryEl = document.getElementById('backlog-summary');
+  const listEl = document.getElementById('backlog-list');
+  const metaEl = document.getElementById('backlog-meta');
+  if (!summaryEl || !listEl || !metaEl) return;
+
+  const backlog = (data && data.agentImprovementBacklog) || {};
+  const items = Array.isArray(backlog.items) ? backlog.items : [];
+  const counts = backlog.byDecisionLevel || { auto: 0, review: 0, 'your-call': 0 };
+
+  metaEl.textContent = items.length ? `${items.length} tracked issue${items.length !== 1 ? 's' : ''}` : 'No backlog data';
+  summaryEl.innerHTML = `
+    <div class="backlog-stat">
+      <div class="backlog-stat-label">Tracked</div>
+      <div class="backlog-stat-value">${items.length}</div>
+    </div>
+    <div class="backlog-stat">
+      <div class="backlog-stat-label">Auto</div>
+      <div class="backlog-stat-value">${counts.auto || 0}</div>
+    </div>
+    <div class="backlog-stat">
+      <div class="backlog-stat-label">Review</div>
+      <div class="backlog-stat-value">${counts.review || 0}</div>
+    </div>
+    <div class="backlog-stat">
+      <div class="backlog-stat-label">Your Call</div>
+      <div class="backlog-stat-value">${counts['your-call'] || 0}</div>
+    </div>
+  `;
+
+  if (!items.length) {
+    listEl.innerHTML = '<div class="backlog-empty">No backlog data loaded into Mission Control yet.</div>';
+    return;
+  }
+
+  listEl.innerHTML = '';
+  items.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'backlog-row';
+    const decision = (item.decisionLevel || 'review').toLowerCase();
+    const statusClass = (item.status || '').toLowerCase().replace(/\s+/g, '-');
+    row.innerHTML = `
+      <div>
+        <div class="backlog-issue">${escapeHtml(item.issue || 'Untitled')}</div>
+        <div class="backlog-meta">${escapeHtml(item.category || 'uncategorized')} · ${escapeHtml(item.owner || 'unassigned')} · next review ${escapeHtml(item.nextReviewDate || '—')}</div>
+      </div>
+      <div><span class="status-tag ${statusClass}">${escapeHtml(item.status || 'unknown')}</span></div>
+      <div><span class="decision-tag ${decision}">${escapeHtml(decision)}</span></div>
+      <div class="backlog-meta">${escapeHtml(item.notes || '')}</div>
+    `;
+    listEl.appendChild(row);
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// SECTION 11: Memory / Daily Log Viewer
+// ══════════════════════════════════════════════════════
+
+// Placeholder log data. The data generation script will populate
+// data.logs with { date, sizeBytes, modifiedAt, content } entries.
+const PLACEHOLDER_LOGS = [
+  {
+    date: '2026-03-19',
+    sizeBytes: 4312,
+    modifiedAt: new Date(Date.now() - 2 * 3600000).toISOString(),
+    content: `# Daily Log — 2026-03-19
+
+## Summary
+- Ran nightly audit: 22 crons checked, 3 with warnings
+- Budget at $182.50 / $250 (73%)
+- Champagne Brief research timed out again — 4th consecutive failure
+
+## Actions Taken
+- Circuit breaker triggered at 02:14 (delivery errors)
+- Morning sweep skipped due to path expansion issue
+- QMD re-indexed 847 entries in 31s
+
+## Notes
+- Gateway stable at PID 48291
+- 19 active sessions recorded
+- Memory consolidation completed at 02:47
+
+[SAMPLE DATA — real logs sourced from memory/YYYY-MM-DD.md]`,
+  },
+  {
+    date: '2026-03-18',
+    sizeBytes: 3891,
+    modifiedAt: new Date(Date.now() - 26 * 3600000).toISOString(),
+    content: `# Daily Log — 2026-03-18
+
+## Summary
+- Full pipeline run completed (Automation Scout M/W/F)
+- Budget at $171.20 / $250 (68%)
+- RE Daily Brief remains paused (cost-cutting)
+
+## Actions Taken
+- Automation Scout Part 1 + 2 completed in 6m 22s total
+- Automation Scout Report published to #research channel
+- Daily Pulse sent at 08:04
+
+[SAMPLE DATA — real logs sourced from memory/YYYY-MM-DD.md]`,
+  },
+  {
+    date: '2026-03-17',
+    sizeBytes: 2740,
+    modifiedAt: new Date(Date.now() - 50 * 3600000).toISOString(),
+    content: `# Daily Log — 2026-03-17
+
+## Summary
+- Maintenance window only (no pipeline runs on Mon outside Champagne)
+- Champagne Brief failed: research timeout, curation/brief skipped
+
+## Actions Taken
+- Nightly audit at 02:00 — all clear except Champagne timeout
+- Memory consolidation: 1.2MB processed
+
+[SAMPLE DATA — real logs sourced from memory/YYYY-MM-DD.md]`,
+  },
+  {
+    date: '2026-03-16',
+    sizeBytes: 3105,
+    modifiedAt: new Date(Date.now() - 74 * 3600000).toISOString(),
+    content: `# Daily Log — 2026-03-16
+
+## Summary
+- Sunday — maintenance only
+- Budget at $158.80 (63%)
+
+[SAMPLE DATA — real logs sourced from memory/YYYY-MM-DD.md]`,
+  },
+  {
+    date: '2026-03-15',
+    sizeBytes: 4820,
+    modifiedAt: new Date(Date.now() - 98 * 3600000).toISOString(),
+    content: `# Daily Log — 2026-03-15
+
+## Summary
+- Saturday — light day
+- Ragnar's Voice ran at 17:00 (strategist)
+- Budget at $152.10 (60%)
+
+[SAMPLE DATA — real logs sourced from memory/YYYY-MM-DD.md]`,
+  },
+  {
+    date: '2026-03-14',
+    sizeBytes: 5233,
+    modifiedAt: new Date(Date.now() - 122 * 3600000).toISOString(),
+    content: `# Daily Log — 2026-03-14
+
+## Summary
+- Full Fri pipeline: Automation Scout ran, Ragnar's Voice at 17:00
+- Anselme weekly analytics dispatched at 08:12
+- All systems nominal
+
+[SAMPLE DATA — real logs sourced from memory/YYYY-MM-DD.md]`,
+  },
+  {
+    date: '2026-03-13',
+    sizeBytes: 3670,
+    modifiedAt: new Date(Date.now() - 146 * 3600000).toISOString(),
+    content: `# Daily Log — 2026-03-13
+
+## Summary
+- Thursday maintenance + Ragnar's Voice
+- No pipeline runs (Thu not in Automation Scout schedule)
+
+[SAMPLE DATA — real logs sourced from memory/YYYY-MM-DD.md]`,
+  },
+];
+
+function fmtBytes(b) {
+  if (b == null) return '—';
+  if (b < 1024) return b + ' B';
+  return (b / 1024).toFixed(1) + ' KB';
+}
+
+function renderDailyLogs(data) {
+  const list = document.getElementById('logs-list');
+  if (!list) return;
+
+  // Use live data.logs if available, else placeholder
+  const logs = (data && data.logs && data.logs.length) ? data.logs : PLACEHOLDER_LOGS;
+  const today = new Date().toISOString().slice(0, 10);
+
+  list.innerHTML = '';
+  logs.slice(0, 7).forEach(log => {
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+
+    const isToday = log.date === today;
+    const modAgo = log.modifiedAt ? relTime(log.modifiedAt) : '—';
+
+    entry.innerHTML = `
+      <div class="log-entry-header">
+        <div class="log-entry-left">
+          <span class="log-entry-chevron">▶</span>
+          <span class="log-entry-date">${log.date}</span>
+          ${isToday ? '<span class="log-entry-today">TODAY</span>' : ''}
+        </div>
+        <div class="log-entry-right">
+          <span class="log-entry-size">${fmtBytes(log.sizeBytes)}</span>
+          <span class="log-entry-modified">${modAgo}</span>
+        </div>
+      </div>
+      <div class="log-body">
+        <div class="log-content">${log.content ? escapeHtml(log.content) : '[No content available]'}</div>
+      </div>
+    `;
+
+    // Toggle expand/collapse
+    entry.querySelector('.log-entry-header').addEventListener('click', () => {
+      entry.classList.toggle('open');
+    });
+
+    list.appendChild(entry);
+  });
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 // ── Auto refresh every 5 minutes ─────────────────────
