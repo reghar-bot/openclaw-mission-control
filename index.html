@@ -40,6 +40,7 @@
       font-family: var(--font-sans);
       font-size: 14px;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     /* ── Password Gate ────────────────────────────────── */
@@ -171,13 +172,14 @@
     .main-content { padding: 24px 28px; max-width: 1400px; margin: 0 auto; }
 
     /* ── Tabs ───────────────────────────────────────── */
-    .tabs-shell { margin-bottom: 24px; }
+    .tabs-shell { margin-bottom: 24px; min-width: 0; }
     .tabs-nav {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       padding: 0;
       margin-bottom: 18px;
+      min-width: 0;
     }
     .tab-button {
       appearance: none;
@@ -186,6 +188,7 @@
       color: var(--text-secondary);
       border-radius: 999px;
       padding: 8px 14px;
+      min-height: 36px;
       font-family: var(--font-mono);
       font-size: 10px;
       font-weight: 700;
@@ -193,6 +196,7 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      flex-shrink: 0;
     }
     .tab-button:hover {
       border-color: rgba(224,224,232,0.22);
@@ -270,6 +274,7 @@
     }
     .section-header {
       display: flex; align-items: center; justify-content: space-between;
+      gap: 10px;
       padding: 14px 18px;
       border-bottom: 1px solid var(--border);
     }
@@ -297,7 +302,7 @@
       font-family: var(--font-mono);
     }
     .all-clear-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--status-ok); }
-    table.cron-table { width: 100%; border-collapse: collapse; }
+    table.cron-table { width: 100%; border-collapse: collapse; min-width: 720px; }
     table.cron-table th {
       padding: 8px 14px;
       font-family: var(--font-mono);
@@ -392,6 +397,8 @@
     .progress-fill.crit { background: var(--status-crit); }
     .budget-meta {
       display: flex; justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--text-secondary);
@@ -750,7 +757,7 @@
       color: var(--text-primary);
       line-height: 1;
     }
-    .backlog-list { padding: 0; }
+    .backlog-list { padding: 0; min-width: 0; }
     .backlog-row {
       display: grid;
       grid-template-columns: minmax(0, 1.8fr) 90px 110px 120px;
@@ -790,6 +797,90 @@
       color: var(--text-muted);
     }
 
+    /* ── Lifecycle / Team Cards ───────────────────────── */
+    .lifecycle-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 16px 18px;
+    }
+    .lifecycle-grid-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(42,42,58,0.4);
+    }
+    .lifecycle-grid-row:last-child { border-bottom: none; }
+    .lifecycle-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .lifecycle-card-sub {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .lifecycle-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: flex-start;
+    }
+    .lifecycle-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .lifecycle-tag.healthy,
+    .lifecycle-tag.approved {
+      background: rgba(34,197,94,0.12);
+      color: var(--status-ok);
+      border-color: rgba(34,197,94,0.25);
+    }
+    .lifecycle-tag.review,
+    .lifecycle-tag.researching,
+    .lifecycle-tag.candidate,
+    .lifecycle-tag.agent-mode,
+    .lifecycle-tag.capability {
+      background: rgba(59,130,246,0.12);
+      color: var(--accent);
+      border-color: rgba(59,130,246,0.25);
+    }
+    .lifecycle-tag.under-review,
+    .lifecycle-tag.your-call,
+    .lifecycle-tag.blocked,
+    .lifecycle-tag.at-risk {
+      background: rgba(239,68,68,0.12);
+      color: var(--status-crit);
+      border-color: rgba(239,68,68,0.25);
+    }
+    .lifecycle-tag.idea,
+    .lifecycle-tag.idle {
+      background: rgba(107,107,128,0.1);
+      color: var(--text-secondary);
+      border-color: rgba(107,107,128,0.2);
+    }
+    .lifecycle-notes {
+      min-width: 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
     /* ── Memory / Daily Log Viewer ────────────────────── */
     .log-list { padding: 0; }
     .log-entry { border-bottom: 1px solid rgba(42,42,58,0.5); }
@@ -819,7 +910,7 @@
       font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);
     }
     .log-entry-size { color: var(--text-secondary); }
-    .log-body { display: none; padding: 0 18px 16px; }
+    .log-body { display: none; padding: 0 18px 16px; min-width: 0; }
     .log-entry.open .log-body { display: block; }
     .log-content {
       background: var(--bg-base); border: 1px solid var(--border);
@@ -832,17 +923,157 @@
 
     /* ── Responsive ───────────────────────────────── */
     @media (max-width: 900px) {
-      .two-col { grid-template-columns: 1fr; }
-      .health-bar { grid-template-columns: repeat(2, 1fr); }
+      .header {
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-left,
+      .header-right {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .header-right {
+        gap: 8px;
+        justify-content: space-between;
+      }
       .main-content { padding: 16px; }
-      .header { padding: 14px 16px; }
-      .agents-grid { grid-template-columns: repeat(2, 1fr); }
+      .tabs-shell { margin-bottom: 20px; }
+      .tabs-nav {
+        flex-wrap: nowrap;
+        gap: 8px;
+        margin: 0 -16px 18px;
+        padding: 0 16px 6px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .tabs-nav::-webkit-scrollbar { height: 6px; }
+      .two-col { grid-template-columns: 1fr; }
+      .health-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .agents-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .backlog-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .backlog-row { grid-template-columns: minmax(0, 1fr); }
+      .lifecycle-grid-row {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+      .log-entry-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .log-entry-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+    @media (max-width: 640px) {
+      .gate-box {
+        width: calc(100vw - 32px);
+        padding: 28px 20px;
+      }
+      .main-content { padding: 14px; }
+      .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .section-meta { line-height: 1.4; }
+      .metric-card { padding: 16px; }
+      .metric-value { font-size: 24px; }
+      .budget-body { padding: 16px; }
+      .budget-numbers {
+        flex-wrap: wrap;
+        gap: 4px 8px;
+      }
+      .budget-spent { font-size: 28px; }
+      .budget-daily-row {
+        gap: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .pipeline-row {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .pipeline-last {
+        width: 100%;
+        text-align: left;
+      }
+      .activity-row {
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 6px 10px;
+        align-items: start;
+      }
+      .activity-status,
+      .activity-dur {
+        grid-column: 2;
+        justify-self: start;
+      }
+      .cron-tile {
+        max-width: none;
+        width: 100%;
+      }
+      .cron-tooltip {
+        left: auto;
+        right: 0;
+        min-width: min(220px, calc(100vw - 48px));
+        max-width: min(280px, calc(100vw - 48px));
+      }
+      .agents-grid { grid-template-columns: 1fr; }
+      .cal-wrapper {
+        padding: 12px 14px;
+        overflow-x: auto;
+      }
+      .cal-grid { min-width: 460px; }
+      .backlog-summary { grid-template-columns: 1fr 1fr; }
+      .backlog-row {
+        gap: 8px;
+        padding: 14px;
+      }
+      .decision-tag, .status-tag {
+        justify-content: flex-start;
+      }
+      .log-entry-header {
+        padding: 12px 14px;
+      }
+      .log-body { padding: 0 14px 14px; }
+      .log-content {
+        padding: 12px;
+        font-size: 10px;
+        max-height: 280px;
+      }
     }
     @media (max-width: 480px) {
-      .health-bar { grid-template-columns: 1fr 1fr; }
-      .activity-row { grid-template-columns: 46px 1fr auto; }
-      .activity-dur { display: none; }
-      .agents-grid { grid-template-columns: 1fr 1fr; }
+      .header-wordmark { font-size: 12px; }
+      .header-status-badge {
+        max-width: 100%;
+        white-space: nowrap;
+      }
+      .header-ts {
+        width: 100%;
+        line-height: 1.4;
+      }
+      .health-bar { grid-template-columns: 1fr; }
+      .tab-button {
+        padding: 9px 12px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
+      .activity-row { grid-template-columns: 46px minmax(0, 1fr); }
+      .activity-name,
+      .pipeline-name,
+      .cron-name,
+      .last-err-snippet {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: initial;
+        word-break: break-word;
+      }
+      .backlog-summary { grid-template-columns: 1fr; }
+      .backlog-stat-value { font-size: 20px; }
+      .lifecycle-summary {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
