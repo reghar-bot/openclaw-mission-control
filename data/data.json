@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-20T05:04:21Z",
+  "generatedAt": "2026-03-20T06:04:23Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "CRITICAL",
     "gatewayStatus": "running",
     "gatewayPid": 31433,
-    "sessionCount": 87,
+    "sessionCount": 86,
     "agentCount": 14
   },
   "budget": {
@@ -53,27 +53,13 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-20T04:04:13.073000Z",
-      "nextRunAt": "2026-03-20T05:04:13.012000Z",
+      "lastRunAt": "2026-03-20T05:04:13.082000Z",
+      "nextRunAt": "2026-03-20T06:04:13.012000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 25106,
+      "lastDurationMs": 22492,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
-    },
-    {
-      "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
-      "name": "Secret Expiry Monitor",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "15 6 * * *",
-      "lastRunAt": "2026-03-19T05:15:00.047000Z",
-      "nextRunAt": "2026-03-20T05:15:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 4179,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -253,6 +239,20 @@
       "nextRunAt": "2026-03-21T05:00:00Z",
       "lastRunStatus": "ok",
       "lastDurationMs": 15405,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "e9044ce0-b5fd-4506-b9d3-ac19e660e1ff",
+      "name": "Secret Expiry Monitor",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "15 6 * * *",
+      "lastRunAt": "2026-03-20T05:15:00.068000Z",
+      "nextRunAt": "2026-03-21T05:15:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 5030,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
