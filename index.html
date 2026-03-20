@@ -986,13 +986,6 @@
       color: var(--text-muted);
     }
 
-    /* ── Lifecycle / Team Cards ───────────────────────── */
-    .lifecycle-summary {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      padding: 16px 18px;
-    }
     .lifecycle-grid-row {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1fr);
@@ -1287,9 +1280,6 @@
       }
       .backlog-summary { grid-template-columns: 1fr; }
       .backlog-stat-value { font-size: 20px; }
-      .lifecycle-summary {
-        grid-template-columns: 1fr !important;
-      }
     }
   </style>
 </head>
@@ -2500,52 +2490,84 @@ function renderLifecycleRows(targetId, items, kind) {
   });
 }
 
+function renderLifecycleGroupSection(targetId, title, items) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  if (!Array.isArray(items) || !items.length) return;
+
+  const section = document.createElement('div');
+  section.className = 'section-card one-col';
+  section.style.marginBottom = '16px';
+  section.innerHTML = `
+    <div class="section-header">
+      <span class="section-title">${escapeHtml(title)}</span>
+      <span class="section-meta">${items.length} role${items.length !== 1 ? 's' : ''}</span>
+    </div>
+    <div class="backlog-list"></div>
+  `;
+
+  el.appendChild(section);
+  const list = section.querySelector('.backlog-list');
+  const tempId = `lifecycle-group-${Math.random().toString(36).slice(2)}`;
+  list.id = tempId;
+  renderLifecycleRows(tempId, items, 'team');
+}
+
 function renderLifecycleTeam(data) {
   const lifecycle = (data && data.agentLifecycle) || {};
   const currentTeam = Array.isArray(lifecycle.currentTeam) ? lifecycle.currentTeam : [];
   const candidates = Array.isArray(lifecycle.candidates) ? lifecycle.candidates : [];
   const underReview = Array.isArray(lifecycle.underReview) ? lifecycle.underReview : [];
-  const governance = Array.isArray(lifecycle.governance) ? lifecycle.governance : [];
 
   const teamMeta = document.getElementById('lifecycle-team-meta');
   const candidatesMeta = document.getElementById('lifecycle-candidates-meta');
   const reviewMeta = document.getElementById('lifecycle-review-meta');
   const summaryEl = document.getElementById('lifecycle-team-summary');
+  const teamContainer = document.getElementById('lifecycle-current-team');
 
-  if (teamMeta) teamMeta.textContent = currentTeam.length ? `${currentTeam.length} active role${currentTeam.length !== 1 ? 's' : ''}` : 'No team data';
+  if (teamMeta) teamMeta.textContent = currentTeam.length ? `${currentTeam.length} active role${currentTeam.length !== 1 ? 's' : ''} across 3 teams` : 'No team data';
   if (candidatesMeta) candidatesMeta.textContent = candidates.length ? `${candidates.length} candidate${candidates.length !== 1 ? 's' : ''}` : 'No candidates';
   if (reviewMeta) reviewMeta.textContent = underReview.length ? `${underReview.length} flagged item${underReview.length !== 1 ? 's' : ''}` : 'No active review items';
 
   if (summaryEl) {
-    if (governance.length || lifecycle.purpose) {
-      summaryEl.style.display = 'block';
-      summaryEl.innerHTML = `
-        <div class="lifecycle-summary">
-          <div class="backlog-stat">
-            <div class="backlog-stat-label">Current Team</div>
-            <div class="backlog-stat-value">${currentTeam.length}</div>
-          </div>
-          <div class="backlog-stat">
-            <div class="backlog-stat-label">Candidates</div>
-            <div class="backlog-stat-value">${candidates.length}</div>
-          </div>
-          <div class="backlog-stat">
-            <div class="backlog-stat-label">Under Review</div>
-            <div class="backlog-stat-value">${underReview.length}</div>
-          </div>
-          <div class="backlog-stat">
-            <div class="backlog-stat-label">Governance</div>
-            <div class="lifecycle-notes">${escapeHtml(governance[0] || lifecycle.purpose || 'Lifecycle source of truth')}</div>
-          </div>
-        </div>
-      `;
-    } else {
-      summaryEl.style.display = 'none';
-      summaryEl.innerHTML = '';
+    summaryEl.style.display = 'none';
+    summaryEl.innerHTML = '';
+  }
+
+  if (teamContainer) {
+    teamContainer.innerHTML = '';
+    const orderedGroups = [
+      { title: 'Core Team', key: 'core', order: ['Reghar', 'Pip', 'Sigrid', 'Inkwell', 'Kodex', 'Dais', 'Mechanic'] },
+      { title: 'Nolea Team', key: 'nolea', order: ['Vessel', 'Anselme', 'Margot', 'Analyst'] },
+      { title: 'Leon Team', key: 'leon', order: ['Charles', 'Kevin-G', 'Costco Guy'] },
+    ];
+
+    const byGroup = new Map();
+    currentTeam.forEach(item => {
+      const groupKey = String(item.group || '').toLowerCase();
+      if (!byGroup.has(groupKey)) byGroup.set(groupKey, []);
+      byGroup.get(groupKey).push(item);
+    });
+
+    orderedGroups.forEach(group => {
+      let items = byGroup.get(group.key) || [];
+      items = items
+        .filter(item => item.agent !== 'Analyst' || ((item.status || '').toLowerCase() === 'healthy' || (item.stage || '').toLowerCase() === 'approved'))
+        .sort((a, b) => {
+          const ai = group.order.indexOf(a.agent || '');
+          const bi = group.order.indexOf(b.agent || '');
+          const ao = ai === -1 ? 999 : ai;
+          const bo = bi === -1 ? 999 : bi;
+          return ao - bo || String(a.agent || '').localeCompare(String(b.agent || ''));
+        });
+      renderLifecycleGroupSection('lifecycle-current-team', group.title, items);
+    });
+
+    if (!teamContainer.innerHTML.trim()) {
+      teamContainer.innerHTML = '<div class="backlog-empty">No lifecycle entries in this section.</div>';
     }
   }
 
-  renderLifecycleRows('lifecycle-current-team', currentTeam, 'team');
   renderLifecycleRows('lifecycle-candidates', candidates, 'candidate');
   renderLifecycleRows('lifecycle-under-review', underReview, 'review');
 }
