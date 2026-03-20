@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-20T15:01:12Z",
+  "generatedAt": "2026-03-20T15:17:19Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
@@ -48,34 +48,6 @@
   ],
   "crons": [
     {
-      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
-      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-20T14:00:00.052000Z",
-      "nextRunAt": "2026-03-20T15:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 14752,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-20T14:05:09.452000Z",
-      "nextRunAt": "2026-03-20T15:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 31999,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
       "id": "91fa6b02-0109-4219-a029-2e5fa9b991da",
       "name": "System Nervous System",
       "agentId": "assistant",
@@ -102,6 +74,34 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
+    },
+    {
+      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
+      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 8-23 * * *",
+      "lastRunAt": "2026-03-20T15:01:33.014000Z",
+      "nextRunAt": "2026-03-20T16:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 71143,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
+    },
+    {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "0 8-23 * * *",
+      "lastRunAt": "2026-03-20T15:00:00.071000Z",
+      "nextRunAt": "2026-03-20T16:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 92943,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -753,16 +753,76 @@
         "nextLikelyImprovement": "Better screenshot automation and tighter visual review workflow."
       },
       {
+        "agent": "Vessel",
+        "role": "Nolea operator / strategist / execution lead",
+        "group": "nolea",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Central Nolea operator with the strongest live business context and execution surface for Camilla/Nolea work.",
+        "knownIssues": "Name/path drift still exists in places between Vessel and older Vesslan references.",
+        "nextLikelyImprovement": "Keep consolidating canonical Nolea paths and route more domain work through Vessel first."
+      },
+      {
+        "agent": "Anselme",
+        "role": "Nolea data analyst / ads / reporting",
+        "group": "nolea",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Useful analytics specialist for Nolea reporting, Google Ads, and structured business intelligence.",
+        "knownIssues": "Some workflows still depend on external auth/config surfaces and can be blocked by account setup.",
+        "nextLikelyImprovement": "Tighten recurring reporting loops and reduce OAuth/setup friction."
+      },
+      {
+        "agent": "Margot",
+        "role": "sommelier / wine knowledge specialist",
+        "group": "nolea",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Distinct specialist for wine depth, knowledge-base work, and Nolea wine-domain support.",
+        "knownIssues": "Routing must stay explicit so Margot is used for wine depth instead of generic writing/design passes.",
+        "nextLikelyImprovement": "Expand reusable wine knowledge assets and clearer routing triggers."
+      },
+      {
         "agent": "Charles",
-        "role": "repo-bound implementation contractor",
-        "group": "specialist",
+        "role": "Leon assistant",
+        "group": "leon",
         "defaultModel": "claude-sonnet",
         "status": "under-review",
         "stage": "approved",
         "decisionLevel": "your-call",
-        "currentAssessment": "Useful when kept within strict repo boundaries and clearly scoped implementation tasks.",
+        "currentAssessment": "Active as Leon-facing assistant with a distinct user surface, but still under review for long-term role clarity.",
         "knownIssues": "Boundary drift / scope creep risk if ownership lines are not kept explicit.",
-        "nextLikelyImprovement": "Continue boundary enforcement and review whether Charles remains a separate long-term role or a narrower delivery mode."
+        "nextLikelyImprovement": "Continue boundary enforcement and confirm the long-term Leon team split remains useful."
+      },
+      {
+        "agent": "Kevin-G",
+        "role": "Leon builder / implementation contractor",
+        "group": "leon",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Useful repo-bound builder for Leon work when tasks are tightly scoped.",
+        "knownIssues": "Needs clear repo/task boundaries to avoid overlap with core developer flows.",
+        "nextLikelyImprovement": "Keep the role narrow and execution-focused."
+      },
+      {
+        "agent": "Costco Guy",
+        "role": "Leon designer / frontend support",
+        "group": "leon",
+        "defaultModel": "claude-sonnet",
+        "status": "healthy",
+        "stage": "approved",
+        "decisionLevel": "review",
+        "currentAssessment": "Distinct visual/front-end support role inside the Leon setup.",
+        "knownIssues": "Role value depends on preserving a clear visual scope rather than generic support drift.",
+        "nextLikelyImprovement": "Keep frontend/design tasks explicitly routed through Costco Guy when Leon needs that surface."
       }
     ],
     "candidates": [
