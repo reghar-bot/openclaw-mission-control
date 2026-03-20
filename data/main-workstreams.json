@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "description": "Phase 1 metadata-only workstream taxonomy for the broad main runtime. This does not change runtime IDs, cron routing, or execution behavior.",
+  "allowedWorkstreams": [
+    "reghar",
+    "approvals",
+    "relay",
+    "briefs",
+    "ops",
+    "planning"
+  ],
+  "rules": [
+    {
+      "id": "explicit-cron-name-map",
+      "kind": "exactName",
+      "field": "name",
+      "mappings": {
+        "Approval Handler — Pending Items": "approvals",
+        "End of Day — Reflection, Situation & Handoff": "briefs",
+        "Overnight To-Do Tackler": "ops",
+        "Daily Conversation & Workflow Audit": "ops",
+        "Nightly System Audit": "ops",
+        "Nightly Memory Consolidation": "ops",
+        "System Architect — Weekly Pattern Review": "planning",
+        "Pip — Weekly Timing & Overlap Audit": "ops",
+        "Pip — Weekly Registry Refresh": "ops",
+        "Morning Context Briefing": "briefs",
+        "Pip — Weekly Ops Report": "ops",
+        "Morning Briefing — Email & Calendar": "briefs",
+        "Daily Housekeeping — Stale Items": "ops",
+        "Monthly Pattern Detection": "planning",
+        "Reghar — Morning Proposal Review": "planning",
+        "Ragnar's Inbox — Weekly Draft (Wed + Sun)": "briefs",
+        "Pip — Weekly Cron Health Scorecard": "ops",
+        "Pip — Weekly Cost Review [exec]": "ops",
+        "Automation Scout Report": "briefs",
+        "Weekly Cron Schedule Digest": "planning",
+        "Champagne Brief — Judge + Revision": "briefs",
+        "Reminder: Evaluate Nolea Multi-Agent Marketing Team": "planning",
+        "Pip — Monthly Cost Review [exec]": "ops"
+      }
+    },
+    {
+      "id": "fallback-keywords",
+      "kind": "keyword",
+      "field": "name",
+      "keywords": [
+        {
+          "match": ["approval", "approve", "pending item"],
+          "workstream": "approvals"
+        },
+        {
+          "match": ["brief", "briefing", "handoff", "inbox", "situation memo", "daily pulse"],
+          "workstream": "briefs"
+        },
+        {
+          "match": ["relay", "telegram", "discord", "channel"],
+          "workstream": "relay"
+        },
+        {
+          "match": ["plan", "planning", "proposal", "pattern", "architect", "schedule digest"],
+          "workstream": "planning"
+        },
+        {
+          "match": ["audit", "watchdog", "monitor", "ops", "housekeeping", "consolidation", "maintenance", "health", "timing", "cost review", "to-do"],
+          "workstream": "ops"
+        }
+      ]
+    }
+  ]
+}

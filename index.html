@@ -2160,6 +2160,55 @@ const AGENT_GROUPS = [
 
 const ACTIVITY_WINDOW_HOURS = 2;
 
+const MAIN_WORKSTREAM_CONFIG = {
+  version: 1,
+  allowedWorkstreams: ['reghar', 'approvals', 'relay', 'briefs', 'ops', 'planning'],
+  rules: [
+    {
+      id: 'explicit-cron-name-map',
+      kind: 'exactName',
+      field: 'name',
+      mappings: {
+        'Approval Handler — Pending Items': 'approvals',
+        'End of Day — Reflection, Situation & Handoff': 'briefs',
+        'Overnight To-Do Tackler': 'ops',
+        'Daily Conversation & Workflow Audit': 'ops',
+        'Nightly System Audit': 'ops',
+        'Nightly Memory Consolidation': 'ops',
+        'System Architect — Weekly Pattern Review': 'planning',
+        'Pip — Weekly Timing & Overlap Audit': 'ops',
+        'Pip — Weekly Registry Refresh': 'ops',
+        'Morning Context Briefing': 'briefs',
+        'Pip — Weekly Ops Report': 'ops',
+        'Morning Briefing — Email & Calendar': 'briefs',
+        'Daily Housekeeping — Stale Items': 'ops',
+        'Monthly Pattern Detection': 'planning',
+        'Reghar — Morning Proposal Review': 'planning',
+        "Ragnar's Inbox — Weekly Draft (Wed + Sun)": 'briefs',
+        'Pip — Weekly Cron Health Scorecard': 'ops',
+        'Pip — Weekly Cost Review [exec]': 'ops',
+        'Automation Scout Report': 'briefs',
+        'Weekly Cron Schedule Digest': 'planning',
+        'Champagne Brief — Judge + Revision': 'briefs',
+        'Reminder: Evaluate Nolea Multi-Agent Marketing Team': 'planning',
+        'Pip — Monthly Cost Review [exec]': 'ops',
+      },
+    },
+    {
+      id: 'fallback-keywords',
+      kind: 'keyword',
+      field: 'name',
+      keywords: [
+        { match: ['approval', 'approve', 'pending item'], workstream: 'approvals' },
+        { match: ['brief', 'briefing', 'handoff', 'inbox', 'situation memo', 'daily pulse'], workstream: 'briefs' },
+        { match: ['relay', 'telegram', 'discord', 'channel'], workstream: 'relay' },
+        { match: ['plan', 'planning', 'proposal', 'pattern', 'architect', 'schedule digest'], workstream: 'planning' },
+        { match: ['audit', 'watchdog', 'monitor', 'ops', 'housekeeping', 'consolidation', 'maintenance', 'health', 'timing', 'cost review', 'to-do'], workstream: 'ops' },
+      ],
+    },
+  ],
+};
+
 const AGENT_DIRECTORY = {
   Reghar: {
     runtimeIds: ['main'],
@@ -2260,6 +2309,54 @@ function getRuntimeIdsForLifecycleAgent(agentName) {
   return entry && Array.isArray(entry.runtimeIds) ? entry.runtimeIds.map(normalizeRuntimeId) : [];
 }
 
+function normalizeWorkstream(value) {
+  const normalized = String(value || '').trim().toLowerCase();
+  return MAIN_WORKSTREAM_CONFIG.allowedWorkstreams.includes(normalized) ? normalized : null;
+}
+
+function resolveMainWorkstream(item) {
+  const record = item || {};
+  const explicit = normalizeWorkstream(record.workstream);
+  if (explicit) {
+    return { workstream: explicit, source: 'explicit' };
+  }
+
+  const rules = Array.isArray(MAIN_WORKSTREAM_CONFIG.rules) ? MAIN_WORKSTREAM_CONFIG.rules : [];
+  for (const rule of rules) {
+    const fieldValue = String(record[rule.field] || '').trim();
+    if (!fieldValue) continue;
+    const normalizedField = fieldValue.toLowerCase();
+
+    if (rule.kind === 'exactName') {
+      const mapped = normalizeWorkstream(rule.mappings && rule.mappings[fieldValue]);
+      if (mapped) return { workstream: mapped, source: rule.id || 'exactName' };
+    }
+
+    if (rule.kind === 'keyword' && Array.isArray(rule.keywords)) {
+      for (const entry of rule.keywords) {
+        const needles = Array.isArray(entry.match) ? entry.match : [];
+        if (needles.some(needle => normalizedField.includes(String(needle || '').toLowerCase()))) {
+          const mapped = normalizeWorkstream(entry.workstream);
+          if (mapped) return { workstream: mapped, source: rule.id || 'keyword' };
+        }
+      }
+    }
+  }
+
+  return { workstream: 'reghar', source: 'default' };
+}
+
+function createEmptyWorkstreamCounts() {
+  return MAIN_WORKSTREAM_CONFIG.allowedWorkstreams.reduce((acc, workstream) => {
+    acc[workstream] = 0;
+    return acc;
+  }, {});
+}
+
+function formatWorkstreamLabel(workstream) {
+  return workstream ? `Reghar / System → ${workstream}` : 'Reghar / System';
+}
+
 function collectAgentOpsStats(crons) {
   const stats = {};
 
@@ -2269,6 +2366,9 @@ function collectAgentOpsStats(crons) {
       lastRunAt: null,
       runtimeIds: getRuntimeIdsForLifecycleAgent(agentName),
       unresolvedRuntimeIds: [],
+      workstreams: createEmptyWorkstreamCounts(),
+      workstreamSources: {},
+      primaryWorkstream: null,
     };
   });
 
@@ -2300,12 +2400,26 @@ function collectAgentOpsStats(crons) {
       bucket.runtimeIds.push(runtimeId);
     }
 
+    if (runtimeId === 'main') {
+      const workstreamMeta = resolveMainWorkstream(cron);
+      bucket.workstreams[workstreamMeta.workstream] = (bucket.workstreams[workstreamMeta.workstream] || 0) + 1;
+      bucket.workstreamSources[workstreamMeta.workstream] = workstreamMeta.source;
+    }
+
     if (cron.lastRunAt) {
       const ts = new Date(cron.lastRunAt).getTime();
       if (!Number.isNaN(ts) && (!bucket.lastRunAt || ts > bucket.lastRunAt)) {
         bucket.lastRunAt = ts;
       }
     }
+  });
+
+  Object.values(stats).forEach(bucket => {
+    if (!bucket || !bucket.workstreams) return;
+    const ranked = Object.entries(bucket.workstreams)
+      .filter(([, count]) => count > 0)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    bucket.primaryWorkstream = ranked.length ? ranked[0][0] : null;
   });
 
   return stats;
@@ -2330,6 +2444,8 @@ function getAgentActivityState(agentName, opsStats) {
     cronCount: ops ? ops.cronCount : 0,
     runtimeIds,
     notes: directory.notes || '',
+    primaryWorkstream: ops ? ops.primaryWorkstream : null,
+    workstreams: ops ? ops.workstreams : null,
   };
 }
 
@@ -2411,6 +2527,7 @@ function renderAgentTeam(data) {
         <div class="agent-card-name">${escapeHtml(item.agent || 'Unknown')}</div>
         <div class="agent-card-role">${escapeHtml(item.role || 'Role not specified')}</div>
         <div class="agent-card-role" style="font-size:10px;color:var(--text-secondary);margin-top:6px;">runtime: ${escapeHtml(formatRuntimeIds(activity.runtimeIds))}</div>
+        ${activity.primaryWorkstream ? `<div class="agent-card-role" style="font-size:10px;color:var(--text-secondary);margin-top:4px;">workstream: ${escapeHtml(formatWorkstreamLabel(activity.primaryWorkstream))}</div>` : ''}
         <div class="agent-card-role" style="font-size:10px;color:var(--text-muted);margin-top:4px;">last active: ${escapeHtml(formatLastActive(activity.lastRunAt))}</div>
         <div class="agent-card-footer">
           <span class="agent-card-model">${escapeHtml(item.defaultModel || 'model —')}</span>
