@@ -170,6 +170,55 @@
     /* Main content grid */
     .main-content { padding: 24px 28px; max-width: 1400px; margin: 0 auto; }
 
+    /* ── Tabs ───────────────────────────────────────── */
+    .tabs-shell { margin-bottom: 24px; }
+    .tabs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      margin-bottom: 18px;
+    }
+    .tab-button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .tab-button:hover {
+      border-color: rgba(224,224,232,0.22);
+      color: var(--text-primary);
+    }
+    .tab-button.active {
+      background: rgba(59,130,246,0.12);
+      border-color: rgba(59,130,246,0.28);
+      color: var(--accent);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .tab-panel > *:last-child { margin-bottom: 0 !important; }
+    .empty-state {
+      padding: 28px 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    .empty-state strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-size: 12px;
+    }
+
     /* ── Health Bar ─────────────────────────────────── */
     .health-bar {
       display: grid;
@@ -839,6 +888,16 @@
 
   <div class="main-content">
 
+    <div class="tabs-shell">
+      <nav class="tabs-nav" aria-label="Mission Control views">
+        <button class="tab-button active" type="button" data-tab-target="overview" aria-selected="true">Overview</button>
+        <button class="tab-button" type="button" data-tab-target="agents" aria-selected="false">Agents</button>
+        <button class="tab-button" type="button" data-tab-target="decisions" aria-selected="false">Decisions</button>
+        <button class="tab-button" type="button" data-tab-target="ops" aria-selected="false">Ops</button>
+      </nav>
+
+      <section class="tab-panel active" data-tab-panel="overview">
+
     <!-- Section 1: Health Bar -->
     <div class="health-bar">
       <div class="metric-card ok" id="card-crons">
@@ -977,6 +1036,10 @@
       </div>
     </div>
 
+      </section>
+
+      <section class="tab-panel" data-tab-panel="agents">
+
     <!-- Section 8: Agent Team Overview -->
     <div class="section-card one-col" style="margin-bottom:16px;" id="agents-card">
       <div class="section-header">
@@ -998,6 +1061,25 @@
       <div class="cal-legend" id="cal-legend"><!-- rendered by JS --></div>
     </div>
 
+      </section>
+
+      <section class="tab-panel" data-tab-panel="decisions">
+        <div class="section-card one-col" style="margin-bottom:24px;" id="decisions-card">
+          <div class="section-header">
+            <span class="section-title">Decisions</span>
+            <span class="section-meta">Placeholder</span>
+          </div>
+          <div class="section-body">
+            <div class="empty-state">
+              <strong>No distinct decisions feed yet.</strong>
+              Mission Control can host review items, approvals, and notable system choices here once a dedicated decisions dataset is wired in.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="ops">
+
     <!-- Section 10: Agent Improvement Backlog -->
     <div class="section-card one-col" style="margin-bottom:16px;" id="backlog-card">
       <div class="section-header">
@@ -1015,6 +1097,9 @@
         <span class="section-meta">diary/YYYY-MM-DD.md — what happened each day</span>
       </div>
       <div class="log-list" id="logs-list"><!-- rendered by JS --></div>
+    </div>
+
+      </section>
     </div>
 
   </div><!-- .main-content -->
@@ -1124,6 +1209,29 @@ function el(tag, cls, html) {
   if (cls) e.className = cls;
   if (html != null) e.innerHTML = html;
   return e;
+}
+
+function initTabs() {
+  const buttons = Array.from(document.querySelectorAll('[data-tab-target]'));
+  const panels = Array.from(document.querySelectorAll('[data-tab-panel]'));
+  if (!buttons.length || !panels.length) return;
+
+  const setActiveTab = (tabName) => {
+    buttons.forEach(button => {
+      const active = button.dataset.tabTarget === tabName;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    panels.forEach(panel => {
+      panel.classList.toggle('active', panel.dataset.tabPanel === tabName);
+    });
+  };
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => setActiveTab(button.dataset.tabTarget));
+  });
+
+  setActiveTab('overview');
 }
 
 // ── Aggregate system status ────────────────────────────
@@ -1920,6 +2028,8 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
+
+document.addEventListener('DOMContentLoaded', initTabs);
 
 // ── Auto refresh every 5 minutes ─────────────────────
 if (localStorage.getItem(SESSION_KEY) === '1') {
