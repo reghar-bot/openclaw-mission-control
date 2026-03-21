@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-21T07:00:51Z",
+  "generatedAt": "2026-03-21T08:00:23Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
-    "gatewayPid": 11916,
-    "sessionCount": 108,
+    "gatewayPid": 13143,
+    "sessionCount": 109,
     "agentCount": 14
   },
   "budget": {
@@ -48,76 +48,6 @@
   ],
   "crons": [
     {
-      "id": "32f8616e-d4c3-4ba7-aab0-4988002be39d",
-      "name": "Daily Health Check \u2014 CRM + Champagne Pipeline",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 8 * * *",
-      "lastRunAt": "2026-03-20T07:03:41.488000Z",
-      "nextRunAt": "2026-03-21T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 7099,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
-      "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
-      "name": "Morning Context Briefing",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "0 8 * * *",
-      "lastRunAt": "2026-03-20T07:00:00.041000Z",
-      "nextRunAt": "2026-03-21T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 20115,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 180
-    },
-    {
-      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
-      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-20T22:00:34.072000Z",
-      "nextRunAt": "2026-03-21T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 32142,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
-      "id": "exec-mc-snapshot-1773508840670",
-      "name": "Mission Control Snapshot",
-      "agentId": "isolated",
-      "enabled": true,
-      "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-20T22:00:00.044000Z",
-      "nextRunAt": "2026-03-21T07:00:00Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 34028,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 300
-    },
-    {
-      "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
-      "name": "Discord Relay",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "40 */4 * * *",
-      "lastRunAt": "2026-03-21T03:42:52.454000Z",
-      "nextRunAt": "2026-03-21T07:42:52.404000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 3862,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
       "id": "586ea696-e141-4f10-bbc5-98c288868bd0",
       "name": "knowledge-audit",
       "agentId": "assistant",
@@ -130,6 +60,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
+    },
+    {
+      "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
+      "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 8-23 * * *",
+      "lastRunAt": "2026-03-21T07:01:06.333000Z",
+      "nextRunAt": "2026-03-21T08:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 6092,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
     },
     {
       "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
@@ -146,6 +90,20 @@
       "timeoutSeconds": null
     },
     {
+      "id": "exec-mc-snapshot-1773508840670",
+      "name": "Mission Control Snapshot",
+      "agentId": "isolated",
+      "enabled": true,
+      "schedule": "0 8-23 * * *",
+      "lastRunAt": "2026-03-21T07:00:40.553000Z",
+      "nextRunAt": "2026-03-21T08:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 25780,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 300
+    },
+    {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
       "name": "Approval Handler \u2014 Pending Items",
       "agentId": "assistant",
@@ -155,6 +113,20 @@
       "nextRunAt": "2026-03-21T10:27:22.238000Z",
       "lastRunStatus": "ok",
       "lastDurationMs": 3112,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
+      "name": "Discord Relay",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "40 */4 * * *",
+      "lastRunAt": "2026-03-21T07:42:52.417000Z",
+      "nextRunAt": "2026-03-21T11:42:52.404000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 7568,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
@@ -354,6 +326,34 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
+    },
+    {
+      "id": "32f8616e-d4c3-4ba7-aab0-4988002be39d",
+      "name": "Daily Health Check \u2014 CRM + Champagne Pipeline",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 8 * * *",
+      "lastRunAt": "2026-03-21T07:01:12.425000Z",
+      "nextRunAt": "2026-03-22T07:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 21150,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "3add1e1b-d889-4ea4-9f44-c33269cb24ad",
+      "name": "Morning Context Briefing",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "0 8 * * *",
+      "lastRunAt": "2026-03-21T07:00:20.794000Z",
+      "nextRunAt": "2026-03-22T07:00:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 19759,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 180
     },
     {
       "id": "9100c6c2-0426-4afa-9ffe-8307b3008571",
@@ -620,6 +620,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "4112480c-37c9-4ba6-9241-a2c54a17f069",
+      "name": "Pip \u2014 Monthly System Master Staleness Check",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 9 1 * *",
+      "lastRunAt": null,
+      "nextRunAt": "2026-04-01T07:00:00Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "c7085b08-a7a2-426f-8ebe-bcc962643aa8",
