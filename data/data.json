@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-21T08:00:23Z",
+  "generatedAt": "2026-03-21T09:00:12Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 13143,
-    "sessionCount": 109,
+    "sessionCount": 108,
     "agentCount": 14
   },
   "budget": {
@@ -48,43 +48,15 @@
   ],
   "crons": [
     {
-      "id": "586ea696-e141-4f10-bbc5-98c288868bd0",
-      "name": "knowledge-audit",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 9 * * *",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-21T08:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
       "id": "96582b75-683d-4a0f-9171-9ffe18f9c133",
       "name": "Nolea CRM \u2014 IMAP Sync (varje timme 08-24)",
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-21T07:01:06.333000Z",
-      "nextRunAt": "2026-03-21T08:00:00Z",
+      "lastRunAt": "2026-03-21T08:00:38.461000Z",
+      "nextRunAt": "2026-03-21T09:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 6092,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
-      "id": "c87f7777-f166-4e9b-9874-43d505fdc1ce",
-      "name": "Reminder: Evaluate Nolea Multi-Agent Marketing Team",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "at 2026-03-21T08:00:00.000Z",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-21T08:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
+      "lastDurationMs": 9038,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -95,13 +67,27 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-21T07:00:40.553000Z",
-      "nextRunAt": "2026-03-21T08:00:00Z",
+      "lastRunAt": "2026-03-21T08:00:11.476000Z",
+      "nextRunAt": "2026-03-21T09:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 25780,
+      "lastDurationMs": 26985,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
+    },
+    {
+      "id": "3b93750f-5ee0-4784-a848-a3e72d363b00",
+      "name": "Routing Shadow Mode \u2014 Hourly Batch",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 * * * *",
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-21T09:01:23.549000Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 60
     },
     {
       "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
@@ -368,6 +354,20 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
+    },
+    {
+      "id": "586ea696-e141-4f10-bbc5-98c288868bd0",
+      "name": "knowledge-audit",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 9 * * *",
+      "lastRunAt": "2026-03-21T08:00:47.499000Z",
+      "nextRunAt": "2026-03-22T08:00:00Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 7511,
+      "consecutiveErrors": 1,
+      "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel.",
+      "timeoutSeconds": 120
     },
     {
       "id": "4f9a6711-ffb1-4a4e-ba08-754464b37a6a",
@@ -679,9 +679,9 @@
     }
   ],
   "errors": {
-    "total": 4,
+    "total": 5,
     "critical": 1,
-    "warning": 3
+    "warning": 4
   },
   "agentImprovementBacklog": {
     "total": 5,
