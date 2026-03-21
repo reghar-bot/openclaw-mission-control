@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-21T14:00:12Z",
+  "generatedAt": "2026-03-21T15:00:12Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 13143,
-    "sessionCount": 110,
+    "sessionCount": 109,
     "agentCount": 14
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-21T13:00:26.028000Z",
-      "nextRunAt": "2026-03-21T14:00:00Z",
+      "lastRunAt": "2026-03-21T14:00:33.193000Z",
+      "nextRunAt": "2026-03-21T15:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 7426,
+      "lastDurationMs": 9598,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -67,10 +67,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-21T13:00:00.052000Z",
-      "nextRunAt": "2026-03-21T14:00:00Z",
+      "lastRunAt": "2026-03-21T14:00:00.051000Z",
+      "nextRunAt": "2026-03-21T15:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 25976,
+      "lastDurationMs": 33142,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -81,27 +81,13 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-21T13:01:23.596000Z",
-      "nextRunAt": "2026-03-21T14:01:26.550000Z",
+      "lastRunAt": "2026-03-21T14:01:26.592000Z",
+      "nextRunAt": "2026-03-21T15:01:30.455000Z",
       "lastRunStatus": "error",
-      "lastDurationMs": 2954,
-      "consecutiveErrors": 5,
+      "lastDurationMs": 3863,
+      "consecutiveErrors": 6,
       "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel.",
       "timeoutSeconds": 60
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "every 240m",
-      "lastRunAt": "2026-03-21T10:27:22.286000Z",
-      "nextRunAt": "2026-03-21T14:27:22.286000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 3786,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
     },
     {
       "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
@@ -130,6 +116,20 @@
       "consecutiveErrors": 8,
       "lastError": "Error: All models failed (3): claude-max/claude-haiku-4-5: \u26a0\ufe0f API rate limit reached. Please try again later. (rate_limit) | openai-codex/gpt-5.4: \u26a0\ufe0f API rate limit reached. Please try again later. (rate_limit) | claude-max/claude-sonnet-4-6: \u26a0\ufe0f API rate limit reached. Please try again later. (rate_limit)",
       "timeoutSeconds": 300
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "every 240m",
+      "lastRunAt": "2026-03-21T14:27:22.337000Z",
+      "nextRunAt": "2026-03-21T18:27:22.337000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 7860,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
     },
     {
       "id": "881ffc11-a0a0-4808-b1cb-a194012db2e5",
