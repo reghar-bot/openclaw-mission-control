@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-21T10:00:13Z",
+  "generatedAt": "2026-03-21T11:00:12Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "DEGRADED",
     "gatewayStatus": "running",
     "gatewayPid": 13143,
-    "sessionCount": 109,
+    "sessionCount": 108,
     "agentCount": 14
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-21T09:00:27.249000Z",
-      "nextRunAt": "2026-03-21T10:00:00Z",
+      "lastRunAt": "2026-03-21T10:00:29.984000Z",
+      "nextRunAt": "2026-03-21T11:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 6167,
+      "lastDurationMs": 9487,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -67,10 +67,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-21T09:00:00.046000Z",
-      "nextRunAt": "2026-03-21T10:00:00Z",
+      "lastRunAt": "2026-03-21T10:00:00.050000Z",
+      "nextRunAt": "2026-03-21T11:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 27203,
+      "lastDurationMs": 29934,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -81,27 +81,13 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-21T09:01:23.595000Z",
-      "nextRunAt": "2026-03-21T10:01:23.549000Z",
+      "lastRunAt": "2026-03-21T10:01:23.592000Z",
+      "nextRunAt": "2026-03-21T11:01:23.549000Z",
       "lastRunStatus": "error",
-      "lastDurationMs": 4734,
-      "consecutiveErrors": 1,
+      "lastDurationMs": 10258,
+      "consecutiveErrors": 2,
       "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel.",
       "timeoutSeconds": 60
-    },
-    {
-      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
-      "name": "Approval Handler \u2014 Pending Items",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "every 240m",
-      "lastRunAt": "2026-03-21T06:27:22.238000Z",
-      "nextRunAt": "2026-03-21T10:27:22.238000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 3112,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
     },
     {
       "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
@@ -113,6 +99,20 @@
       "nextRunAt": "2026-03-21T11:42:52.404000Z",
       "lastRunStatus": "ok",
       "lastDurationMs": 7568,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "a3d32fb0-7b65-4e10-a31e-fb8af8d71bd2",
+      "name": "Approval Handler \u2014 Pending Items",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "every 240m",
+      "lastRunAt": "2026-03-21T10:27:22.286000Z",
+      "nextRunAt": "2026-03-21T14:27:22.286000Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 3786,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
@@ -680,8 +680,8 @@
   ],
   "errors": {
     "total": 6,
-    "critical": 1,
-    "warning": 5
+    "critical": 2,
+    "warning": 4
   },
   "agentImprovementBacklog": {
     "total": 5,
