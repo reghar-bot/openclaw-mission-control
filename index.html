@@ -1759,12 +1759,21 @@ function initTabs() {
 // ── Aggregate system status ────────────────────────────
 function computeAgg(data) {
   const crons = data.crons || [];
-  const critCount = crons.filter(c => c.consecutiveErrors >= 2).length;
+  const enabledCrons = crons.filter(c => c.enabled);
+  // Critical: 2+ consecutive errors on the same cron
+  const critCount = enabledCrons.filter(c => c.consecutiveErrors >= 2).length;
+  // Warn: any cron with exactly 1 error
+  const warnCount = enabledCrons.filter(c => c.consecutiveErrors === 1).length;
   const budget = data.budget || {};
   const pct = budget.limit ? (budget.currentMonth / budget.limit) : 0;
   const gwDown = data.system && data.system.gatewayStatus !== 'running';
-  if (critCount >= 4 || pct > 0.95 || gwDown) return 'critical';
-  if (critCount >= 1 || (pct > 0.85 && budget.dayOfMonth < 25)) return 'degraded';
+
+  // CRITICAL: gateway down OR budget nearly exhausted OR many crons broken
+  if (gwDown || pct > 0.95 || critCount >= 4) return 'critical';
+  // DEGRADED: 2+ critical crons OR (1 critical + over 85% budget late in month) OR 4+ warnings
+  if (critCount >= 2 || (critCount >= 1 && pct > 0.85 && budget.dayOfMonth < 25) || warnCount >= 4) return 'degraded';
+  // WARN-only (show as degraded): any single critical cron but otherwise healthy
+  if (critCount >= 1) return 'degraded';
   return 'healthy';
 }
 
@@ -1774,10 +1783,21 @@ function render(data) {
   const tsEl = document.getElementById('last-updated');
   if (data.generatedAt) {
     const d = new Date(data.generatedAt);
-    tsEl.textContent = 'Last updated: ' + d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
-    // Stale if > 20 min
+    const ageMs = Date.now() - d;
+    const ageMin = Math.floor(ageMs / 60000);
+    const ageHours = Math.floor(ageMs / 3600000);
+    let ageStr;
+    if (ageMin < 2) ageStr = 'just now';
+    else if (ageMin < 60) ageStr = ageMin + 'm ago';
+    else if (ageHours < 24) ageStr = ageHours + 'h ago';
+    else ageStr = Math.floor(ageHours / 24) + 'd ago';
+    tsEl.textContent = 'Last updated: ' + ageStr + ' (' + d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) + ')';
+    // Stale if > 2 hours
     const staleEl = document.getElementById('stale-warn');
-    if (Date.now() - d > 20 * 60 * 1000) staleEl.style.display = 'inline-block';
+    if (ageMs > 2 * 3600 * 1000) {
+      staleEl.textContent = ageHours >= 2 ? 'DATA STALE (' + ageHours + 'h)' : 'DATA STALE';
+      staleEl.style.display = 'inline-block';
+    }
   }
 
   // Aggregate badge
@@ -2121,15 +2141,38 @@ async function loadData() {
     const res = await fetch('./data/data.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
+    // Cache last known good data in sessionStorage
+    try { sessionStorage.setItem('mc_last_data', JSON.stringify(data)); } catch (_) {}
     render(data);
   } catch (e) {
-    // Fall back to mock data
-    console.warn('data.json unavailable, using mock data:', e.message);
-    render(MOCK_DATA);
-    // Show a subtle indicator
+    console.warn('data.json unavailable:', e.message);
+    // Try to use last known good data from sessionStorage
+    let fallbackData = null;
+    try { fallbackData = JSON.parse(sessionStorage.getItem('mc_last_data') || 'null'); } catch (_) {}
+
     const tsEl = document.getElementById('last-updated');
-    tsEl.textContent = 'DEMO DATA (data.json not found)';
-    tsEl.style.color = 'var(--status-warn)';
+    const staleEl = document.getElementById('stale-warn');
+
+    if (fallbackData) {
+      // Show last known data with a prominent warning
+      render(fallbackData);
+      const lastTs = fallbackData.generatedAt ? new Date(fallbackData.generatedAt).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) : '—';
+      tsEl.textContent = '⚠ Unable to reach data source — showing last known status from ' + lastTs;
+      tsEl.style.color = 'var(--status-warn)';
+      staleEl.textContent = 'DATA SOURCE UNREACHABLE';
+      staleEl.style.display = 'inline-block';
+    } else {
+      // No cached data — show a clear error state, not DEGRADED mock
+      tsEl.textContent = '⚠ Unable to reach data source — no cached data available';
+      tsEl.style.color = 'var(--status-crit)';
+      staleEl.textContent = 'DATA SOURCE UNREACHABLE';
+      staleEl.style.display = 'inline-block';
+      // Show a minimal error state in the dashboard header
+      const badge = document.getElementById('agg-badge');
+      const label = document.getElementById('agg-label');
+      if (badge) badge.className = 'header-status-badge critical';
+      if (label) label.textContent = 'UNKNOWN';
+    }
   }
 }
 
