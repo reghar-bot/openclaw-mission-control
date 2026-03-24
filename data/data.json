@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-24T08:00:10Z",
+  "generatedAt": "2026-03-24T09:00:10Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
     "gatewayPid": 36906,
-    "sessionCount": 241,
+    "sessionCount": 238,
     "agentCount": 17
   },
   "budget": {
@@ -48,29 +48,15 @@
   ],
   "crons": [
     {
-      "id": "1adafc84-1e1f-467f-b6bd-bb62663cd0ae",
-      "name": "ATG \u2014 Morning Racing Brief",
-      "agentId": "assistant",
-      "enabled": true,
-      "schedule": "0 9 * * *",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-24T08:00:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": 120
-    },
-    {
       "id": "43d33039-0785-407d-a76f-160ef7941d6e",
       "name": "Mission Control \u2014 Data Refresh",
       "agentId": "main",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-24T07:00:52.015000Z",
-      "nextRunAt": "2026-03-24T08:00:00Z",
+      "lastRunAt": "2026-03-24T08:00:41.440000Z",
+      "nextRunAt": "2026-03-24T09:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 19717,
+      "lastDurationMs": 17114,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
@@ -81,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/10 8-22 * * *",
-      "lastRunAt": "2026-03-24T07:50:00.057000Z",
-      "nextRunAt": "2026-03-24T08:00:00Z",
+      "lastRunAt": "2026-03-24T08:50:00.053000Z",
+      "nextRunAt": "2026-03-24T09:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 7693,
+      "lastDurationMs": 7135,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
@@ -95,10 +81,10 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-24T07:00:26.934000Z",
-      "nextRunAt": "2026-03-24T08:00:00Z",
+      "lastRunAt": "2026-03-24T08:00:14.162000Z",
+      "nextRunAt": "2026-03-24T09:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 25081,
+      "lastDurationMs": 27278,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -109,10 +95,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-24T07:00:00.046000Z",
-      "nextRunAt": "2026-03-24T08:00:00Z",
+      "lastRunAt": "2026-03-24T08:00:00.054000Z",
+      "nextRunAt": "2026-03-24T09:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 26888,
+      "lastDurationMs": 14108,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -124,7 +110,7 @@
       "enabled": true,
       "schedule": "0 * * * *",
       "lastRunAt": "2026-03-24T07:02:41.753000Z",
-      "nextRunAt": "2026-03-24T08:00:51.714000Z",
+      "nextRunAt": "2026-03-24T09:00:51.714000Z",
       "lastRunStatus": "ok",
       "lastDurationMs": 120211,
       "consecutiveErrors": 0,
@@ -137,10 +123,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "5 * * * *",
-      "lastRunAt": "2026-03-24T07:05:00.043000Z",
-      "nextRunAt": "2026-03-24T08:05:00Z",
+      "lastRunAt": "2026-03-24T08:05:00.015000Z",
+      "nextRunAt": "2026-03-24T09:05:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 120045,
+      "lastDurationMs": 5953,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -151,24 +137,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "10 * * * *",
-      "lastRunAt": "2026-03-24T07:10:40.488000Z",
-      "nextRunAt": "2026-03-24T08:10:00Z",
+      "lastRunAt": "2026-03-24T08:10:00.043000Z",
+      "nextRunAt": "2026-03-24T09:10:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 26890,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
-      "id": "e6d7dba6-0252-4348-98a5-4d532990a1d2",
-      "name": "ATG \u2014 Log Picks",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "30 9 * * *",
-      "lastRunAt": null,
-      "nextRunAt": "2026-03-24T08:30:00Z",
-      "lastRunStatus": "unknown",
-      "lastDurationMs": null,
+      "lastDurationMs": 7510,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -398,6 +370,20 @@
       "timeoutSeconds": null
     },
     {
+      "id": "eb85d356-270e-42f0-90f2-bb726cd97932",
+      "name": "Routing Daily Auto-Tune",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "30 3 * * *",
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-25T02:30:00Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
+    },
+    {
       "id": "586ea696-e141-4f10-bbc5-98c288868bd0",
       "name": "knowledge-audit",
       "agentId": "assistant",
@@ -550,6 +536,34 @@
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 480
+    },
+    {
+      "id": "1adafc84-1e1f-467f-b6bd-bb62663cd0ae",
+      "name": "ATG \u2014 Morning Racing Brief",
+      "agentId": "assistant",
+      "enabled": true,
+      "schedule": "0 9 * * *",
+      "lastRunAt": "2026-03-24T08:01:10.132000Z",
+      "nextRunAt": "2026-03-25T08:00:00Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 9223,
+      "consecutiveErrors": 1,
+      "lastError": "Channel is required when multiple channels are configured: telegram, discord Set delivery.channel explicitly or use a main session with a previous channel.",
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "e6d7dba6-0252-4348-98a5-4d532990a1d2",
+      "name": "ATG \u2014 Log Picks",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "30 9 * * *",
+      "lastRunAt": "2026-03-24T08:30:10.743000Z",
+      "nextRunAt": "2026-03-25T08:30:00Z",
+      "lastRunStatus": "ok",
+      "lastDurationMs": 6210,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
     },
     {
       "id": "88bb8bc2-c1e5-420e-b329-8af2966fe0a4",
@@ -987,9 +1001,9 @@
     }
   ],
   "errors": {
-    "total": 5,
+    "total": 6,
     "critical": 0,
-    "warning": 5
+    "warning": 6
   },
   "agentImprovementBacklog": {
     "total": 5,
