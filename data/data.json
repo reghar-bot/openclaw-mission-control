@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-24T15:00:15Z",
+  "generatedAt": "2026-03-24T16:00:21Z",
   "generatorVersion": "1.3.0",
   "system": {
     "status": "WARNING",
     "gatewayStatus": "running",
-    "gatewayPid": 71717,
-    "sessionCount": 134,
+    "gatewayPid": 76296,
+    "sessionCount": 143,
     "agentCount": 17
   },
   "budget": {
@@ -53,10 +53,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-24T14:01:02.030000Z",
-      "nextRunAt": "2026-03-24T15:00:00Z",
+      "lastRunAt": "2026-03-24T15:01:04.988000Z",
+      "nextRunAt": "2026-03-24T16:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 33285,
+      "lastDurationMs": 29029,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
@@ -67,10 +67,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "*/10 8-22 * * *",
-      "lastRunAt": "2026-03-24T14:50:00.044000Z",
-      "nextRunAt": "2026-03-24T15:00:00Z",
+      "lastRunAt": "2026-03-24T15:50:00.054000Z",
+      "nextRunAt": "2026-03-24T16:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 43168,
+      "lastDurationMs": 17338,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 120
@@ -81,10 +81,10 @@
       "agentId": "assistant",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-24T14:00:23.544000Z",
-      "nextRunAt": "2026-03-24T15:00:00Z",
+      "lastRunAt": "2026-03-24T15:00:26.292000Z",
+      "nextRunAt": "2026-03-24T16:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 38486,
+      "lastDurationMs": 38696,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 60
@@ -95,10 +95,10 @@
       "agentId": "isolated",
       "enabled": true,
       "schedule": "0 8-23 * * *",
-      "lastRunAt": "2026-03-24T14:00:00.046000Z",
-      "nextRunAt": "2026-03-24T15:00:00Z",
+      "lastRunAt": "2026-03-24T15:00:00.044000Z",
+      "nextRunAt": "2026-03-24T16:00:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 23498,
+      "lastDurationMs": 26248,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 300
@@ -109,10 +109,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "0 * * * *",
-      "lastRunAt": "2026-03-24T14:01:54.379000Z",
-      "nextRunAt": "2026-03-24T15:00:51.714000Z",
+      "lastRunAt": "2026-03-24T15:02:24.735000Z",
+      "nextRunAt": "2026-03-24T16:00:51.714000Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 7985,
+      "lastDurationMs": 8474,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -123,10 +123,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "5 * * * *",
-      "lastRunAt": "2026-03-24T14:05:00.053000Z",
-      "nextRunAt": "2026-03-24T15:05:00Z",
+      "lastRunAt": "2026-03-24T15:05:00.048000Z",
+      "nextRunAt": "2026-03-24T16:05:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 8272,
+      "lastDurationMs": 6266,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -137,10 +137,10 @@
       "agentId": "strategist",
       "enabled": true,
       "schedule": "10 8-23 * * *",
-      "lastRunAt": "2026-03-24T14:10:34.917000Z",
-      "nextRunAt": "2026-03-24T15:10:00Z",
+      "lastRunAt": "2026-03-24T15:10:20.845000Z",
+      "nextRunAt": "2026-03-24T16:10:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 15636,
+      "lastDurationMs": 28393,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": 180
@@ -151,24 +151,10 @@
       "agentId": "main",
       "enabled": true,
       "schedule": "10 * * * *",
-      "lastRunAt": "2026-03-24T14:10:00.061000Z",
-      "nextRunAt": "2026-03-24T15:10:00Z",
+      "lastRunAt": "2026-03-24T15:10:00.056000Z",
+      "nextRunAt": "2026-03-24T16:10:00Z",
       "lastRunStatus": "ok",
-      "lastDurationMs": 26744,
-      "consecutiveErrors": 0,
-      "lastError": null,
-      "timeoutSeconds": null
-    },
-    {
-      "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
-      "name": "Discord Relay \u2014 Script (every 4h)",
-      "agentId": "main",
-      "enabled": true,
-      "schedule": "40 */4 * * *",
-      "lastRunAt": "2026-03-24T11:42:52.450000Z",
-      "nextRunAt": "2026-03-24T15:42:52.404000Z",
-      "lastRunStatus": "ok",
-      "lastDurationMs": 11936,
+      "lastDurationMs": 7004,
       "consecutiveErrors": 0,
       "lastError": null,
       "timeoutSeconds": null
@@ -241,6 +227,20 @@
       "lastDurationMs": 0,
       "consecutiveErrors": 0,
       "lastError": "main job requires payload.kind=\"systemEvent\"",
+      "timeoutSeconds": null
+    },
+    {
+      "id": "f95e1b24-2875-48ca-81e4-3be69069872b",
+      "name": "Discord Relay \u2014 Script (every 4h)",
+      "agentId": "main",
+      "enabled": true,
+      "schedule": "40 */4 * * *",
+      "lastRunAt": "2026-03-24T15:42:52.457000Z",
+      "nextRunAt": "2026-03-24T19:42:52.404000Z",
+      "lastRunStatus": "error",
+      "lastDurationMs": 17914,
+      "consecutiveErrors": 1,
+      "lastError": "Telegram send failed: chat not found (chat_id=1482394003751174146). Likely: bot not started in DM, bot removed from group/channel, group migrated (new -100\u2026 id), or wrong bot token. Input was: \"1482394003751174146\".",
       "timeoutSeconds": null
     },
     {
@@ -762,6 +762,20 @@
       "timeoutSeconds": null
     },
     {
+      "id": "8d154854-042d-4938-a8a7-d6e5861743e4",
+      "name": "Kodex Weekly System Review",
+      "agentId": "developer",
+      "enabled": true,
+      "schedule": "0 22 * * 0",
+      "lastRunAt": null,
+      "nextRunAt": "2026-03-29T20:00:00Z",
+      "lastRunStatus": "unknown",
+      "lastDurationMs": null,
+      "consecutiveErrors": 0,
+      "lastError": null,
+      "timeoutSeconds": null
+    },
+    {
       "id": "e3b1f950-e2db-4af4-8461-5c0158585acf",
       "name": "Output Rotation \u2014 Archive old agent outputs (weekly)",
       "agentId": "developer",
@@ -1043,9 +1057,9 @@
     }
   ],
   "errors": {
-    "total": 6,
+    "total": 7,
     "critical": 0,
-    "warning": 6
+    "warning": 7
   },
   "agentImprovementBacklog": {
     "total": 5,
